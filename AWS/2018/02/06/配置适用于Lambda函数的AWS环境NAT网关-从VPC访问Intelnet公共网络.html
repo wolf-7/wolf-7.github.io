@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#fff">
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg?v=5.1.3" color="#fff">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="AWS," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="一匹来自北方的狼" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="需求：因为lambda本身在建立之初是具备公共的Intelnet访问权限的，但是因为架构需要VPC，配置VPC以后Lambda函数将失去公共的Intelnet访问权限，此时需要给VPC配置NAT网关，同时需要在安全组中添加需要出站的连接（默认是全部允许出站） &amp;emsp;   AWS官方提供的NAT网关架构图  AWS官方技术文档">
+<meta name="keywords" content="AWS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="配置适用于Lambda函数的AWS环境NAT网关-从VPC访问Intelnet公共网络">
+<meta property="og:url" content="https://wolf-7.github.io/AWS/2018/02/06/配置适用于Lambda函数的AWS环境NAT网关-从VPC访问Intelnet公共网络.html">
+<meta property="og:site_name" content="一匹来自北方的狼">
+<meta property="og:description" content="需求：因为lambda本身在建立之初是具备公共的Intelnet访问权限的，但是因为架构需要VPC，配置VPC以后Lambda函数将失去公共的Intelnet访问权限，此时需要给VPC配置NAT网关，同时需要在安全组中添加需要出站的连接（默认是全部允许出站） &amp;emsp;   AWS官方提供的NAT网关架构图  AWS官方技术文档">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://docs.aws.amazon.com/zh_cn/AmazonVPC/latest/UserGuide/images/nat-gateway-diagram.png">
+<meta property="og:image" content="https://wolf-7.github.io/images/lambda-images/1517885033617.png">
+<meta property="og:image" content="https://wolf-7.github.io/images/lambda-images/1517885255818.png">
+<meta property="og:image" content="https://wolf-7.github.io/images/lambda-images/1517887619633.png">
+<meta property="og:image" content="https://wolf-7.github.io/images/lambda-images/1517886163129.png">
+<meta property="og:image" content="https://wolf-7.github.io/images/lambda-images/1517885960712.png">
+<meta property="og:image" content="https://wolf-7.github.io/images/lambda-images/1517887872674.png">
+<meta property="og:image" content="https://wolf-7.github.io/images/lambda-images/1517887081653.png">
+<meta property="og:image" content="https://wolf-7.github.io/images/lambda-images/1517887288826.png">
+<meta property="og:image" content="https://wolf-7.github.io/images/lambda-images/1517887298487.png">
+<meta property="og:image" content="https://wolf-7.github.io/images/lambda-images/1517887323032.png">
+<meta property="og:updated_time" content="2019-01-14T11:59:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="配置适用于Lambda函数的AWS环境NAT网关-从VPC访问Intelnet公共网络">
+<meta name="twitter:description" content="需求：因为lambda本身在建立之初是具备公共的Intelnet访问权限的，但是因为架构需要VPC，配置VPC以后Lambda函数将失去公共的Intelnet访问权限，此时需要给VPC配置NAT网关，同时需要在安全组中添加需要出站的连接（默认是全部允许出站） &amp;emsp;   AWS官方提供的NAT网关架构图  AWS官方技术文档">
+<meta name="twitter:image" content="https://docs.aws.amazon.com/zh_cn/AmazonVPC/latest/UserGuide/images/nat-gateway-diagram.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"perspectiveLeftIn","post_header":"fadeIn","post_body":"fadeIn","coll_header":"perspectiveLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wolf-7.github.io/AWS/2018/02/06/配置适用于Lambda函数的AWS环境NAT网关-从VPC访问Intelnet公共网络.html"/>
+
+
+
+
+
+  <title>配置适用于Lambda函数的AWS环境NAT网关-从VPC访问Intelnet公共网络 | 一匹来自北方的狼</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一匹来自北方的狼</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-aws">
+          <a href="/categories/AWS/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cloud"></i> <br />
+            
+            AWS
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rhce">
+          <a href="/categories/RHCE/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            RHCE
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-futbol-o"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wolf-7.github.io/AWS/2018/02/06/配置适用于Lambda函数的AWS环境NAT网关-从VPC访问Intelnet公共网络.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一匹来自北方的狼">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一匹来自北方的狼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">配置适用于Lambda函数的AWS环境NAT网关-从VPC访问Intelnet公共网络</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-06T11:37:30+08:00">
+                2018-02-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AWS/" itemprop="url" rel="index">
+                    <span itemprop="name">AWS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  687
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p><font color="black" size="3"> <em>&#x9700;&#x6C42;&#xFF1A;&#x56E0;&#x4E3A;lambda&#x672C;&#x8EAB;&#x5728;&#x5EFA;&#x7ACB;&#x4E4B;&#x521D;&#x662F;&#x5177;&#x5907;&#x516C;&#x5171;&#x7684;Intelnet&#x8BBF;&#x95EE;&#x6743;&#x9650;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x56E0;&#x4E3A;&#x67B6;&#x6784;&#x9700;&#x8981;VPC&#xFF0C;&#x914D;&#x7F6E;VPC&#x4EE5;&#x540E;Lambda&#x51FD;&#x6570;&#x5C06;&#x5931;&#x53BB;&#x516C;&#x5171;&#x7684;Intelnet&#x8BBF;&#x95EE;&#x6743;&#x9650;&#xFF0C;&#x6B64;&#x65F6;&#x9700;&#x8981;&#x7ED9;VPC&#x914D;&#x7F6E;NAT&#x7F51;&#x5173;&#xFF0C;&#x540C;&#x65F6;&#x9700;&#x8981;&#x5728;&#x5B89;&#x5168;&#x7EC4;&#x4E2D;&#x6DFB;&#x52A0;&#x9700;&#x8981;&#x51FA;&#x7AD9;&#x7684;&#x8FDE;&#x63A5;&#xFF08;&#x9ED8;&#x8BA4;&#x662F;&#x5168;&#x90E8;&#x5141;&#x8BB8;&#x51FA;&#x7AD9;&#xFF09;</em> </font>&#x2003;</p>
+<p><font color="red" size="4"> <strong> AWS&#x5B98;&#x65B9;&#x63D0;&#x4F9B;&#x7684;NAT&#x7F51;&#x5173;&#x67B6;&#x6784;&#x56FE; </strong> </font><br><a href="https://docs.aws.amazon.com/zh_cn/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html#nat-gateway-working-with" target="_blank" rel="noopener">AWS&#x5B98;&#x65B9;&#x6280;&#x672F;&#x6587;&#x6863;</a><br><img src="https://docs.aws.amazon.com/zh_cn/AmazonVPC/latest/UserGuide/images/nat-gateway-diagram.png" width="100%" height="70%"></p>
+<hr>
+<a id="more"></a>
+<h1 id="&#x76F8;&#x5173;AWS&#x6280;&#x672F;&#x77E5;&#x8BC6;&#x70B9;"><a href="#&#x76F8;&#x5173;AWS&#x6280;&#x672F;&#x77E5;&#x8BC6;&#x70B9;" class="headerlink" title="  &#x76F8;&#x5173;AWS&#x6280;&#x672F;&#x77E5;&#x8BC6;&#x70B9;  "></a><font color="DarkCyan" size="4"> <strong> &#x76F8;&#x5173;AWS&#x6280;&#x672F;&#x77E5;&#x8BC6;&#x70B9; </strong> </font></h1><pre><code>1.&#x8FD9;&#x91CC;&#x6D89;&#x53CA;&#x5230;AWS&#x4E91;&#x7684;&#x51E0;&#x4E2A;&#x77E5;&#x8BC6;&#x70B9;&#xFF1A;VPC&#x3001;&#x5B50;&#x7F51;&#x3001;Intelnet&#x7F51;&#x5173;&#x3001;NAT&#x7F51;&#x5173;&#x3002;
+2.&#x9ED8;&#x8BA4;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x67B6;&#x6784;&#x4E2D;&#x662F;&#x5206;&#x4E3A;Public&#x4E0E;Private&#x4FE9;&#x4E2A;&#x5B50;&#x7F51;&#x6BB5;&#xFF0C;&#x6211;&#x7684;&#x73AF;&#x5883;&#x662F;&#x5DF2;&#x7ECF;
+&#x5B58;&#x5728;VPC&#x4E0E;Public&#x5B50;&#x7F51;&#x6BB5;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x8FD9;&#x91CC;&#x53EA;&#x6D89;&#x53CA;&#x5230;&#x4E86;Private&#x7F51;&#x6BB5;&#x3002;
+</code></pre><h1 id="&#x914D;&#x7F6E;VPC"><a href="#&#x914D;&#x7F6E;VPC" class="headerlink" title="  &#x914D;&#x7F6E;VPC   "></a><font color="DarkCyan" size="4"> <strong> &#x914D;&#x7F6E;VPC </strong> </font> </h1><pre><code>1.VPC&#x9ED8;&#x8BA4;&#x662F;&#x4F1A;&#x5B58;&#x5728;&#xFF0C;&#x8FD9;&#x91CC;&#x4F1A;&#x6D89;&#x53CA;&#x5230;&#x5404;&#x4E2A;AWS&#x670D;&#x52A1;&#x7684;VPC&#x5173;&#x8054;&#x95EE;&#x9898;&#xFF0C;&#x5982;&#x679C;&#x65B0;&#x5EFA;VPC&#xFF0C;
+&#x4F1A;&#x5BFC;&#x81F4;&#x5176;&#x4ED6;VPC&#x4E0E;Lambda&#x6216;&#x5176;&#x4ED6;&#x670D;&#x52A1;&#x65E0;&#x6CD5;&#x8BBF;&#x95EE;&#x7B49;&#x672A;&#x77E5;&#x95EE;&#x9898;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x4E0D;&#x5EFA;&#x8BAE;&#x5728;&#x521B;&#x5EFA;
+&#x65B0;&#x7684;VPC&#xFF0C;&#x800C;&#x662F;&#x5728;&#x539F;&#x6709;&#x7684;VPC&#x4E2D;&#x521B;&#x5EFA;&#x5B50;&#x7F51;&#xFF0C;&#x7136;&#x540E;&#x914D;&#x7F6E;NAT&#x7F51;&#x5173;&#x3002;
+2.&#x9ED8;&#x8BA4;VPC&#x4E2D;&#x5B58;&#x5728;&#x4E86;Subnet&#x5B50;&#x7F51;&#x6BB5;:
+</code></pre><figure class="highlight lsl"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">172.31</span><span class="number">.0</span><span class="number">.0</span>/<span class="number">16</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code>&#x4EE5;&#x4E0B;&#x6211;&#x4EEC;&#x5C06;&#x5728;&#x8FD9;&#x4E2A;VPC&#x4E2D;&#x521B;&#x5EFA;Subnet&#x5B50;&#x7F51;&#x3002;
+</code></pre><p><img src="/images/lambda-images/1517885033617.png" width="100%" height="70%"></p>
+<h1 id="&#x521B;&#x5EFA;VPC&#x4E2D;&#x7684;Subnet&#x5B50;&#x7F51;"><a href="#&#x521B;&#x5EFA;VPC&#x4E2D;&#x7684;Subnet&#x5B50;&#x7F51;" class="headerlink" title="  &#x521B;&#x5EFA;VPC&#x4E2D;&#x7684;Subnet&#x5B50;&#x7F51;   "></a><font color="DarkCyan" size="4"> <strong> &#x521B;&#x5EFA;VPC&#x4E2D;&#x7684;Subnet&#x5B50;&#x7F51; </strong> </font> </h1><pre><code>1.&#x65B0;&#x5EFA;NAT&#x7F51;&#x5173;&#x7684;&#x5B50;&#x7F51;&#xFF0C;&#x8FD9;&#x91CC;&#x9762;&#x6D89;&#x53CA;&#x5230;&#x7F51;&#x7EDC;&#x7684;&#x4E00;&#x4E9B;&#x57FA;&#x7840;&#x6982;&#x5FF5;&#xFF0C;&#x5B50;&#x7F51;&#x5212;&#x5206;&#xFF0C;&#x9700;&#x8981;&#x4E86;&#x89E3;&#x3002;
+&#x9ED8;&#x8BA4;VPC&#x5B58;&#x5728;&#x4E86;&#x4E09;&#x4E2A;&#x5B50;&#x7F51;&#x4E3A;:
+</code></pre><figure class="highlight lsl"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">172.31</span><span class="number">.0</span><span class="number">.0</span>/<span class="number">20</span>(<span class="number">0</span><span class="number">-15</span>)</span><br><span class="line"><span class="number">172.31</span><span class="number">.16</span><span class="number">.0</span>/<span class="number">20</span>(<span class="number">16</span><span class="number">-31</span>)</span><br><span class="line"><span class="number">172.31</span><span class="number">.32</span><span class="number">.0</span>/<span class="number">20</span>(<span class="number">32</span><span class="number">-47</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>2.&#x6240;&#x4EE5;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x533A;&#x5206;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x547D;&#x540D;subnet-lambda&#x7684;&#x5B50;&#x7F51;:
+</code></pre><figure class="highlight lsl"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">172.31</span><span class="number">.48</span><span class="number">.0</span>/<span class="number">20</span>(<span class="number">48</span><span class="number">-63</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre><code>&#x4F5C;&#x4E3A;NAT&#x7F51;&#x5173;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x5B50;&#x7F51;&#x6BB5;&#x3002;
+</code></pre><p><img src="/images/lambda-images/1517885255818.png" width="100%" height="70%"></p>
+<h1 id="&#x914D;&#x7F6E;Intelnet&#x7F51;&#x5173;"><a href="#&#x914D;&#x7F6E;Intelnet&#x7F51;&#x5173;" class="headerlink" title="  &#x914D;&#x7F6E;Intelnet&#x7F51;&#x5173;  "></a><font color="DarkCyan" size="4"> <strong> &#x914D;&#x7F6E;Intelnet&#x7F51;&#x5173; </strong> </font></h1><pre><code>1.&#x521B;&#x5EFA;VPC&#x65F6;&#x4F1A;&#x81EA;&#x52A8;&#x521B;&#x5EFA;Intelnet&#x7F51;&#x5173;&#x5E76;&#x4E14;&#x81EA;&#x52A8;attached&#xFF0C;&#x4E3A;AWS&#x63D0;&#x4F9B;&#x7684;&#x516C;&#x5171;Intelnet&#x8BBF;&#x95EE;&#x3002;
+2.&#x5982;&#x679C;&#x662F;&#x65B0;&#x5EFA;&#x7684;VPC&#xFF0C;&#x5C31;&#x9700;&#x5728;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;Intelnet&#x7F51;&#x5173;&#xFF0C;&#x5E76;&#x4E14;attached&#x5230;&#x521B;&#x5EFA;&#x7684;VPC&#x4E0A;&#x3002;
+</code></pre><p><img src="/images/lambda-images/1517887619633.png" width="100%" height="70%"></p>
+<h1 id="&#x914D;&#x7F6E;NAT&#x7F51;&#x5173;"><a href="#&#x914D;&#x7F6E;NAT&#x7F51;&#x5173;" class="headerlink" title="  &#x914D;&#x7F6E;NAT&#x7F51;&#x5173;  "></a><font color="DarkCyan" size="4"> <strong> &#x914D;&#x7F6E;NAT&#x7F51;&#x5173; </strong> </font></h1><pre><code>1.&#x65B0;&#x5EFA;NAT&#x7F51;&#x5173;&#xFF0C;&#x5C06;&#x5176;&#x5173;&#x8054;&#x5230;&#x4E00;&#x4E2A;&#x53EF;&#x5DF2;&#x7ECF;&#x914D;&#x7F6E;Intelnet&#x7F51;&#x5173;&#x7684;&#x5B50;&#x7F51;&#x3002;
+2.&#x521B;&#x5EFA;&#x4E00;&#x4E2A;ElasticIP&#xFF0C;attached&#x5230;NAT&#x7F51;&#x5173;&#x3002;
+</code></pre><p><img src="/images/lambda-images/1517886163129.png" width="100%" height="70%"></p>
+<h1 id="&#x914D;&#x7F6E;Route&#x8868;"><a href="#&#x914D;&#x7F6E;Route&#x8868;" class="headerlink" title="  &#x914D;&#x7F6E;Route&#x8868;  "></a><font color="DarkCyan" size="4"> <strong> &#x914D;&#x7F6E;Route&#x8868; </strong> </font></h1><pre><code>1.&#x5728;&#x8DEF;&#x7531;&#x8868;&#x9700;&#x8981;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;Route&#x8868;&#xFF08;rtb-default&#xFF09;&#xFF0C;&#x4E00;&#x822C;&#x4F1A;&#x521B;&#x5EFA;&#x9ED8;&#x8BA4;Route&#x8868;&#xFF0C;&#x81EA;&#x52A8;&#x5173;&#x8054;&#xFF0C;
+&#x8FD9;&#x65F6;&#x5C06;&#x4E0A;&#x9762;&#x65B0;&#x5EFA;&#x7684;Intelnet&#x7F51;&#x5173;&#x6807;&#x8BB0;&#x5230;&#x9ED8;&#x8BA4;Route&#x8868;&#xFF0C;&#x5E76;&#x5173;&#x8054;&#x5DF2;&#x7ECF;&#x521B;&#x5EFA;&#x7684;VPC&#x4E2D;&#x7684;&#x4E09;&#x4E2A;&#x5B50;&#x7F51;&#x3002;
+2.&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;Route&#x8868;&#xFF08;rtb-lambda&#xFF09;&#xFF0C;&#x5173;&#x8054;172.31.48.0/20&#x5B50;&#x7F51;&#x6BB5;&#x3002;
+&#x5C06;&#x8DEF;&#x7531;&#x6807;&#x8BB0;&#x4E3A;0.0.0.0/0 --&gt;&gt; nat-gateway-id&#xFF08;&#x65B0;&#x5EFA;&#x7684;NAT&#x7F51;&#x5173;&#xFF09;&#x3002;
+</code></pre><p><img src="/images/lambda-images/1517885960712.png" width="100%" height="70%"><br><img src="/images/lambda-images/1517887872674.png" width="100%" height="70%"><br><img src="/images/lambda-images/1517887081653.png" width="100%" height="70%"></p>
+<h1 id="&#x914D;&#x7F6E;Lambda&#x51FD;&#x6570;"><a href="#&#x914D;&#x7F6E;Lambda&#x51FD;&#x6570;" class="headerlink" title="  &#x914D;&#x7F6E;Lambda&#x51FD;&#x6570;  "></a><font color="DarkCyan" size="4"> <strong> &#x914D;&#x7F6E;Lambda&#x51FD;&#x6570; </strong> </font></h1><pre><code>1.Lambda&#x51FD;&#x6570;&#x9700;&#x8981;&#x5177;&#x6709;&#x5BF9;VPC&#x7684;&#x6267;&#x884C;Read&#x6743;&#x9650;&#xFF0C;&#x9700;&#x8981;&#x5728;IAM&#x4E2D;&#x6DFB;&#x52A0;&#x8D4B;&#x4E88;&#x3002;
+2.&#x914D;&#x7F6E;&#x7F51;&#x7EDC;&#x4E3A;&#x65B0;&#x5EFA;VPC&#x4E2D;&#x7684;&#x5B50;&#x7F51;&#xFF08;172.31.48.0/20&#xFF09;&#x3002;
+3.&#x5F00;&#x542F;&#x9700;&#x8981;&#x5165;&#x7AD9;&#x3001;&#x51FA;&#x7AD9;&#x7684;&#x5B89;&#x5168;&#x7EC4;&#x3002;
+</code></pre><p><img src="/images/lambda-images/1517887288826.png" width="100%" height="70%"><br><img src="/images/lambda-images/1517887298487.png" width="100%" height="70%"><br><img src="/images/lambda-images/1517887323032.png" width="100%" height="70%"></p>
+<pre><code>&#x6B64;&#x65F6;&#xFF0C;Lambda&#x51FD;&#x6570;&#x5C31;&#x5177;&#x5907;&#x4E86;Intelnet&#x516C;&#x5171;&#x8BBF;&#x95EE;&#x6743;&#x9650;&#x4E86;&#x3002;
+</code></pre><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AWS/" rel="tag"># AWS</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/职业规划/2018/01/01/做一个职业运维人.html" rel="next" title="做一个职业运维人">
+                <i class="fa fa-chevron-left"></i> 做一个职业运维人
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/AWS/2018/05/29/搭建grafana-on-AWS-Ubuntu-Instance.html" rel="prev" title="Install And Configure Grafana/influxdb ON AWS EC2 Instance(Ubuntu)">
+                Install And Configure Grafana/influxdb ON AWS EC2 Instance(Ubuntu) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+	 <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/favicon.ico"
+                alt="一匹来自北方的狼" />
+	</a>
+            
+              <p class="site-author-name" itemprop="name">一匹来自北方的狼</p>
+              <p class="site-description motion-element" itemprop="description">雪藏风凌骨，<br/>空隐道玄心。<br/>寒窗问诸佛，<br/>飞渡红尘烬。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                神奇的链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://elonmusknews.org/" title="获取 Elon Musk 的新闻" target="_blank">获取 Elon Musk 的新闻</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bilibili.com/video/av6211226/" title="尼古拉·特斯拉：发明了现代世界的人" target="_blank">尼古拉·特斯拉：发明了现代世界的人</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wolf-7.github.io/about/" title="关于此博客" target="_blank">关于此博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#相关AWS技术知识点"><span class="nav-number">1.</span> <span class="nav-text">  相关AWS技术知识点  </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置VPC"><span class="nav-number">2.</span> <span class="nav-text">  配置VPC   </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建VPC中的Subnet子网"><span class="nav-number">3.</span> <span class="nav-text">  创建VPC中的Subnet子网   </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置Intelnet网关"><span class="nav-number">4.</span> <span class="nav-text">  配置Intelnet网关  </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置NAT网关"><span class="nav-number">5.</span> <span class="nav-text">  配置NAT网关  </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置Route表"><span class="nav-number">6.</span> <span class="nav-text">  配置Route表  </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置Lambda函数"><span class="nav-number">7.</span> <span class="nav-text">  配置Lambda函数  </span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一匹来自北方的狼</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user-circle-o"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      <i class="fa fa-eye"></i>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: ,
+    el: 'wpac-rating',
+    color: 'f79533'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+
+  
+
+  
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+ <script>
+ $("body").backstretch("/images/sh1.jpg");
+ </script>
+</body>
+</html>

@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#fff">
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg?v=5.1.3" color="#fff">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="职业规划," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="一匹来自北方的狼" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="这里说的运维主要是指应用运维，非系统部的偏硬件和网络的运维">
+<meta name="keywords" content="职业规划">
+<meta property="og:type" content="article">
+<meta property="og:title" content="运维的价值与目标拆解">
+<meta property="og:url" content="https://wolf-7.github.io/职业规划/2017/07/17/运维的价值与目标拆解.html">
+<meta property="og:site_name" content="一匹来自北方的狼">
+<meta property="og:description" content="这里说的运维主要是指应用运维，非系统部的偏硬件和网络的运维">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://wolf-7.github.io/images/operation-2.jpg">
+<meta property="og:updated_time" content="2019-01-14T11:59:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="运维的价值与目标拆解">
+<meta name="twitter:description" content="这里说的运维主要是指应用运维，非系统部的偏硬件和网络的运维">
+<meta name="twitter:image" content="https://wolf-7.github.io/images/operation-2.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"perspectiveLeftIn","post_header":"fadeIn","post_body":"fadeIn","coll_header":"perspectiveLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wolf-7.github.io/职业规划/2017/07/17/运维的价值与目标拆解.html"/>
+
+
+
+
+
+  <title>运维的价值与目标拆解 | 一匹来自北方的狼</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一匹来自北方的狼</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-aws">
+          <a href="/categories/AWS/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cloud"></i> <br />
+            
+            AWS
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rhce">
+          <a href="/categories/RHCE/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            RHCE
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-futbol-o"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wolf-7.github.io/职业规划/2017/07/17/运维的价值与目标拆解.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一匹来自北方的狼">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一匹来自北方的狼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">运维的价值与目标拆解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-17T21:41:56+08:00">
+                2017-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/职业规划/" itemprop="url" rel="index">
+                    <span itemprop="name">职业规划</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,101
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>&#x8FD9;&#x91CC;&#x8BF4;&#x7684;&#x8FD0;&#x7EF4;&#x4E3B;&#x8981;&#x662F;&#x6307;&#x5E94;&#x7528;&#x8FD0;&#x7EF4;&#xFF0C;&#x975E;&#x7CFB;&#x7EDF;&#x90E8;&#x7684;&#x504F;&#x786C;&#x4EF6;&#x548C;&#x7F51;&#x7EDC;&#x7684;&#x8FD0;&#x7EF4;</p>
+<hr>
+<a id="more"></a>
+<h3 id="&#x6211;&#x4E0D;&#x5E78;&#x798F;"><a href="#&#x6211;&#x4E0D;&#x5E78;&#x798F;" class="headerlink" title="&#x6211;&#x4E0D;&#x5E78;&#x798F;"></a>&#x6211;&#x4E0D;&#x5E78;&#x798F;</h3><p>&#x5F88;&#x591A;&#x8FD0;&#x7EF4;&#x540C;&#x5B66;&#x611F;&#x89C9;&#x81EA;&#x5DF1;&#x5F88;&#x82E6;&#x903C;&#xFF0C;&#x611F;&#x89C9;&#x6BCF;&#x5929;&#x90FD;&#x5728;&#x6551;&#x706B;&#xFF0C;&#x7ED9;&#x7814;&#x53D1;&#x64E6;&#x5C41;&#x80A1;&#xFF0C;&#x505A;&#x4E00;&#x4E9B;&#x91CD;&#x590D;&#x5DE5;&#x4F5C;&#xFF0C;&#x505A;&#x4E00;&#x4E9B;&#x5BF9;&#x81EA;&#x5DF1;&#x63D0;&#x5347;&#x8F83;&#x5C0F;&#x7684;&#x4E8B;&#x60C5;&#xFF0C;&#x603B;&#x7ED3;&#x4E00;&#x53E5;&#x8BDD;&#xFF0C;&#x5C31;&#x662F;&#x4E0D;&#x5E78;&#x798F;&#x3002;</p>
+<h3 id="&#x600E;&#x4E48;&#x5E78;&#x798F;"><a href="#&#x600E;&#x4E48;&#x5E78;&#x798F;" class="headerlink" title="&#x600E;&#x4E48;&#x5E78;&#x798F;"></a>&#x600E;&#x4E48;&#x5E78;&#x798F;</h3><p>&#x5DE5;&#x4F5C;&#x4E2D;&#x7684;&#x5E78;&#x798F;&#x4E3B;&#x8981;&#x6765;&#x81EA;&#x4E24;&#x70B9;&#xFF1A;</p>
+<p>1&#x3001;&#x6709;&#x6210;&#x5C31;&#x611F;&#xFF1B;<br>2&#x3001;&#x85AA;&#x6C34;&#x5230;&#x4F4D;&#xFF1B;</p>
+<p>&#x800C;&#x85AA;&#x6C34;&#x5230;&#x4F4D;&#x4E0E;&#x5426;&#x5F88;&#x5927;&#x7A0B;&#x5EA6;&#x51B3;&#x5B9A;&#x4E8E;&#x4F60;&#x7684;&#x4EA7;&#x51FA;&#xFF08;&#x5982;&#x679C;&#x4F60;&#x7684;&#x8001;&#x677F;&#x4E0D;&#x61C2;&#x4F60;&#x4EEC;&#x7684;&#x5DE5;&#x4F5C;&#xFF0C;&#x770B;&#x4E0D;&#x5230;&#x672C;&#x8BE5;&#x770B;&#x5230;&#x7684;&#x4EF7;&#x503C;&#xFF0C;&#x90A3;&#x53E6;&#x5F53;&#x522B;&#x8BBA;&#xFF09;&#xFF0C;&#x800C;&#x4EA7;&#x51FA;&#x591A;&#x5C11;&#x5F88;&#x5927;&#x7A0B;&#x5EA6;&#x4E0A;&#x548C;&#x4F60;&#x7684;&#x6210;&#x5C31;&#x611F;&#x662F;&#x6B63;&#x76F8;&#x5173;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x8981;&#x5E78;&#x798F;&#xFF0C;&#x5C31;&#x8981;&#x505A;&#x6709;&#x6210;&#x5C31;&#x611F;&#x7684;&#x4E8B;&#x60C5;&#x3002;</p>
+<h3 id="&#x8C08;&#x6210;&#x5C31;&#x611F;"><a href="#&#x8C08;&#x6210;&#x5C31;&#x611F;" class="headerlink" title="&#x8C08;&#x6210;&#x5C31;&#x611F;"></a>&#x8C08;&#x6210;&#x5C31;&#x611F;</h3><p>&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x6280;&#x672F;&#x4EBA;&#x5458;&#xFF0C;&#x6210;&#x5C31;&#x611F;&#x4E3B;&#x8981;&#x6765;&#x81EA;&#x4E24;&#x70B9;&#xFF1A;</p>
+<p>1&#x3001;&#x505A;&#x7684;&#x6709;&#x4EF7;&#x503C;<br>2&#x3001;&#x88AB;&#x522B;&#x4EBA;&#x8BA4;&#x540C;</p>
+<p>&#x5BF9;&#x4E8E;&#x7814;&#x53D1;&#x540C;&#x5B66;&#xFF0C;&#x6BD4;&#x5982;&#x5199;&#x4E86;&#x4E00;&#x4E2A;framework&#xFF0C;&#x6216;&#x8005;lib&#xFF0C;&#x540C;&#x4E8B;&#x90FD;&#x8BF4;&#x597D;&#xFF0C;&#x5E76;&#x62FF;&#x53BB;&#x7528;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x662F;&#x8D85;&#x7EA7;&#x6709;&#x6210;&#x5C31;&#x611F;&#x7684;&#xFF1B;&#x6216;&#x8005;&#x505A;&#x7684;&#x4EA7;&#x54C1;&#x88AB;&#x5E02;&#x573A;&#x8BA4;&#x53EF;&#xFF0C;&#x88AB;&#x540C;&#x884C;&#x8BA4;&#x53EF;&#xFF0C;&#x4E5F;&#x662F;&#x5F88;&#x6709;&#x6210;&#x5C31;&#x611F;&#x7684;&#x3002;</p>
+<p>&#x90A3;&#x8FD0;&#x7EF4;&#x540C;&#x5B66;&#x5462;&#xFF1F;&#x4EF7;&#x503C;&#x4F53;&#x73B0;&#x5728;&#x54EA;&#x91CC;&#xFF1F;</p>
+<p>&#x8FD0;&#x7EF4;&#x7684;&#x4EF7;&#x503C;<br>&#x53EF;&#x4EE5;&#x5206;&#x5BF9;&#x5185;&#x7684;&#xFF0C;&#x548C;&#x5BF9;&#x5916;&#x7684;&#x3002;&#x6BD4;&#x5982;&#x8FD0;&#x7EF4;&#x540C;&#x5B66;&#x5199;&#x4E86;&#x4E00;&#x4E9B;&#x8FD0;&#x7EF4;&#x5DE5;&#x5177;&#xFF0C;&#x5927;&#x5927;&#x63D0;&#x5347;&#x4E86;&#x505A;&#x67D0;&#x4E9B;&#x4E8B;&#x60C5;&#x7684;&#x6548;&#x7387;&#xFF0C;&#x5F97;&#x5230;&#x5468;&#x8FB9;&#x540C;&#x5B66;&#x7684;&#x8BA4;&#x53EF;&#xFF0C;&#x8FD9;&#x662F;&#x5BF9;&#x5185;&#x7684;&#x4EF7;&#x503C;&#x3002;&#x8FD9;&#x91CC;&#xFF0C;&#x7B14;&#x8005;&#x66F4;&#x5E0C;&#x671B;&#x597D;&#x597D;&#x63A2;&#x8BA8;&#x4E00;&#x4E0B;&#x5BF9;&#x5916;&#x7684;&#x4EF7;&#x503C;&#xFF0C;&#x8FD0;&#x7EF4;&#x8FD9;&#x4E2A;&#x89D2;&#x8272;&#xFF0C;&#x5728;&#x516C;&#x53F8;&#x7684;&#x5B9A;&#x4F4D;&#xFF0C;&#x5BF9;&#x516C;&#x53F8;&#x7684;&#x4EF7;&#x503C;&#x3002;</p>
+<p>&#x591A;&#x6570;&#x516C;&#x53F8;&#x5728;&#x521B;&#x4E1A;&#x4E4B;&#x521D;&#xFF0C;&#x662F;&#x6CA1;&#x6709;&#x8FD0;&#x7EF4;&#x8FD9;&#x4E2A;&#x89D2;&#x8272;&#x7684;&#xFF0C;&#x76F8;&#x5173;&#x5DE5;&#x4F5C;&#x5185;&#x5BB9;&#x7531;&#x6240;&#x8C13;&#x7684;&#x5168;&#x6808;&#x5DE5;&#x7A0B;&#x5E08;&#x3001;&#x6808;&#x6EA2;&#x51FA;&#x5DE5;&#x7A0B;&#x5E08;&#x4EE3;&#x52B3;&#x3002;&#x968F;&#x7740;&#x516C;&#x53F8;&#x89C4;&#x6A21;&#x6269;&#x5927;&#xFF0C;&#x673A;&#x5668;&#x5230;&#x51E0;&#x767E;&#x53F0;&#xFF0C;&#x4F1A;&#x66B4;&#x9732;&#x51FA;N&#x591A;&#x95EE;&#x9898;&#xFF0C;&#x6BD4;&#x8F83;&#x76F4;&#x89C2;&#x7684;&#x6BD4;&#x5982;&#xFF1A;</p>
+<ul>
+<li>&#x7EBF;&#x4E0A;&#x73AF;&#x5883;&#x6DF7;&#x4E71;&#x4E0D;&#x582A;&#xFF0C;OS&#x53D1;&#x884C;&#x7248;&#x3001;&#x7CFB;&#x7EDF;&#x53C2;&#x6570;&#x914D;&#x7F6E;&#x3001;WEB&#x670D;&#x52A1;&#x5668;&#x3001;&#x542F;&#x505C;&#x65B9;&#x5F0F;&#x3001;&#x90E8;&#x7F72;&#x8DEF;&#x5F84;&#x5168;&#x51ED;&#x5404;&#x670D;&#x52A1;&#x7684;&#x7814;&#x53D1;&#x4EBA;&#x5458;&#x7684;&#x559C;&#x597D;&#x548C;&#x719F;&#x6089;&#x7A0B;&#x5EA6;</li>
+<li>&#x76D1;&#x63A7;&#x5404;&#x79CD;&#x4E0D;&#x5B8C;&#x5907;&#xFF0C;&#x5F88;&#x591A;&#x6545;&#x969C;&#x90FD;&#x662F;&#x540E;&#x4E8E;&#x7528;&#x6237;&#x53D1;&#x73B0;&#xFF0C;&#x6709;&#x4E9B;&#x8FDB;&#x7A0B;&#x6302;&#x4E86;&#x597D;&#x4E45;&#x624D;&#x5076;&#x7136;&#x53D1;&#x73B0;&#x6216;&#x7528;&#x6237;&#x62A5;&#x969C;&#x4E86;&#x624D;&#x53D1;&#x73B0;</li>
+<li>&#x51FA;&#x4E86;&#x6545;&#x969C;&#x6392;&#x67E5;&#x8D39;&#x52B2;&#xFF0C;&#x751A;&#x81F3;&#x5728;&#x7EBF;&#x4E0A;&#x8C03;&#x8BD5;</li>
+<li>&#x5F88;&#x591A;&#x6545;&#x969C;&#x90FD;&#x662F;&#x7531;&#x4E00;&#x4E9B;&#x4F4E;&#x7EA7;&#x95EE;&#x9898;&#x5BFC;&#x81F4;&#xFF0C;&#x6BD4;&#x5982;ulimit&#x914D;&#x7F6E;&#x4E0D;&#x5408;&#x7406;&#xFF0C;&#x6BD4;&#x5982;&#x60F3;&#x56DE;&#x6EDA;&#x5374;&#x53D1;&#x73B0;&#x5FD8;&#x8BB0;&#x5907;&#x4EFD;</li>
+<li>&#x670D;&#x52A1;&#x5668;&#x8D44;&#x6E90;&#x5229;&#x7528;&#x7387;&#x4F4E;&#xFF0C;&#x5F88;&#x591A;&#x673A;&#x5668;&#x6839;&#x672C;&#x6CA1;&#x5728;&#x7528;&#xFF0C;&#x751A;&#x81F3;&#x90FD;&#x627E;&#x4E0D;&#x5230;&#x4E86;&#xFF0C;&#x6D6A;&#x8D39;&#x4E86;&#x5927;&#x91CF;&#x786C;&#x4EF6;&#x6210;&#x672C;</li>
+<li>&#x540C;&#x65F6;&#x64CD;&#x4F5C;&#x5927;&#x91CF;&#x673A;&#x5668;&#x7F3A;&#x4E4F;&#x6709;&#x529B;&#x5DE5;&#x5177;&#xFF0C;&#x7EBF;&#x4E0A;&#x6743;&#x9650;&#x8981;&#x4E48;&#x6DF7;&#x4E71;&#x4E0D;&#x582A;&#xFF0C;&#x8981;&#x4E48;&#x6240;&#x6709;&#x4EBA;&#x6709;&#x6240;&#x6709;&#x673A;&#x5668;&#x7684;&#x6743;&#x9650;</li>
+</ul>
+<p>&#x6280;&#x672F;&#x5408;&#x4F19;&#x4EBA;&#x610F;&#x8BC6;&#x5230;&#xFF1A;&#x9760;&#x4E13;&#x6CE8;&#x5199;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x7684;&#x7814;&#x53D1;&#x4EBA;&#x5458;&#x6765;&#x89E3;&#x51B3;&#x8FD9;&#x4E9B;&#x95EE;&#x9898;&#x662F;&#x4E0D;&#x9760;&#x8C31;&#x7684;&#xFF0C;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x804C;&#x80FD;&#x56E2;&#x961F;&#x6765;&#x6536;&#x62FE;&#x8FD9;&#x4E2A;&#x70C2;&#x644A;&#x5B50;&#x3002;</p>
+<p>&#x4E8E;&#x662F;&#xFF0C;&#x8FD0;&#x7EF4;&#x56E2;&#x961F;&#x5E94;&#x8FD0;&#x800C;&#x751F;&#xFF0C;&#x5B9A;&#x4F4D;&#x5C31;&#x662F;&#xFF1A;&#x89E3;&#x51B3;&#x4E0A;&#x9762;&#x63D0;&#x5230;&#x7684;&#x95EE;&#x9898;&#x3002;&#x6362;&#x4E2A;&#x8BF4;&#x6CD5;&#xFF1A;&#x8BA9;&#x7814;&#x53D1;&#x53EA;&#x4E13;&#x6CE8;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x548C;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#xFF0C;&#x8FD0;&#x7EF4;&#x641E;&#x5B9A;&#x5269;&#x4E0B;&#x7684;&#x3002;&#x8FD9;&#x6837;&#x4F1A;&#x5E26;&#x6765;&#x4EE5;&#x4E0B;&#x597D;&#x5904;&#xFF1A;</p>
+<ul>
+<li>&#x4EA7;&#x54C1;&#x66F4;&#x5FEB;&#x5F97;&#x5230;&#x9A8C;&#x8BC1;&#xFF1A;&#x89E3;&#x653E;&#x4E86;&#x7814;&#x53D1;&#x4EBA;&#x529B;&#xFF0C;&#x7814;&#x53D1;&#x540C;&#x5B66;&#x5C31;&#x53EF;&#x4EE5;&#x5168;&#x8EAB;&#x5FC3;&#x6251;&#x5728;&#x4EA7;&#x54C1;&#x5F00;&#x53D1;&#x4E0A;&#xFF0C;&#x8FED;&#x4EE3;&#x901F;&#x5EA6;&#x4F1A;&#x53D8;&#x5FEB;</li>
+<li>&#x5927;&#x5E45;&#x63D0;&#x5347;&#x670D;&#x52A1;&#x7A33;&#x5B9A;&#x6027;&#xFF1A;&#x4E13;&#x4E1A;&#x7684;&#x4EBA;&#x5E72;&#x4E13;&#x4E1A;&#x7684;&#x4E8B;&#xFF0C;&#x7EBF;&#x4E0A;&#x73AF;&#x5883;&#x89C4;&#x8303;&#x5E72;&#x51C0;&#x4E86;&#xFF0C;&#x76D1;&#x63A7;&#x5B8C;&#x5907;&#x4E86;&#xFF0C;&#x6CA1;&#x6709;&#x4F4E;&#x7EA7;&#x9519;&#x8BEF;&#x4E86;&#xFF0C;&#x7CFB;&#x7EDF;&#x53C2;&#x6570;&#x914D;&#x7F6E;&#x5408;&#x7406;&#x4E86;</li>
+<li>&#x8D44;&#x4EA7;&#x5F97;&#x5230;&#x6709;&#x6548;&#x5229;&#x7528;&#xFF1A;&#x8D44;&#x4EA7;&#x4E13;&#x95E8;&#x6709;&#x4EBA;&#x5728;&#x68B3;&#x7406;&#xFF0C;&#x901A;&#x8FC7;&#x670D;&#x52A1;&#x6DF7;&#x90E8;&#x7B49;&#x624B;&#x6BB5;&#x63D0;&#x9AD8;&#x5229;&#x7528;&#x7387;&#xFF0C;&#x518D;&#x4E5F;&#x6CA1;&#x6709;&#x673A;&#x5668;&#x5728;&#x7A7A;&#x8F6C;</li>
+</ul>
+<blockquote>
+<font color="wihte" size="4"> &#x7528;&#x4E00;&#x53E5;&#x8BDD;&#x6765;&#x6982;&#x51B5;&#x8FD0;&#x7EF4;&#x7684;&#x4EF7;&#x503C;: </font><br><font color="red" size="4"> &#x82B1;&#x66F4;&#x5C11;&#x7684;&#x94B1;&#xFF0C;&#x8BA9;&#x4EA7;&#x54C1;&#x66F4;&#x5FEB;&#x8FED;&#x4EE3;&#xFF0C;&#x66F4;&#x7A33;&#x5B9A;&#x8FD0;&#x884C; </font>
+
+</blockquote>
+<p>&#x2003;<br>&#x6709;&#x4E9B;&#x8FD0;&#x7EF4;&#x540C;&#x4EC1;&#x6982;&#x51B5;&#x4E86;&#x8FD0;&#x7EF4;&#x4E5D;&#x5B57;&#x771F;&#x8A00;&#x201C;&#x5B89;&#x5168;&#x7A33;&#x5B9A;&#x9AD8;&#x6548;&#x4F4E;&#x6210;&#x672C;&#x201D;&#xFF0C;&#x8BF4;&#x7684;&#x975E;&#x5E38;&#x5230;&#x4F4D;&#x3002;&#x5176;&#x4E2D;&#x7684;&#x5B89;&#x5168;&#xFF0C;&#x884C;&#x6587;&#x5230;&#x6B64;&#x5C1A;&#x672A;&#x4ECB;&#x7ECD;&#x5230;&#xFF0C;&#x6709;&#x4E9B;&#x516C;&#x53F8;&#x4F1A;&#x628A;&#x5B89;&#x5168;&#x5355;&#x62CE;&#x51FA;&#x6765;&#x6210;&#x7ACB;&#x5B89;&#x5168;&#x90E8;&#xFF0C;&#x6709;&#x4E9B;&#x5C31;&#x76F4;&#x63A5;&#x653E;&#x5728;&#x8FD0;&#x7EF4;&#x56E2;&#x961F;&#xFF0C;&#x8FD9;&#x4E2A;&#x770B;&#x516C;&#x53F8;&#x60C5;&#x51B5;&#xFF0C;&#x5982;&#x679C;&#x516C;&#x53F8;&#x4F53;&#x91CF;&#x5927;&#xFF0C;&#x4E2A;&#x4EBA;&#x8BA4;&#x4E3A;&#xFF0C;&#x8FD8;&#x662F;&#x5355;&#x62CE;&#x51FA;&#x6765;&#x4F1A;&#x597D;&#x4E00;&#x4E9B;&#x3002;</p>
+<h3 id="&#x76EE;&#x6807;&#x62C6;&#x89E3;"><a href="#&#x76EE;&#x6807;&#x62C6;&#x89E3;" class="headerlink" title="&#x76EE;&#x6807;&#x62C6;&#x89E3;"></a>&#x76EE;&#x6807;&#x62C6;&#x89E3;</h3><p>&#x5B89;&#x5168;&#x3001;&#x7A33;&#x5B9A;&#x3001;&#x9AD8;&#x6548;&#x3001;&#x4F4E;&#x6210;&#x672C;&#xFF0C;&#x600E;&#x4E48;&#x624D;&#x80FD;&#x628A;&#x8FD9;&#x56DB;&#x5927;&#x76EE;&#x6807;&#x505A;&#x597D;&#xFF1F;&#x5E94;&#x8BE5;&#x505A;&#x54EA;&#x4E9B;&#x4E8B;&#x60C5;&#x6765;&#x8FBE;&#x6210;&#x76EE;&#x6807;&#xFF1F;&#x7B14;&#x8005;&#x7528;&#x4E00;&#x5F20;&#x8111;&#x56FE;&#x6765;&#x68B3;&#x7406;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<h3 id="&#x8FD0;&#x7EF4;&#x76EE;&#x6807;&#x62C6;&#x89E3;"><a href="#&#x8FD0;&#x7EF4;&#x76EE;&#x6807;&#x62C6;&#x89E3;" class="headerlink" title="&#x8FD0;&#x7EF4;&#x76EE;&#x6807;&#x62C6;&#x89E3;"></a>&#x8FD0;&#x7EF4;&#x76EE;&#x6807;&#x62C6;&#x89E3;</h3><p><img src="/images/operation-2.jpg" width="100%" height="80%"></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/职业规划/" rel="tag"># 职业规划</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/RHCE/2017/03/02/Red-Hat-Certified-Engineer-RHCE-EX300-Study-Guide.html" rel="next" title="Red Hat Certified Engineer (RHCE) EX300 Study Guide">
+                <i class="fa fa-chevron-left"></i> Red Hat Certified Engineer (RHCE) EX300 Study Guide
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/职业规划/2018/01/01/做一个职业运维人.html" rel="prev" title="做一个职业运维人">
+                做一个职业运维人 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+	 <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/favicon.ico"
+                alt="一匹来自北方的狼" />
+	</a>
+            
+              <p class="site-author-name" itemprop="name">一匹来自北方的狼</p>
+              <p class="site-description motion-element" itemprop="description">雪藏风凌骨，<br/>空隐道玄心。<br/>寒窗问诸佛，<br/>飞渡红尘烬。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                神奇的链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://elonmusknews.org/" title="获取 Elon Musk 的新闻" target="_blank">获取 Elon Musk 的新闻</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bilibili.com/video/av6211226/" title="尼古拉·特斯拉：发明了现代世界的人" target="_blank">尼古拉·特斯拉：发明了现代世界的人</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wolf-7.github.io/about/" title="关于此博客" target="_blank">关于此博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#我不幸福"><span class="nav-number">1.</span> <span class="nav-text">我不幸福</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么幸福"><span class="nav-number">2.</span> <span class="nav-text">怎么幸福</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谈成就感"><span class="nav-number">3.</span> <span class="nav-text">谈成就感</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标拆解"><span class="nav-number">4.</span> <span class="nav-text">目标拆解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运维目标拆解"><span class="nav-number">5.</span> <span class="nav-text">运维目标拆解</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一匹来自北方的狼</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user-circle-o"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      <i class="fa fa-eye"></i>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: ,
+    el: 'wpac-rating',
+    color: 'f79533'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+
+  
+
+  
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+ <script>
+ $("body").backstretch("/images/sh1.jpg");
+ </script>
+</body>
+</html>

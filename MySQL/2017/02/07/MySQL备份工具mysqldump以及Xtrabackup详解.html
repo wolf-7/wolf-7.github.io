@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#fff">
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg?v=5.1.3" color="#fff">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="MySQL," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="一匹来自北方的狼" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="开头语:  在开始对Mysqldump跟Xtrabakcup的介绍与使用方法到之前，说下数据对公司的重要性：123对于公司来讲，数据库本身可能并不重要，重要的是数据库中存储的数据。对于备份来讲，最终的目的是可以使用备份能够实现还原数据库中的数据。因此，一个可恢复的数据库备份是非常重要的，甚至关乎公司的命脉。">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL备份工具Mysqldump以及Xtrabackup详解">
+<meta property="og:url" content="https://wolf-7.github.io/MySQL/2017/02/07/MySQL备份工具mysqldump以及Xtrabackup详解.html">
+<meta property="og:site_name" content="一匹来自北方的狼">
+<meta property="og:description" content="开头语:  在开始对Mysqldump跟Xtrabakcup的介绍与使用方法到之前，说下数据对公司的重要性：123对于公司来讲，数据库本身可能并不重要，重要的是数据库中存储的数据。对于备份来讲，最终的目的是可以使用备份能够实现还原数据库中的数据。因此，一个可恢复的数据库备份是非常重要的，甚至关乎公司的命脉。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcly1fhgv8l75tkj308204u745.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1fhje4qhtw8j31kw0u4kjn.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1fhje6hs102j31kw0f64nv.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1fhje6h4a43j31kw0f6kdx.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1fhje5oqw16j31dk08sdpy.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1fhje5ohh5ij31kw0f64ou.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1fhje42cakwj31kw0u84qr.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1fhje7gtxwpj31kw0f6b29.jpg">
+<meta property="og:updated_time" content="2019-01-14T11:59:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL备份工具Mysqldump以及Xtrabackup详解">
+<meta name="twitter:description" content="开头语:  在开始对Mysqldump跟Xtrabakcup的介绍与使用方法到之前，说下数据对公司的重要性：123对于公司来讲，数据库本身可能并不重要，重要的是数据库中存储的数据。对于备份来讲，最终的目的是可以使用备份能够实现还原数据库中的数据。因此，一个可恢复的数据库备份是非常重要的，甚至关乎公司的命脉。">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tKfTcly1fhgv8l75tkj308204u745.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"perspectiveLeftIn","post_header":"fadeIn","post_body":"fadeIn","coll_header":"perspectiveLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wolf-7.github.io/MySQL/2017/02/07/MySQL备份工具mysqldump以及Xtrabackup详解.html"/>
+
+
+
+
+
+  <title>MySQL备份工具Mysqldump以及Xtrabackup详解 | 一匹来自北方的狼</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一匹来自北方的狼</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-aws">
+          <a href="/categories/AWS/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cloud"></i> <br />
+            
+            AWS
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rhce">
+          <a href="/categories/RHCE/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            RHCE
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-futbol-o"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wolf-7.github.io/MySQL/2017/02/07/MySQL备份工具mysqldump以及Xtrabackup详解.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一匹来自北方的狼">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一匹来自北方的狼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySQL备份工具Mysqldump以及Xtrabackup详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-07T17:48:05+08:00">
+                2017-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,109
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcly1fhgv8l75tkj308204u745.jpg" width="100%" height="70%"></p>
+<h1 id="&#x5F00;&#x5934;&#x8BED;"><a href="#&#x5F00;&#x5934;&#x8BED;" class="headerlink" title=" &#x5F00;&#x5934;&#x8BED;: "></a><font color="Orchid" size="3"> &#x5F00;&#x5934;&#x8BED;: </font></h1><h2 id="&#x5728;&#x5F00;&#x59CB;&#x5BF9;Mysqldump&#x8DDF;Xtrabakcup&#x7684;&#x4ECB;&#x7ECD;&#x4E0E;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x5230;&#x4E4B;&#x524D;&#xFF0C;&#x8BF4;&#x4E0B;&#x6570;&#x636E;&#x5BF9;&#x516C;&#x53F8;&#x7684;&#x91CD;&#x8981;&#x6027;&#xFF1A;"><a href="#&#x5728;&#x5F00;&#x59CB;&#x5BF9;Mysqldump&#x8DDF;Xtrabakcup&#x7684;&#x4ECB;&#x7ECD;&#x4E0E;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x5230;&#x4E4B;&#x524D;&#xFF0C;&#x8BF4;&#x4E0B;&#x6570;&#x636E;&#x5BF9;&#x516C;&#x53F8;&#x7684;&#x91CD;&#x8981;&#x6027;&#xFF1A;" class="headerlink" title=" &#x5728;&#x5F00;&#x59CB;&#x5BF9;Mysqldump&#x8DDF;Xtrabakcup&#x7684;&#x4ECB;&#x7ECD;&#x4E0E;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x5230;&#x4E4B;&#x524D;&#xFF0C;&#x8BF4;&#x4E0B;&#x6570;&#x636E;&#x5BF9;&#x516C;&#x53F8;&#x7684;&#x91CD;&#x8981;&#x6027;&#xFF1A;"></a><font color="Orchid" size="3"> &#x5728;&#x5F00;&#x59CB;&#x5BF9;Mysqldump&#x8DDF;Xtrabakcup&#x7684;&#x4ECB;&#x7ECD;&#x4E0E;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x5230;&#x4E4B;&#x524D;&#xFF0C;&#x8BF4;&#x4E0B;&#x6570;&#x636E;&#x5BF9;&#x516C;&#x53F8;&#x7684;&#x91CD;&#x8981;&#x6027;&#xFF1A;</font></h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x5BF9;&#x4E8E;&#x516C;&#x53F8;&#x6765;&#x8BB2;&#xFF0C;&#x6570;&#x636E;&#x5E93;&#x672C;&#x8EAB;&#x53EF;&#x80FD;&#x5E76;&#x4E0D;&#x91CD;&#x8981;&#xFF0C;&#x91CD;&#x8981;&#x7684;&#x662F;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x5B58;&#x50A8;&#x7684;&#x6570;&#x636E;&#x3002;</span><br><span class="line">&#x5BF9;&#x4E8E;&#x5907;&#x4EFD;&#x6765;&#x8BB2;&#xFF0C;&#x6700;&#x7EC8;&#x7684;&#x76EE;&#x7684;&#x662F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5907;&#x4EFD;&#x80FD;&#x591F;&#x5B9E;&#x73B0;&#x8FD8;&#x539F;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x3002;</span><br><span class="line">&#x56E0;&#x6B64;&#xFF0C;&#x4E00;&#x4E2A;&#x53EF;&#x6062;&#x590D;&#x7684;&#x6570;&#x636E;&#x5E93;&#x5907;&#x4EFD;&#x662F;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x7684;&#xFF0C;&#x751A;&#x81F3;&#x5173;&#x4E4E;&#x516C;&#x53F8;&#x7684;&#x547D;&#x8109;&#x3002;</span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<a id="more"></a>
+<font color="Orchid" size="3"> &#x4E3A;&#x4EC0;&#x4E48;&#x5907;&#x4EFD;? </font>
+
+<figure class="highlight gcode"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x5B9E;&#x73B0;&#x707E;&#x96BE;&#x6062;&#x590D;&#xFF1A;&#x786C;&#x4EF6;&#x6545;&#x969C;<span class="comment">(&#x5197;&#x4F59;)</span>&#x3001;&#x8F6F;&#x4EF6;&#x6545;&#x969C;<span class="comment">(BUG)</span>&#x3001;&#x81EA;&#x7136;&#x707E;&#x5BB3;&#x3001;&#x9ED1;&#x5BA2;&#x653B;&#x51FB;&#x3001;&#x8BEF;&#x64CD;&#x4F5C;&#x3001;...</span><br><span class="line">&#x6D4B;&#x8BD5;&#x6062;&#x590D;&#x5907;&#x4EFD;&#x65F6;&#xFF0C;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x5C06;&#x6570;&#x636E;&#x5E93;&#x6D4B;&#x8BD5;&#x5D29;&#x6E83;&#x6389;&#x7684;&#x60C5;&#x51B5;</span><br><span class="line"></span><br><span class="line">&#x8FD9;&#x91CC;&#x6700;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x7684;&#x60C5;&#x51B5;&#x662F;&#xFF1A;&#x8BEF;&#x64CD;&#x4F5C;</span><br><span class="line">&#x6240;&#x4EE5;&#x8BF4;&#xFF0C;&#x5728;&#x64CD;&#x4F5C;&#x6570;&#x636E;&#x5E93;&#x65F6;&#xFF0C;&#x4E00;&#x5B9A;&#x8981;&#x614E;&#x4E4B;&#x53C8;&#x614E;</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="&#x5907;&#x4EFD;&#x65F6;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x4E8B;&#x9879;"><a href="#&#x5907;&#x4EFD;&#x65F6;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x4E8B;&#x9879;" class="headerlink" title=" &#x5907;&#x4EFD;&#x65F6;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x4E8B;&#x9879;"></a><font szie="4" color="#32CD99"> &#x5907;&#x4EFD;&#x65F6;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x4E8B;&#x9879;</font></h1><ul>
+<li>&#x6CE8;&#x610F;&#x4E8B;&#x9879;</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x80FD;&#x5BB9;&#x5FCD;&#x6700;&#x591A;&#x4E22;&#x5931;&#x591A;&#x5C11;&#x6570;&#x636E;&#xFF1B;</span><br><span class="line">&#x6062;&#x590D;&#x6570;&#x636E;&#x9700;&#x8981;&#x5728;&#x591A;&#x957F;&#x65F6;&#x95F4;&#x5185;&#x5B8C;&#x6210;&#xFF1B;</span><br><span class="line">&#x9700;&#x8981;&#x6062;&#x590D;&#x54EA;&#x4E9B;&#x6570;&#x636E;&#xFF1B;</span><br><span class="line"></span><br><span class="line">&#x505A;&#x6062;&#x590D;&#x6F14;&#x7EC3;&#xFF1A;</span><br><span class="line">    &#x6D4B;&#x8BD5;&#x5907;&#x4EFD;&#x7684;&#x53EF;&#x7528;&#x6027;&#xFF1B;</span><br><span class="line">    &#x589E;&#x5F3A;&#x6062;&#x590D;&#x64CD;&#x4F5C;&#x6548;&#x7387;&#xFF1B;</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x5907;&#x4EFD;&#x9700;&#x8981;&#x8003;&#x8651;&#x7684;&#x56E0;&#x7D20;</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x9501;&#x5B9A;&#x8D44;&#x6E90;&#x591A;&#x957F;&#x65F6;&#x95F4;&#xFF1F;</span><br><span class="line">&#x5907;&#x4EFD;&#x8FC7;&#x7A0B;&#x7684;&#x65F6;&#x957F;&#xFF1F;</span><br><span class="line">&#x5907;&#x4EFD;&#x65F6;&#x7684;&#x670D;&#x52A1;&#x5668;&#x8D1F;&#x8F7D;&#xFF1F;</span><br><span class="line">&#x6062;&#x590D;&#x8FC7;&#x7A0B;&#x7684;&#x65F6;&#x957F;&#xFF1F;</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x5907;&#x4EFD;&#x4EC0;&#x4E48;?</li>
+</ul>
+<figure class="highlight brainfuck"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x6570;&#x636E;</span></span><br><span class="line"><span class="comment">&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x3001;InnoDB&#x7684;&#x4E8B;&#x52A1;&#x65E5;&#x5FD7;&#xFF1B;</span></span><br><span class="line"><span class="comment">&#x4EE3;&#x7801;&#xFF08;&#x5B58;&#x50A8;&#x8FC7;&#x7A0B;&#x3001;&#x5B58;&#x50A8;&#x51FD;&#x6570;&#x3001;&#x89E6;&#x53D1;&#x5668;&#x3001;&#x4E8B;&#x4EF6;&#x8C03;&#x5EA6;&#x5668;&#xFF09;</span></span><br><span class="line"><span class="comment">&#x670D;&#x52A1;&#x5668;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</span> <span class="literal">-</span><span class="literal">-</span>&gt; <span class="comment">&#x914D;&#x7F6E;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</span> <span class="literal">-</span><span class="literal">-</span>&gt; <span class="comment">&#x5B58;&#x653E;&#x5728;</span> <span class="comment">Git</span> <span class="comment">&#x3001;svn</span> <span class="comment">&#x4E0A;</span></span><br></pre></td></tr></tbody></table></figure>
+<p><em>&#x6CE8;&#x610F;&#xFF1A;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x3001;InnoDB&#x4E8B;&#x52A1;&#x65E5;&#x5FD7; &#x4E0E;&#x6570;&#x636E;&#x8981;&#x5206;&#x522B;&#x5B58;&#x653E;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x786C;&#x76D8;&#x4E2D;</em></p>
+<ul>
+<li>&#x5907;&#x4EFD;&#x7B56;&#x7565;</li>
+</ul>
+<figure class="highlight armasm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x5168;&#x91CF;+&#x5DEE;&#x5F02; + <span class="keyword">binlogs</span></span><br><span class="line"><span class="keyword">&#x5168;&#x91CF;+&#x589E;&#x91CF; </span>+ <span class="keyword">binlogs </span></span><br><span class="line"></span><br><span class="line">&#x5907;&#x4EFD;&#x624B;&#x6BB5;&#xFF1A;&#x7269;&#x7406;&#x3001;&#x903B;&#x8F91;</span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<!-- more -->
+<h1 id="&#x5907;&#x4EFD;&#x7C7B;&#x578B;"><a href="#&#x5907;&#x4EFD;&#x7C7B;&#x578B;" class="headerlink" title=" &#x5907;&#x4EFD;&#x7C7B;&#x578B; "></a><font szie="4" color="#32CD99"> &#x5907;&#x4EFD;&#x7C7B;&#x578B; </font></h1><h2 id="&#x5907;&#x4EFD;&#x7684;&#x6570;&#x636E;&#x7684;&#x8303;&#x56F4;"><a href="#&#x5907;&#x4EFD;&#x7684;&#x6570;&#x636E;&#x7684;&#x8303;&#x56F4;" class="headerlink" title=" &#x5907;&#x4EFD;&#x7684;&#x6570;&#x636E;&#x7684;&#x8303;&#x56F4;"></a><font szie="4" color="#007FFF"> &#x5907;&#x4EFD;&#x7684;&#x6570;&#x636E;&#x7684;&#x8303;&#x56F4;</font></h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x5B8C;&#x5168;&#x5907;&#x4EFD;&#x548C;&#x90E8;&#x5206;&#x5907;&#x4EFD;</span><br><span class="line">	&#x5B8C;&#x5168;&#x5907;&#x4EFD;&#xFF1A;&#x6574;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#xFF1B;</span><br><span class="line">	&#x90E8;&#x5206;&#x5907;&#x4EFD;&#xFF1A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x6BD4;&#x5982;&#x90E8;&#x5206;&#x8868;&#xFF1B;</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x5168;&#x91CF;&#x5907;&#x4EFD;&#x3001;&#x589E;&#x91CF;&#x5907;&#x4EFD;&#x3001;&#x5DEE;&#x5F02;&#x5907;&#x4EFD;"><a href="#&#x5168;&#x91CF;&#x5907;&#x4EFD;&#x3001;&#x589E;&#x91CF;&#x5907;&#x4EFD;&#x3001;&#x5DEE;&#x5F02;&#x5907;&#x4EFD;" class="headerlink" title=" &#x5168;&#x91CF;&#x5907;&#x4EFD;&#x3001;&#x589E;&#x91CF;&#x5907;&#x4EFD;&#x3001;&#x5DEE;&#x5F02;&#x5907;&#x4EFD;"></a><font szie="4" color="#007FFF"> &#x5168;&#x91CF;&#x5907;&#x4EFD;&#x3001;&#x589E;&#x91CF;&#x5907;&#x4EFD;&#x3001;&#x5DEE;&#x5F02;&#x5907;&#x4EFD;</font></h2><ul>
+<li>&#x5168;&#x91CF;&#x5907;&#x4EFD;</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x5907;&#x4EFD;&#x6574;&#x4E2A;&#x6570;&#x636E;&#x5E93;&#x7684;&#x6240;&#x6709;&#x6570;&#x636E;</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x589E;&#x91CF;&#x5907;&#x4EFD;</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x4EC5;&#x5907;&#x4EFD;&#x81EA;&#x4E0A;&#x4E00;&#x6B21;&#x5B8C;&#x5168;&#x5907;&#x4EFD;&#x6216; &#x589E;&#x91CF;&#x5907;&#x4EFD;&#x4EE5;&#x6765;&#x53D8;&#x91CF;&#x7684;&#x90A3;&#x90E8;&#x6570;&#x636E;</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x5DEE;&#x5F02;&#x5907;&#x4EFD;</li>
+</ul>
+<figure class="highlight gcode"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x4EC5;&#x5907;&#x4EFD;&#x81EA;&#x4E0A;&#x4E00;&#x6B21;&#x5B8C;&#x5168;&#x5907;&#x4EFD;&#x4EE5;&#x6765;&#x53D8;&#x91CF;&#x7684;&#x90A3;&#x90E8;&#x6570;&#x636E;&#xFF1B;<span class="comment">(&#x6D6A;&#x8D39;&#x7A7A;&#x95F4;&#xFF0C;&#x8FD8;&#x539F;&#x6548;&#x679C;&#x6BD4;&#x589E;&#x91CF;&#x5FEB;)</span></span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x901A;&#x8FC7;&#x5907;&#x4EFD;&#x6062;&#x590D;&#x6570;&#x636E;&#x5E93;</li>
+</ul>
+<figure class="highlight gcode"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x5B8C;&#x5168;+&#x589E;&#x91CF;&#xFF1A; &#x5B8C;&#x5168;+&#x6BCF;&#x4E00;&#x6B21;&#x589E;&#x91CF; 		+ &#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;<span class="comment">(&#x6839;&#x636E;&#x65F6;&#x95F4;&#x70B9;&#x6062;&#x590D;)</span></span><br><span class="line">&#x5B8C;&#x5168;+&#x5DEE;&#x5F02;&#xFF1A; &#x5B8C;&#x5168;+&#x6700;&#x540E;&#x4E00;&#x6B21;&#x5DEE;&#x5F02;&#x5907;&#x4EFD; + &#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;<span class="comment">(&#x6839;&#x636E;&#x65F6;&#x95F4;&#x70B9;&#x6062;&#x590D;)</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x7269;&#x7406;&#x5907;&#x4EFD;&#x3001;&#x903B;&#x8F91;&#x5907;&#x4EFD;"><a href="#&#x7269;&#x7406;&#x5907;&#x4EFD;&#x3001;&#x903B;&#x8F91;&#x5907;&#x4EFD;" class="headerlink" title=" &#x7269;&#x7406;&#x5907;&#x4EFD;&#x3001;&#x903B;&#x8F91;&#x5907;&#x4EFD;"></a><font szie="4" color="#007FFF"> &#x7269;&#x7406;&#x5907;&#x4EFD;&#x3001;&#x903B;&#x8F91;&#x5907;&#x4EFD;</font></h2><ul>
+<li>&#x7269;&#x7406;&#x5907;&#x4EFD;</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x76F4;&#x63A5;&#x590D;&#x5236;&#x6570;&#x636E;&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x7684;&#x5907;&#x4EFD;</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x903B;&#x8F91;&#x5907;&#x4EFD;(mysqldump)</li>
+</ul>
+<figure class="highlight n1ql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x901A;&#x8FC7;mysql&#xFF0C;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x5BFC;&#x51FA;&#x6570;&#x636E;&#x53E6;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x6587;&#x4EF6;&#x4E2D;</span><br><span class="line">&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x5927;&#x7684;<span class="keyword">SELECT</span> &#x8BED;&#x53E5;&#xFF0C;&#x8F6C;&#x6210;&#x4E00;&#x4E2A; <span class="keyword">INSERT</span> &#x8BED;&#x53E5; &#x8FDB;&#x884C;&#x5907;&#x4EFD;</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x70ED;&#x5907;&#x3001;&#x6E29;&#x5907;&#x3001;&#x51B7;&#x5907;"><a href="#&#x70ED;&#x5907;&#x3001;&#x6E29;&#x5907;&#x3001;&#x51B7;&#x5907;" class="headerlink" title=" &#x70ED;&#x5907;&#x3001;&#x6E29;&#x5907;&#x3001;&#x51B7;&#x5907;"></a><font szie="4" color="#007FFF"> &#x70ED;&#x5907;&#x3001;&#x6E29;&#x5907;&#x3001;&#x51B7;&#x5907;</font></h2><ul>
+<li>&#x70ED;&#x5907;</li>
+</ul>
+<figure class="highlight brainfuck"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x8BFB;&#x5199;&#x64CD;&#x4F5C;&#x5747;&#x53EF;&#x8FDB;&#x884C;&#x7684;&#x72B6;&#x6001;&#x4E0B;&#x6240;&#x505A;&#x7684;&#x5907;&#x4EFD;</span> <span class="literal">-</span><span class="literal">-</span>&gt; <span class="comment">&#x5BFC;&#x81F4;&#x5907;&#x4EFD;&#x7684;&#x6570;&#x636E;&#x65F6;&#x95F4;&#x70B9;&#x53EF;&#x80FD;&#x4E0D;&#x4E00;&#x81F4;&#xFF0C;&#x6062;&#x590D;&#x540E;&#x7684;&#x6570;&#x636E;&#x65F6;&#x95F4;&#x70B9;&#x4E0D;&#x4E00;&#x81F4;</span> <span class="literal">-</span><span class="literal">-</span>&gt;  <span class="comment">&#x5BFC;&#x81F4;MySQL&#x62D2;&#x7EDD;&#x6062;&#x590D;</span></span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x6E29;&#x5907;</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x53EF;&#x8BFB;&#x4F46;&#x4E0D;&#x53EF;&#x5199;&#x72B6;&#x6001;&#x4E0B;&#x8FDB;&#x884C;&#x7684;&#x5907;&#x4EFD;</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x51B7;&#x5907;</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x8BFB;&#x5199;&#x64CD;&#x4F5C;&#x5747;&#x4E0D;&#x53EF;&#x8FDB;&#x884C;&#x7684;&#x72B6;&#x6001;&#x4E0B;&#x6240;&#x505A;&#x7684;&#x5907;&#x4EFD;</span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<h1 id="mysqldump&#x5907;&#x4EFD;&#x5DE5;&#x5177;&#x4F7F;&#x7528;&#x8BE6;&#x89E3;"><a href="#mysqldump&#x5907;&#x4EFD;&#x5DE5;&#x5177;&#x4F7F;&#x7528;&#x8BE6;&#x89E3;" class="headerlink" title=" mysqldump&#x5907;&#x4EFD;&#x5DE5;&#x5177;&#x4F7F;&#x7528;&#x8BE6;&#x89E3; "></a><font szie="4" color="#32CD99"> mysqldump&#x5907;&#x4EFD;&#x5DE5;&#x5177;&#x4F7F;&#x7528;&#x8BE6;&#x89E3; </font></h1><p><code>&#x5907;&#x4EFD;&#x7B56;&#x7565;</code>&#xFF1A;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x5168;&#x91CF;&#x5907;&#x4EFD; + binlogs</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x547D;&#x4EE4;&#x8BE6;&#x89E3;"><a href="#&#x547D;&#x4EE4;&#x8BE6;&#x89E3;" class="headerlink" title="&#x547D;&#x4EE4;&#x8BE6;&#x89E3;"></a><font size="4" color="#32CD99">&#x547D;&#x4EE4;&#x8BE6;&#x89E3;</font></h2><ul>
+<li>&#x8BED;&#x6CD5;&#x683C;&#x5F0F;&#xFF1A;</li>
+</ul>
+<figure class="highlight gams"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysqldump [<span class="keyword">OPTIONS</span>] database [tables]</span><br><span class="line"><span class="keyword">OR</span>     mysqldump [<span class="keyword">OPTIONS</span>] --databases [<span class="keyword">OPTIONS</span>] DB1 [DB2 DB3...]</span><br><span class="line"><span class="keyword">OR</span>     mysqldump [<span class="keyword">OPTIONS</span>] --<span class="keyword">all</span>-databases [<span class="keyword">OPTIONS</span>]</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x5B9E;&#x4F8B;&#x8BE6;&#x89E3;&#xFF1A;</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x8868;&#x7EA7;&#x522B;&#x5907;&#x4EFD;&#xFF1B;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;</span></span><br><span class="line">$ mysqldump mydb</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5E93;&#x7EA7;&#x522B;&#x5907;&#x4EFD;&#xFF0C;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93; </span></span><br><span class="line">$ mysqldump --databases mydb</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x9009;&#x9879;&#x8BE6;&#x89E3;</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-x, --lock-all-tables       &#x9501;&#x5B9A;<span class="string">&apos;&#x6240;&#x6709;&#x5E93;&#x7684;&#x6240;&#x6709;&#x8868;&apos;</span>&#xFF0C;&#x8BFB;&#x9501;&#xFF1B;</span><br><span class="line">-l, --lock-tables           &#x9501;&#x5B9A;<span class="string">&apos;&#x6307;&#x5B9A;&#x5E93;&#x6240;&#x6709;&#x8868;&apos;</span>&#xFF1B;</span><br><span class="line">-R, --routines              &#x5907;&#x4EFD;&#x5B58;&#x50A8;&#x8FC7;&#x7A0B;&#x548C;&#x5B58;&#x50A8;&#x51FD;&#x6570;&#xFF1B;</span><br><span class="line">-E, --events                &#x5907;&#x4EFD;&#x4E8B;&#x4EF6;&#x8C03;&#x5EA6;&#x5668;</span><br><span class="line">-F&#xFF0C;--flush-logs             &#x9501;&#x5B9A;&#x8868;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x5373;&#x8FDB;&#x884C;&#x65E5;&#x5FD7;&#x5237;&#x65B0;&#x64CD;&#x4F5C;&#xFF0C;&#x8BA9;&#x65E5;&#x5FD7;&#x6EDA;&#x52A8;&#xFF1B;</span><br><span class="line">--triggers                  &#x5907;&#x4EFD;&#x89E6;&#x53D1;&#x5668;</span><br><span class="line"></span><br><span class="line">--master-data[=<span class="comment">#] &#xFF1A;&#x8BB0;&#x5F55;&#x5907;&#x4EFD;&#x5F00;&#x59CB;&#x65F6; binlog&#x4E2D;</span></span><br><span class="line"> 1&#xFF1A;&#x8BB0;&#x5F55;&#x4E3A;CHANGE MASTER TO&#x8BED;&#x53E5;&#xFF0C;&#x6B64;&#x8BED;&#x53E5;&#x4E0D;&#x88AB;&#x6CE8;&#x91CA;&#xFF1B;</span><br><span class="line"> 2&#xFF1A;&#x8BB0;&#x5F55;&#x4E3A;CHANGE MASTER TO&#x8BED;&#x53E5;&#xFF0C;&#x6B64;&#x8BED;&#x53E5;&#x88AB;&#x6CE8;&#x91CA;&#xFF1B;</span><br><span class="line"> </span><br><span class="line"><span class="string">&apos;InnoDB&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#xFF1A;&#x652F;&#x6301;&#x6E29;&#x5907;&#x548C;&#x70ED;&#x5907;&#xFF1B;&apos;</span></span><br><span class="line">	--single-transaction&#xFF1A;<span class="string">&apos;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x4E8B;&#x52A1;&#xFF0C;&#x57FA;&#x4E8E;&#x6B64;&#x5FEB;&#x7167;&#x6267;&#x884C;&#x5907;&#x4EFD;&apos;</span>&#xFF1B;</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x5168;&#x91CF;&#x5907;&#x4EFD;&#x4E00;&#x6B21;&#x6574;&#x4E2A;&#x6570;&#x636E;&#x5E93;"><a href="#&#x5168;&#x91CF;&#x5907;&#x4EFD;&#x4E00;&#x6B21;&#x6574;&#x4E2A;&#x6570;&#x636E;&#x5E93;" class="headerlink" title="&#x5168;&#x91CF;&#x5907;&#x4EFD;&#x4E00;&#x6B21;&#x6574;&#x4E2A;&#x6570;&#x636E;&#x5E93;"></a><font size="4" color="#32CD99">&#x5168;&#x91CF;&#x5907;&#x4EFD;&#x4E00;&#x6B21;&#x6574;&#x4E2A;&#x6570;&#x636E;&#x5E93;</font></h2><ul>
+<li>&#x5F00;&#x542F;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;</li>
+</ul>
+<figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/my<span class="selector-class">.cnf</span><span class="selector-class">.d</span>/server.conf</span><br><span class="line">[server]</span><br><span class="line">log_bin=mysql-bin</span><br><span class="line">$ systemctl restart mariadb.service</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x5F00;&#x59CB;&#x5907;&#x4EFD;&#x6570;&#x636E;&#x5E93;</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x4F7F;&#x7528;mysqldump&#x5907;&#x4EFD;&#x6574;&#x4E2A;mysql&#x6570;&#x636E;&#x5E93;</span></span><br><span class="line">$ mysqldump -E -R --triggers --master-data=2 -F -l --single-transaction --all-databases &gt; /tmp/all-fullback-$(date +%F).sql</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x767B;&#x9646;&#x81F3;MySQL&#x4FEE;&#x6539;&#x4E00;&#x4E9B;&#x6570;&#x636E;</span></span><br><span class="line">$ mysql </span><br><span class="line">&gt; SHOW MASTER LOGS;</span><br><span class="line">+------------------+-----------+</span><br><span class="line">| Log_name         | File_size |</span><br><span class="line">+------------------+-----------+</span><br><span class="line">| mysql-bin.000001 |     30352 |</span><br><span class="line">| mysql-bin.000002 |   1038814 |</span><br><span class="line">| mysql-bin.000003 |      9235 |</span><br><span class="line">| mysql-bin.000004 |       696 |</span><br><span class="line">| mysql-bin.000005 |       245 |</span><br><span class="line">+------------------+-----------+</span><br><span class="line">&gt; use hellodb;</span><br><span class="line">&gt; DELETE FROM students WHERE StuID=1;</span><br><span class="line">&gt; DELETE FROM students WHERE StuID=5;</span><br><span class="line">&gt; DELETE FROM students WHERE StuID=10;</span><br><span class="line">&gt; DELETE FROM students WHERE StuID=15;</span><br><span class="line">&gt; DELETE FROM students WHERE StuID=20;</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x62F7;&#x8D1D;&#x5168;&#x91CF;&#x5907;&#x4EFD;&#x540E;&#xFF0C;&#x672A;&#x5907;&#x4EFD;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x81F3;/tmp&#x76EE;&#x5F55;&#x4E2D;</span></span><br><span class="line">$ cp /var/lib/mysql/mysql-bin.000005 /tmp/</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x6A21;&#x62DF;&#x6570;&#x636E;&#x5E93;&#x5D29;&#x6E83;&#x60C5;&#x51B5;&#xFF0C;&#x5220;&#x9664;&#x6570;&#x636E;&#x5E93;&#x6570;&#x636E;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x6240;&#x6709;&#x6587;&#x4EF6;</span></span><br><span class="line">$ rm -rf /var/lib/mysql/*</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x4F7F;&#x7528;&#x5907;&#x4EFD;&#x6062;&#x590D;&#x6570;&#x636E;&#x5E93;"><a href="#&#x4F7F;&#x7528;&#x5907;&#x4EFD;&#x6062;&#x590D;&#x6570;&#x636E;&#x5E93;" class="headerlink" title="&#x4F7F;&#x7528;&#x5907;&#x4EFD;&#x6062;&#x590D;&#x6570;&#x636E;&#x5E93;"></a><font size="4" color="#32CD99">&#x4F7F;&#x7528;&#x5907;&#x4EFD;&#x6062;&#x590D;&#x6570;&#x636E;&#x5E93;</font></h2><ul>
+<li>&#x91CD;&#x542F;&#x6570;&#x636E;&#x5E93;</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl stop mariadb.service</span><br><span class="line">$ systemctl start mariadb.service</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x767B;&#x9646;&#x6570;&#x636E;&#x5E93;&#x8FDB;&#x884C;&#x6062;&#x590D;</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ mysql</span><br><span class="line"><span class="comment"># &#x5173;&#x95ED;&#x4F1A;&#x8BDD;&#x7EA7;&#x522B;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x6267;&#x884C;&#x6062;&#x590D;sql&#x811A;&#x672C;&#xFF0C;&#x4E0D;&#x5E0C;&#x671B;&#x4E8C;&#x8FDB;&#x5236;&#x8BB0;&#x5F55;&#x6B64;&#x4FE1;&#x606F;</span></span><br><span class="line">&gt; SET @@session.sql_log_bin=OFF;</span><br><span class="line"> </span><br><span class="line"><span class="comment"># &#x5728;MySQL&#x4E2D;&#x6267;&#x884C;SQL&#x811A;&#x672C;</span></span><br><span class="line">&gt; \. /tmp/alldb_fullbackup-2017-06-20.sql</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x4F7F;&#x7528;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x6062;&#x590D;&#x672A;&#x5907;&#x4EFD;&#x7684;&#x4FE1;&#x606F;</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /tmp</span><br><span class="line">$ mysqlbinlog mysql-bin.000005 | mysql</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x5F00;&#x542F;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; SET @@session.sql_log_bin=ON;</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>&#x81F3;&#x6B64;&#xFF0C;&#x4E00;&#x6B21;&#x5220;&#x5E93;&#x5230;&#x6062;&#x590D;&#x5C31;&#x5B8C;&#x6210;&#x4E86;</strong>&#xFF0C;&#x4E0D;&#x8FC7;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x5728;&#x6062;&#x590D;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x5982;&#x679C;&#x4E1A;&#x52A1;&#x4E0D;&#x662F;&#x5F88;&#x7740;&#x6025;&#x9700;&#x8981;&#x4E0A;&#x7EBF;&#xFF0C;&#x8FD9;&#x65F6;&#x8FD8;&#x8981;&#x505A;&#x4E00;&#x6B21;&#x5168;&#x91CF;&#x5907;&#x4EFD;&#x3002;&#x5982;&#x679C;&#x4E1A;&#x52A1;&#x5FC5;&#x987B;&#x7ACB;&#x5373;&#x4E0A;&#x7EBF;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x5F53;&#x5929;&#x665A;&#x4E0A;&#x8FDB;&#x884C;&#x5907;&#x4EFD;&#x6570;&#x636E;&#x5E93;&#x3002;</p>
+<h2 id="&#x4F7F;&#x7528;&#x5907;&#x4EFD;&#x811A;&#x672C;&#x5907;&#x4EFD;&#x6570;&#x636E;&#x5E93;"><a href="#&#x4F7F;&#x7528;&#x5907;&#x4EFD;&#x811A;&#x672C;&#x5907;&#x4EFD;&#x6570;&#x636E;&#x5E93;" class="headerlink" title="&#x4F7F;&#x7528;&#x5907;&#x4EFD;&#x811A;&#x672C;&#x5907;&#x4EFD;&#x6570;&#x636E;&#x5E93;"></a><font size="4" color="#32CD99">&#x4F7F;&#x7528;&#x5907;&#x4EFD;&#x811A;&#x672C;&#x5907;&#x4EFD;&#x6570;&#x636E;&#x5E93;</font></h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">$ vim mysql-backup.sh</span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># MYSQLDBUSERNAME&#x662F;MySQL&#x6570;&#x636E;&#x5E93;&#x7684;&#x7528;&#x6237;&#x540D;&#xFF0C;&#x53EF;&#x81EA;&#x5B9A;&#x4E49;</span></span><br><span class="line">MYSQLDBUSERNAME=root</span><br><span class="line"></span><br><span class="line"><span class="comment"># MYSQLDBPASSWORD&#x662F;MySQL&#x6570;&#x636E;&#x5E93;&#x7684;&#x5BC6;&#x7801;&#xFF0C;&#x53EF;&#x81EA;&#x5B9A;&#x4E49;</span></span><br><span class="line">MYSQLDBPASSWORD=<span class="string">&quot;root@123&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MYSQBASEDIR&#x662F;MySQL&#x6570;&#x636E;&#x5E93;&#x7684;&#x5B89;&#x88C5;&#x76EE;&#x5F55;&#xFF0C;--prefix=$MYSQBASEDIR&#xFF0C;&#x53EF;&#x81EA;&#x5B9A;&#x4E49;</span></span><br><span class="line">MYSQBASEDIR=/usr</span><br><span class="line"></span><br><span class="line"><span class="comment"># MYSQL&#x662F;mysql&#x547D;&#x4EE4;&#x7684;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;&#xFF0C;&#x53EF;&#x81EA;&#x5B9A;&#x4E49;</span></span><br><span class="line">MYSQL=<span class="variable">$MYSQBASEDIR</span>/bin/mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># MYSQLDUMP&#x662F;mysqldump&#x547D;&#x4EE4;&#x7684;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;&#xFF0C;&#x53EF;&#x81EA;&#x5B9A;&#x4E49;</span></span><br><span class="line">MYSQLDUMP=<span class="variable">$MYSQBASEDIR</span>/bin/mysqldump</span><br><span class="line"></span><br><span class="line"><span class="comment"># BACKDIR&#x662F;&#x6570;&#x636E;&#x5E93;&#x5907;&#x4EFD;&#x7684;&#x5B58;&#x653E;&#x5730;&#x5740;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x4FEE;&#x6539;&#x6210;&#x8FDC;&#x7A0B;&#x5730;&#x5740;</span></span><br><span class="line">BACKDIR=/var/backup/mysqldb</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x83B7;&#x53D6;&#x5F53;&#x524D;&#x65F6;&#x95F4;&#xFF0C;&#x683C;&#x5F0F;&#x4E3A;&#xFF1A;&#x5E74;-&#x6708;-&#x65E5;&#xFF0C;&#x7528;&#x4E8E;&#x751F;&#x6210;&#x4EE5;&#x8FD9;&#x79CD;&#x65F6;&#x95F4;&#x683C;&#x5F0F;&#x7684;&#x76EE;&#x5F55;&#x540D;&#x79F0;</span></span><br><span class="line">DATEFORMATTYPE1=$(date +%Y-%m-%d)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x83B7;&#x53D6;&#x5F53;&#x524D;&#x65F6;&#x95F4;&#xFF0C;&#x683C;&#x5F0F;&#x4E3A;&#xFF1A;&#x5E74;&#x6708;&#x65E5;&#x65F6;&#x5206;&#x79D2;&#xFF0C;&#x7528;&#x4E8E;&#x751F;&#x6210;&#x4EE5;&#x8FD9;&#x79CD;&#x65F6;&#x95F4;&#x683C;&#x5F0F;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x79F0;</span></span><br><span class="line">DATEFORMATTYPE2=$(date +%Y%m%d%H%M%S)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x6570;&#x636E;&#x5E93;&#x6570;&#x636E;&#x76EE;&#x5F55;</span></span><br><span class="line">MYSQDATADIR=/var/lib/mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5982;&#x679C;mysql&#x547D;&#x4EE4;&#x5B58;&#x5728;&#x5E76;&#x53EF;&#x6267;&#x884C;&#xFF0C;&#x5219;&#x7EE7;&#x7EED;&#xFF0C;&#x5426;&#x5219;&#x5C06;MYSQL&#x8BBE;&#x5B9A;&#x4E3A;mysql&#xFF0C;&#x9ED8;&#x8BA4;&#x8DEF;&#x5F84;&#x4E0B;&#x7684;mysql</span></span><br><span class="line">[ -x <span class="variable">$MYSQL</span> ] || MYSQL=mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5982;&#x679C;mysqldump&#x547D;&#x4EE4;&#x5B58;&#x5728;&#x5E76;&#x53EF;&#x6267;&#x884C;&#xFF0C;&#x5219;&#x7EE7;&#x7EED;&#xFF0C;&#x5426;&#x5219;&#x5C06;MYSQLDUMP&#x8BBE;&#x5B9A;&#x4E3A;mysqldump&#xFF0C;&#x9ED8;&#x8BA4;&#x8DEF;&#x5F84;&#x4E0B;&#x7684;mysqldump</span></span><br><span class="line">[ -x <span class="variable">$MYSQLDUMP</span> ] || MYSQLDUMP=mysqldump</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728;&#x5907;&#x4EFD;&#x76EE;&#x5F55;&#x5219;&#x521B;&#x5EFA;&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;</span></span><br><span class="line">[ -d <span class="variable">${BACKDIR}</span> ] || mkdir -p <span class="variable">${BACKDIR}</span></span><br><span class="line">[ -d <span class="variable">${BACKDIR}</span>/<span class="variable">${DATEFORMATTYPE1}</span> ] || mkdir <span class="variable">${BACKDIR}</span>/<span class="variable">${DATEFORMATTYPE1}</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x83B7;&#x53D6;MySQL&#x4E2D;&#x6709;&#x54EA;&#x4E9B;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x6839;&#x636E;mysqldatadir&#x4E0B;&#x7684;&#x76EE;&#x5F55;&#x540D;&#x5B57;&#x6765;&#x786E;&#x8BA4;&#xFF0C;&#x6B64;&#x5904;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#xFF0C;TODO</span></span><br><span class="line">DBLIST=`ls -p <span class="variable">$MYSQDATADIR</span> | grep / |tr -d /`</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x4ECE;&#x6570;&#x636E;&#x5E93;&#x5217;&#x8868;&#x4E2D;&#x5FAA;&#x73AF;&#x53D6;&#x51FA;&#x6570;&#x636E;&#x5E93;&#x540D;&#x79F0;&#xFF0C;&#x6267;&#x884C;&#x5907;&#x4EFD;&#x64CD;&#x4F5C;</span></span><br><span class="line"><span class="keyword">for</span> DBNAME <span class="keyword">in</span> <span class="variable">$DBLIST</span></span><br><span class="line">    <span class="comment"># mysqldump skip one table</span></span><br><span class="line">    <span class="comment"># -- Warning: Skipping the data of table mysql.event. Specify the --events option explicitly.</span></span><br><span class="line">    <span class="comment"># mysqldump --ignore-table=mysql.event</span></span><br><span class="line">    <span class="comment"># http://serverfault.com/questions/376904/mysqldump-skip-one-table</span></span><br><span class="line">    <span class="comment"># --routines&#xFF0C;&#x5907;&#x4EFD;&#x5B58;&#x50A8;&#x8FC7;&#x7A0B;&#x548C;&#x51FD;&#x6570;</span></span><br><span class="line">    <span class="comment"># --events&#xFF0C;&#x8DF3;&#x8FC7;mysql.event&#x8868;</span></span><br><span class="line">    <span class="comment"># --triggers&#xFF0C;&#x5907;&#x4EFD;&#x89E6;&#x53D1;&#x5668;</span></span><br><span class="line">    <span class="comment"># --single-transaction&#xFF0C;&#x9488;&#x5BF9;InnoDB&#xFF0C;&#x5728;&#x5355;&#x6B21;&#x4E8B;&#x52A1;&#x4E2D;&#x901A;&#x8FC7;&#x8F6C;&#x50A8;&#x6240;&#x6709;&#x6570;&#x636E;&#x5E93;&#x8868;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x4E00;&#x81F4;&#x6027;&#x7684;&#x5FEB;&#x7167;&#xFF0C;&#x6B64;&#x9009;&#x9879;&#x4F1A;&#x5BFC;&#x81F4;&#x81EA;&#x52A8;&#x9501;&#x8868;&#xFF0C;&#x56E0;&#x6B64;&#x4E0D;&#x9700;&#x8981;--lock-all-tables</span></span><br><span class="line">    <span class="comment"># --flush-logs&#xFF0C;&#x5728;dump&#x8F6C;&#x50A8;&#x524D;&#x5237;&#x65B0;&#x65E5;&#x5FD7;</span></span><br><span class="line">    <span class="comment"># --ignore-table&#xFF0C;&#x5FFD;&#x7565;&#x67D0;&#x4E2A;&#x8868;&#xFF0C;--ignore-table=database.table</span></span><br><span class="line">    <span class="comment"># --master-data=2 &#xFF0C;&#x5982;&#x679C;&#x542F;&#x7528;MySQL&#x590D;&#x5236;&#x529F;&#x80FD;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x8FD9;&#x4E2A;&#x9009;&#x9879;</span></span><br><span class="line">    <span class="comment"># &#x5C06;dump&#x51FA;&#x7684;sql&#x8BED;&#x53E5;&#x7528;gzip&#x538B;&#x7F29;&#x5230;&#x4E00;&#x4E2A;&#x4EE5;&#x65F6;&#x95F4;&#x547D;&#x540D;&#x7684;&#x6587;&#x4EF6;</span></span><br><span class="line">    <span class="keyword">do</span> <span class="variable">${MYSQLDUMP}</span> --user=<span class="variable">${MYSQLDBUSERNAME}</span> --password=<span class="variable">${MYSQLDBPASSWORD}</span> --routines --events --triggers --single-transaction --flush-logs --ignore-table=mysql.event --databases <span class="variable">${DBNAME}</span> | gzip &gt; <span class="variable">${BACKDIR}</span>/<span class="variable">${DATEFORMATTYPE1}</span>/<span class="variable">${DBNAME}</span>-backup-<span class="variable">${DATEFORMATTYPE2}</span>.sql.gz</span><br><span class="line"></span><br><span class="line">    <span class="comment"># &#x68C0;&#x67E5;&#x6267;&#x884C;&#x7ED3;&#x679C;&#xFF0C;&#x5982;&#x679C;&#x9519;&#x8BEF;&#x4EE3;&#x7801;&#x4E3A;0&#x5219;&#x8F93;&#x51FA;&#x6210;&#x529F;&#xFF0C;&#x5426;&#x5219;&#x8F93;&#x51FA;&#x5931;&#x8D25;</span></span><br><span class="line">    [ $? -eq 0 ] &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">${DBNAME}</span> has been backuped successful&quot;</span> || <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">${DBNAME}</span> has been backuped failed&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># &#x7B49;&#x5F85;5s&#xFF0C;&#x53EF;&#x81EA;&#x5B9A;&#x4E49;</span></span><br><span class="line">    /bin/sleep 5</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<h1 id="xtrabackupex&#x5907;&#x4EFD;&#x5DE5;&#x5177;&#x4F7F;&#x7528;&#x8BE6;&#x89E3;"><a href="#xtrabackupex&#x5907;&#x4EFD;&#x5DE5;&#x5177;&#x4F7F;&#x7528;&#x8BE6;&#x89E3;" class="headerlink" title="xtrabackupex&#x5907;&#x4EFD;&#x5DE5;&#x5177;&#x4F7F;&#x7528;&#x8BE6;&#x89E3;"></a><font size="4" color="#32CD99">xtrabackupex&#x5907;&#x4EFD;&#x5DE5;&#x5177;&#x4F7F;&#x7528;&#x8BE6;&#x89E3;</font></h1><h2 id="&#x5B89;&#x88C5;xtrabackupex"><a href="#&#x5B89;&#x88C5;xtrabackupex" class="headerlink" title="&#x5B89;&#x88C5;xtrabackupex"></a><font size="4" color="#007FFF">&#x5B89;&#x88C5;xtrabackupex</font></h2><p>&#x5B98;&#x65B9;&#x4E0B;&#x8F7D;&#x5730;&#x5740;&#xFF1A;<a href="https://www.percona.com/downloads/XtraBackup/LATEST/" target="_blank" rel="noopener">XtraBackup</a></p>
+<p>&#x5B89;&#x88C5;<code>XtraBackup</code></p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ntpdate 172.16.0.1</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> wget ftp://172.16.0.1/pub/Sources/7.x86_64/percona/percona-xtrabackup-24-2.4.7-2.el7.x86_64.rpm</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> yum install -y ./percona-xtrabackup-24-2.4.7-2.el7.x86_64.rpm</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x5168;&#x5E93;&#x5907;&#x4EFD;"><a href="#&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x5168;&#x5E93;&#x5907;&#x4EFD;" class="headerlink" title="&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x5168;&#x5E93;&#x5907;&#x4EFD;"></a><font size="4" color="#007FFF">&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x5168;&#x5E93;&#x5907;&#x4EFD;</font></h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/my.cnf.d/server.conf</span><br><span class="line">[server]</span><br><span class="line">skip_name_resolve=ON</span><br><span class="line">innodb_file_per_table=ON</span><br><span class="line"><span class="built_in">log</span>-bin=mysql_bin</span><br><span class="line"></span><br><span class="line">$ systemctl start mariadb.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5168;&#x5E93;&#x5907;&#x4EFD;&#x65F6;&#xFF0C;&#x65E0;&#x9700;&#x6307;&#x5B9A;&#x6570;&#x636E;&#x5E93;&#x5373;&#x53EF;&#x5907;&#x4EFD;&#x3002;&#x6307;&#x5B9A;&#x5E93;&#x5907;&#x4EFD;&#x4F7F;&#x7528; --databases DATABASE_NAME</span></span><br><span class="line">$ innobackupex --user root /data/backup/</span><br><span class="line">$ ll /data/backup/2017-07-13_20-05-42/</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x901A;&#x8FC7;&#x5907;&#x4EFD;&#x6062;&#x590D;&#x6570;&#x636E;&#x5E93;"><a href="#&#x901A;&#x8FC7;&#x5907;&#x4EFD;&#x6062;&#x590D;&#x6570;&#x636E;&#x5E93;" class="headerlink" title="&#x901A;&#x8FC7;&#x5907;&#x4EFD;&#x6062;&#x590D;&#x6570;&#x636E;&#x5E93;"></a><font size="4" color="#007FFF">&#x901A;&#x8FC7;&#x5907;&#x4EFD;&#x6062;&#x590D;&#x6570;&#x636E;&#x5E93;</font></h2><ul>
+<li>&#x6062;&#x590D;&#x4E4B;&#x524D;&#x7684;&#x51C6;&#x5907;</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x9ED8;&#x8BA4;&#x6570;&#x636E;&#x5E93;&#x635F;&#x574F;&#xFF0C;&#x88AB;&#x5220;&#x5E93;</span></span><br><span class="line">$ cp /var/lib/mysql/mysql_bin.00000* /data/backup</span><br><span class="line">$ rm -rf /var/lib/mysql/*</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x6267;&#x884C;Preparing&#x64CD;&#x4F5C;</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ innobackupex --apply-log /data/backup/2017-07-13_20-05-42/</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x6062;&#x590D;&#x6570;&#x636E;&#x5E93;</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ innobackupex --copy-back 2017-07-13_20-05-42/</span><br><span class="line">$ <span class="built_in">cd</span> /var/lib/mysql</span><br><span class="line">$ chown -R mysql.mysql ./*</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1fhje4qhtw8j31kw0u4kjn.jpg" alt=""></p>
+<ul>
+<li>&#x542F;&#x52A8;&#x6570;&#x636E;&#x5E93;</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl start mariadb.service</span><br><span class="line">$ mysql</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x5907;&#x4EFD;&#x540E;&#x751F;&#x6210;&#x7684;&#x4E00;&#x4E9B;&#x6587;&#x4EF6;</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1fhje6hs102j31kw0f64nv.jpg" alt=""></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1fhje6h4a43j31kw0f6kdx.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1fhje5oqw16j31dk08sdpy.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1fhje5ohh5ij31kw0f64ou.jpg" alt=""></p>
+<h2 id="&#x589E;&#x91CF;&#x5907;&#x4EFD;-&#x6570;&#x636E;&#x5E93;-&#x5168;&#x5E93;"><a href="#&#x589E;&#x91CF;&#x5907;&#x4EFD;-&#x6570;&#x636E;&#x5E93;-&#x5168;&#x5E93;" class="headerlink" title="&#x589E;&#x91CF;&#x5907;&#x4EFD; &#x6570;&#x636E;&#x5E93;(&#x5168;&#x5E93;)"></a><font size="4" color="#007FFF">&#x589E;&#x91CF;&#x5907;&#x4EFD; &#x6570;&#x636E;&#x5E93;(&#x5168;&#x5E93;)</font></h2><p>&#x589E;&#x91CF;&#x5907;&#x4EFD;&#xFF1A;&#x4EC5;&#x5907;&#x4EFD;&#x81EA;&#x4E0A;&#x4E00;&#x6B21;<code>&#x5B8C;&#x5168;&#x5907;&#x4EFD;</code>&#x6216;<code>&#x589E;&#x91CF;&#x5907;&#x4EFD;</code>&#x4EE5;&#x6765;&#x53D8;&#x91CF;&#x7684;&#x90A3;&#x4E9B;&#x6570;&#x636E;</p>
+<ul>
+<li>&#x5148;&#x505A;&#x4E00;&#x6B21;&#x5168;&#x91CF;&#x5907;&#x4EFD;</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ innobackupex --user root /data/backup</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x8FDE;&#x63A5;&#x5230;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#xFF0C;&#x5220;&#x9664;/&#x589E;&#x52A0;&#x4E00;&#x4E9B;&#x6570;&#x636E;&#xFF0C;&#x4E3A;&#x4E00;&#x4F1A;&#x505A;&#x589E;&#x91CF;&#x5907;&#x4EFD;&#x6253;&#x4E0B;&#x57FA;&#x7840;</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ mysql</span><br><span class="line">&gt; use hellodb;</span><br><span class="line">&gt; DELETE FROM students WHERE StuID=21;</span><br><span class="line">&gt; INSERT INTO students (Name,Age,Gender,ClassID,TeacherID) VALUES(<span class="string">&apos;Zhu Ba Jie&apos;</span>,120,<span class="string">&apos;M&apos;</span>,2,3);</span><br><span class="line">&gt; <span class="built_in">exit</span>;</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x7B2C;&#x4E00;&#x6B21;&#x589E;&#x91CF;&#x5907;&#x4EFD;</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ innobackupex --incremental -u root /data/backup --incremental-basedir=/data/backup/2017-07-13_20-38-20/</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1fhje42cakwj31kw0u84qr.jpg" alt=""></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1fhje7gtxwpj31kw0f6b29.jpg" alt=""></p>
+<ul>
+<li>&#x518D;&#x6B21;&#x8FDE;&#x63A5;&#x5230;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x5220;&#x9664;&#x4FEE;&#x6539;&#x4E00;&#x4E9B;&#x6570;&#x636E;&#xFF0C;&#x518D;&#x505A;<code>&#x7B2C;&#x4E8C;&#x6B21;&#x589E;&#x91CF;&#x5907;&#x4EFD;</code></li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mysql </span><br><span class="line">&gt; use hellodb;</span><br><span class="line">&gt; DELETE FROM students WHERE StuID=1;</span><br><span class="line">&gt; EXIT;</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><code>&#x7B2C;&#x4E8C;&#x6B21;</code>&#x589E;&#x91CF;&#x5907;&#x4EFD;</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x8FD9;&#x91CC;--incremental-basedir &#x4E3A;&#x4E0A;&#x4E00;&#x6B21;&#x589E;&#x91CF;&#x5907;&#x4EFD;&#x7684;&#x76EE;&#x5F55;&#xFF0C;&#x800C;&#x975E;&#x5168;&#x91CF;&#x5907;&#x4EFD;&#x7684;&#x76EE;&#x5F55;</span></span><br><span class="line">$ innobackupex -u root --incremental /data/backup --incremental-basedir=/data/backup/2017-07-13_20-47-49</span><br><span class="line"><span class="comment"># &#x7B2C;&#x4E8C;&#x6B21;&#x589E;&#x91CF;&#x7684;checkpoints</span></span><br><span class="line">$ cat 2017-07-13_20-56-20/xtrabackup_checkpoints</span><br><span class="line">backup_type = incremental</span><br><span class="line">from_lsn = 1638999</span><br><span class="line">to_lsn = 1640148</span><br><span class="line">last_lsn = 1640148</span><br><span class="line">compact = 0</span><br><span class="line">recover_binlog_info = 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x7B2C;&#x4E00;&#x6B21;&#x589E;&#x91CF;&#x7684;checkpoints</span></span><br><span class="line">$ cat 2017-07-13_20-47-49/xtrabackup_checkpoints</span><br><span class="line">backup_type = incremental</span><br><span class="line">from_lsn = 1636913</span><br><span class="line">to_lsn = 1638999</span><br><span class="line">last_lsn = 1638999</span><br><span class="line">compact = 0</span><br><span class="line">recover_binlog_info = 0</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x901A;&#x8FC7;&#x4E24;&#x6B21;&#x589E;&#x91CF;&#x5907;&#x4EFD; + &#x5168;&#x91CF;&#x5907;&#x4EFD; &#x8FDB;&#x884C;&#x6062;&#x590D;&#x6570;&#x636E;&#x5E93;&#x7684;&#x64CD;&#x4F5C;</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x5220;&#x5E93;</span></span><br><span class="line">$ cp /var/lib/mysql/mysql_bin.* /data/backup/binlogs</span><br><span class="line">$ rm -rf /var/lib/mysql/*</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1.&#x5408;&#x5E76;&#x589E;&#x91CF;&#x5907;&#x4EFD;(&#x53EA;&#x63D0;&#x4EA4;&#x4E0D;&#x56DE;&#x6EDA;)</span><br><span class="line"><span class="comment"># &#x53EA;&#x63D0;&#x4EA4;&#x4E0D;&#x56DE;&#x6EDA; &#x5168;&#x91CF;&#x5907;&#x4EFD;</span></span><br><span class="line">$ innobackupex --apply-log --redo-only 2017-07-13_20-38-20/</span><br><span class="line"><span class="comment"># &#x53EA;&#x63D0;&#x4EA4;&#x4E0D;&#x56DE;&#x6EDA; &#x7B2C;&#x4E00;&#x6B21;&#x589E;&#x91CF;+&#x5168;&#x91CF;</span></span><br><span class="line">$ innobackupex --apply-log --redo-only 2017-07-13_20-38-20 --incremental-dir=2017-07-13_20-47-49</span><br><span class="line"><span class="comment"># &#x53EA;&#x63D0;&#x4EA4;&#x4E0D;&#x56DE;&#x6EDA; &#x7B2C;&#x4E8C;&#x589E;&#x91CF;+&#x5168;&#x91CF;(&#x7B2C;&#x4E00;&#x6B21;&#x589E;&#x91CF;+&#x5168;&#x91CF;)</span></span><br><span class="line">$ innobackupex --apply-log --redo-only 2017-07-13_20-38-20 --incremental-dir=2017-07-13_20-56-20</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2.&#x5F00;&#x59CB;&#x63D0;&#x4EA4;&#x5E76;&#x56DE;&#x6EDA;</span><br><span class="line">$ innobackupex --apply-log 2017-07-13_20-38-20/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3.&#x62FF;&#x7740;&#x63D0;&#x4EA4;&#x5E76;&#x56DE;&#x6EDA;&#x540E;&#x7684;&#x5168;&#x91CF;&#xFF0C;&#x8FDB;&#x884C;&#x6062;&#x590D;</span><br><span class="line">$ innobackupex --copy-back 2017-07-13_20-38-20/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">4.&#x67E5;&#x770B;&#x6062;&#x590D;&#x540E;&#x7684;&#x6570;&#x636E;&#x76EE;&#x5F55;</span><br><span class="line">$ ll /var/lib/mysql </span><br><span class="line">total 40988</span><br><span class="line">drwxr-x--- 2 root root     4096 Jul 13 21:17 2017-07-13_20-27-08</span><br><span class="line">drwxr-x--- 2 root root     4096 Jul 13 21:17 hellodb</span><br><span class="line">-rw-r----- 1 root root 18874368 Jul 13 21:17 ibdata1</span><br><span class="line">-rw-r----- 1 root root  5242880 Jul 13 21:17 ib_logfile0</span><br><span class="line">-rw-r----- 1 root root  5242880 Jul 13 21:17 ib_logfile1</span><br><span class="line">-rw-r----- 1 root root 12582912 Jul 13 21:17 ibtmp1</span><br><span class="line">drwxr-x--- 2 root root     4096 Jul 13 21:17 mysql</span><br><span class="line">drwxr-x--- 2 root root     4096 Jul 13 21:17 performance_schema</span><br><span class="line">drwxr-x--- 2 root root     4096 Jul 13 21:17 <span class="built_in">test</span></span><br><span class="line">-rw-r----- 1 root root       23 Jul 13 21:17 xtrabackup_binlog_pos_innodb</span><br><span class="line">-rw-r----- 1 root root      532 Jul 13 21:17 xtrabackup_info</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">5.&#x4FEE;&#x6539;&#x76EE;&#x5F55;&#x6743;&#x9650;</span><br><span class="line">$ chown -R mysql.mysql /var/lib/mysql/*</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="&#x7ED3;&#x675F;&#x8BED;"><a href="#&#x7ED3;&#x675F;&#x8BED;" class="headerlink" title=" &#x7ED3;&#x675F;&#x8BED;: "></a><font color="Orchid" size="5"> &#x7ED3;&#x675F;&#x8BED;: </font></h1><h2 id="&#x5BF9;&#x4E8E;Mysqldump&#x8DDF;Xtrabakcup&#x7684;&#x4ECB;&#x7ECD;&#x4E0E;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x5230;&#x6B64;&#x5B8C;&#x6210;&#x3002;"><a href="#&#x5BF9;&#x4E8E;Mysqldump&#x8DDF;Xtrabakcup&#x7684;&#x4ECB;&#x7ECD;&#x4E0E;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x5230;&#x6B64;&#x5B8C;&#x6210;&#x3002;" class="headerlink" title=" &#x5BF9;&#x4E8E;Mysqldump&#x8DDF;Xtrabakcup&#x7684;&#x4ECB;&#x7ECD;&#x4E0E;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x5230;&#x6B64;&#x5B8C;&#x6210;&#x3002;"></a><font color="Orchid" size="4"> &#x5BF9;&#x4E8E;Mysqldump&#x8DDF;Xtrabakcup&#x7684;&#x4ECB;&#x7ECD;&#x4E0E;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x5230;&#x6B64;&#x5B8C;&#x6210;&#x3002;</font></h2><hr>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/MySQL/2017/02/07/Optimise-MySQL-Configuration-for-WordPress.html" rel="next" title="Optimise MySQL Configuration for WordPress">
+                <i class="fa fa-chevron-left"></i> Optimise MySQL Configuration for WordPress
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/RHCE/2017/03/02/Red-Hat-Certified-Engineer-RHCE-EX300-Study-Guide.html" rel="prev" title="Red Hat Certified Engineer (RHCE) EX300 Study Guide">
+                Red Hat Certified Engineer (RHCE) EX300 Study Guide <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+	 <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/favicon.ico"
+                alt="一匹来自北方的狼" />
+	</a>
+            
+              <p class="site-author-name" itemprop="name">一匹来自北方的狼</p>
+              <p class="site-description motion-element" itemprop="description">雪藏风凌骨，<br/>空隐道玄心。<br/>寒窗问诸佛，<br/>飞渡红尘烬。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                神奇的链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://elonmusknews.org/" title="获取 Elon Musk 的新闻" target="_blank">获取 Elon Musk 的新闻</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bilibili.com/video/av6211226/" title="尼古拉·特斯拉：发明了现代世界的人" target="_blank">尼古拉·特斯拉：发明了现代世界的人</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wolf-7.github.io/about/" title="关于此博客" target="_blank">关于此博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开头语"><span class="nav-number">1.</span> <span class="nav-text"> 开头语: </span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在开始对Mysqldump跟Xtrabakcup的介绍与使用方法到之前，说下数据对公司的重要性："><span class="nav-number">1.1.</span> <span class="nav-text"> 在开始对Mysqldump跟Xtrabakcup的介绍与使用方法到之前，说下数据对公司的重要性：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#备份时需要注意的事项"><span class="nav-number">2.</span> <span class="nav-text"> 备份时需要注意的事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#备份类型"><span class="nav-number">3.</span> <span class="nav-text"> 备份类型 </span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#备份的数据的范围"><span class="nav-number">3.1.</span> <span class="nav-text"> 备份的数据的范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全量备份、增量备份、差异备份"><span class="nav-number">3.2.</span> <span class="nav-text"> 全量备份、增量备份、差异备份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物理备份、逻辑备份"><span class="nav-number">3.3.</span> <span class="nav-text"> 物理备份、逻辑备份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#热备、温备、冷备"><span class="nav-number">3.4.</span> <span class="nav-text"> 热备、温备、冷备</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysqldump备份工具使用详解"><span class="nav-number">4.</span> <span class="nav-text"> mysqldump备份工具使用详解 </span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令详解"><span class="nav-number">4.1.</span> <span class="nav-text">命令详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全量备份一次整个数据库"><span class="nav-number">4.2.</span> <span class="nav-text">全量备份一次整个数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用备份恢复数据库"><span class="nav-number">4.3.</span> <span class="nav-text">使用备份恢复数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用备份脚本备份数据库"><span class="nav-number">4.4.</span> <span class="nav-text">使用备份脚本备份数据库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xtrabackupex备份工具使用详解"><span class="nav-number">5.</span> <span class="nav-text">xtrabackupex备份工具使用详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装xtrabackupex"><span class="nav-number">5.1.</span> <span class="nav-text">安装xtrabackupex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进行一次全库备份"><span class="nav-number">5.2.</span> <span class="nav-text">进行一次全库备份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过备份恢复数据库"><span class="nav-number">5.3.</span> <span class="nav-text">通过备份恢复数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增量备份-数据库-全库"><span class="nav-number">5.4.</span> <span class="nav-text">增量备份 数据库(全库)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结束语"><span class="nav-number">6.</span> <span class="nav-text"> 结束语: </span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对于Mysqldump跟Xtrabakcup的介绍与使用方法到此完成。"><span class="nav-number">6.1.</span> <span class="nav-text"> 对于Mysqldump跟Xtrabakcup的介绍与使用方法到此完成。</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一匹来自北方的狼</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user-circle-o"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      <i class="fa fa-eye"></i>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: ,
+    el: 'wpac-rating',
+    color: 'f79533'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+
+  
+
+  
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+ <script>
+ $("body").backstretch("/images/sh1.jpg");
+ </script>
+</body>
+</html>
