@@ -138,30 +138,6 @@
   </entry>
   
   <entry>
-    <title>Optimise MySQL Configuration for WordPress</title>
-    <link href="https://wolf-7.github.io/MySQL/2017/02/07/Optimise-MySQL-Configuration-for-WordPress.html"/>
-    <id>https://wolf-7.github.io/MySQL/2017/02/07/Optimise-MySQL-Configuration-for-WordPress.html</id>
-    <published>2017-02-07T09:48:05.000Z</published>
-    <updated>2019-01-14T11:59:08.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr><p><a href="https://www.lisenet.com/2015/optimise-mysql-configuration-for-wordpress/" target="_blank" rel="noopener">Document links</a></p><hr><a id="more"></a><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.lisenet.com/2015/optimise-mysql-configuration-for-wordpress/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Document links&lt;/a&gt;&lt;/p&gt;
-&lt;hr&gt;
-    
-    </summary>
-    
-      <category term="MySQL" scheme="https://wolf-7.github.io/categories/MySQL/"/>
-    
-    
-      <category term="MySQL" scheme="https://wolf-7.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
     <title>MySQL备份工具Mysqldump以及Xtrabackup详解</title>
     <link href="https://wolf-7.github.io/MySQL/2017/02/07/MySQL%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7mysqldump%E4%BB%A5%E5%8F%8AXtrabackup%E8%AF%A6%E8%A7%A3.html"/>
     <id>https://wolf-7.github.io/MySQL/2017/02/07/MySQL备份工具mysqldump以及Xtrabackup详解.html</id>
@@ -174,6 +150,30 @@
     
       &lt;hr&gt;
 &lt;h1 id=&quot;开头语&quot;&gt;&lt;a href=&quot;#开头语&quot; class=&quot;headerlink&quot; title=&quot; 开头语: &quot;&gt;&lt;/a&gt;&lt;font color=&quot;Orchid&quot; size=&quot;3&quot;&gt; 开头语: &lt;/font&gt;&lt;/h1&gt;&lt;h2 id=&quot;在开始对Mysqldump跟Xtrabakcup的介绍与使用方法到之前，说下数据对公司的重要性：&quot;&gt;&lt;a href=&quot;#在开始对Mysqldump跟Xtrabakcup的介绍与使用方法到之前，说下数据对公司的重要性：&quot; class=&quot;headerlink&quot; title=&quot; 在开始对Mysqldump跟Xtrabakcup的介绍与使用方法到之前，说下数据对公司的重要性：&quot;&gt;&lt;/a&gt;&lt;font color=&quot;Orchid&quot; size=&quot;3&quot;&gt; 在开始对Mysqldump跟Xtrabakcup的介绍与使用方法到之前，说下数据对公司的重要性：&lt;/font&gt;&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;对于公司来讲，数据库本身可能并不重要，重要的是数据库中存储的数据。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;对于备份来讲，最终的目的是可以使用备份能够实现还原数据库中的数据。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;因此，一个可恢复的数据库备份是非常重要的，甚至关乎公司的命脉。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;hr&gt;
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://wolf-7.github.io/categories/MySQL/"/>
+    
+    
+      <category term="MySQL" scheme="https://wolf-7.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Optimise MySQL Configuration for WordPress</title>
+    <link href="https://wolf-7.github.io/MySQL/2017/02/07/Optimise-MySQL-Configuration-for-WordPress.html"/>
+    <id>https://wolf-7.github.io/MySQL/2017/02/07/Optimise-MySQL-Configuration-for-WordPress.html</id>
+    <published>2017-02-07T09:48:05.000Z</published>
+    <updated>2019-01-14T11:59:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr><p><a href="https://www.lisenet.com/2015/optimise-mysql-configuration-for-wordpress/" target="_blank" rel="noopener">Document links</a></p><hr><a id="more"></a><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.lisenet.com/2015/optimise-mysql-configuration-for-wordpress/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Document links&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
     
     </summary>
