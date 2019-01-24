@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="雪藏风凌骨，&lt;br/&gt;空隐道玄心。&lt;br/&gt;寒窗问诸佛，&lt;br/&gt;飞渡红尘烬。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="一匹来自北方的狼">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Docker1.7脚本安装"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="雪藏风凌骨，&lt;br/&gt;空隐道玄心。&lt;br/&gt;寒窗问诸佛，&lt;br/&gt;飞渡红尘烬。" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="一匹来自北方的狼"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Docker1.7脚本安装 - 一匹来自北方的狼</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/uncategorized/2019/01/24/Docker1-7脚本安装.html">
+                Docker1.7脚本安装
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-01-24</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <a id="more"></a>
+<h1 id="1-Easypack-docker-sh"><a href="#1-Easypack-docker-sh" class="headerlink" title="1-Easypack_docker.sh"></a>1-Easypack_docker.sh</h1><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#VARS INIT</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#Confirm Env</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line">date</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Install Preconfirm&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Uname&quot;</span></span><br><span class="line">uname -r</span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## OS bit&quot;</span></span><br><span class="line">getconf LONG_BIT</span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#INSTALL yum-utils</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line">date</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Install begins : yum-utils&quot;</span></span><br><span class="line">yum install -y yum-utils &gt;/dev/null 2&gt;&amp;1</span><br><span class="line"><span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Install failed...&quot;</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Install ends   : yum-utils&quot;</span></span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#Setting yum-config-manager</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Setting begins : yum-config-manager&quot;</span></span><br><span class="line">yum-config-manager \</span><br><span class="line">   --add-repo \</span><br><span class="line">   https://download.docker.com/linux/centos/docker-ce.repo &gt;/dev/null 2&gt;&amp;1</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Install failed...&quot;</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Setting ends   : yum-config-manager&quot;</span></span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#Update Package Cache</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Setting begins : Update package cache&quot;</span></span><br><span class="line">yum makecache fast &gt;/dev/null 2&gt;&amp;1</span><br><span class="line"><span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Install failed...&quot;</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Setting ends   : Update package cache&quot;</span></span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#INSTALL Docker-engine</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line">date</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Install begins : docker-ce&quot;</span></span><br><span class="line">yum install -y docker-ce</span><br><span class="line"><span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Install failed...&quot;</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Install ends   : docker-ce&quot;</span></span><br><span class="line">date</span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#Stop Firewalld</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Setting begins : stop firewall&quot;</span></span><br><span class="line">systemctl stop firewalld</span><br><span class="line"><span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Install failed...&quot;</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld</span><br><span class="line"><span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Install failed...&quot;</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Setting ends   : stop firewall&quot;</span></span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#Clear Iptable rules</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Setting begins : clear iptable rules&quot;</span></span><br><span class="line">iptables -F</span><br><span class="line"><span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Install failed...&quot;</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Setting ends   : clear iptable rules&quot;</span></span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#Enable docker</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Setting begins : systemctl enable docker&quot;</span></span><br><span class="line">systemctl <span class="built_in">enable</span> docker</span><br><span class="line"><span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Install failed...&quot;</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Setting ends   : systemctl enable docker&quot;</span></span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#start docker</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Setting begins : systemctl restart docker&quot;</span></span><br><span class="line">systemctl restart docker</span><br><span class="line"><span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Install failed...&quot;</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## Setting ends   : systemctl restart docker&quot;</span></span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#confirm docker version</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## docker info&quot;</span></span><br><span class="line">docker info</span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;## docker version&quot;</span></span><br><span class="line">docker version</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="2-install-docker-sh"><a href="#2-install-docker-sh" class="headerlink" title="2-install-docker.sh"></a>2-install-docker.sh</h1><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">SYSTEMDDIR=/usr/lib/systemd/system</span><br><span class="line">SERVICEFILE=docker.service</span><br><span class="line">DOCKERDIR=/usr/bin</span><br><span class="line">DOCKERBIN=docker</span><br><span class="line">SERVICENAME=docker</span><br><span class="line">FILETARGZ=docker-1.13.1.tgz</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -f <span class="variable">${FILETARGZ}</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Docker binary tgz files does not exist, please check it&quot;</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;##unzip : tar xvpf <span class="variable">${FILETARGZ}</span>&quot;</span></span><br><span class="line">tar xvpf <span class="variable">${FILETARGZ}</span></span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;##binary : <span class="variable">${DOCKERBIN}</span> copy to <span class="variable">${DOCKERDIR}</span>&quot;</span></span><br><span class="line">cp -p <span class="variable">${DOCKERBIN}</span>/* <span class="variable">${DOCKERDIR}</span> &gt;/dev/null 2&gt;&amp;1</span><br><span class="line"><span class="built_in">which</span> <span class="variable">${DOCKERBIN}</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;##systemd service: <span class="variable">${SERVICEFILE}</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;##docker.service: create docker systemd file&quot;</span></span><br><span class="line">cat &gt;<span class="variable">${SYSTEMDDIR}</span>/<span class="variable">${SERVICEFILE}</span> &lt;&lt;EOF</span><br><span class="line">[Unit]</span><br><span class="line">Description=Docker Application Container Engine</span><br><span class="line">Documentation=http://docs.docker.com</span><br><span class="line">After=network.target docker.socket</span><br><span class="line">[Service]</span><br><span class="line">Type=notify</span><br><span class="line">EnvironmentFile=-/run/flannel/docker</span><br><span class="line">WorkingDirectory=/usr/<span class="built_in">local</span>/bin</span><br><span class="line">ExecStart=/usr/bin/dockerd \</span><br><span class="line">                -H tcp://0.0.0.0:4243 \</span><br><span class="line">                -H unix:///var/run/docker.sock \</span><br><span class="line">                --selinux-enabled=<span class="literal">false</span> \</span><br><span class="line">                --<span class="built_in">log</span>-opt max-size=1g</span><br><span class="line">ExecReload=/bin/<span class="built_in">kill</span> -s HUP <span class="variable">$MAINPID</span></span><br><span class="line"><span class="comment"># Having non-zero Limit*s causes performance problems due to accounting overhead</span></span><br><span class="line"><span class="comment"># in the kernel. We recommend using cgroups to do container-local accounting.</span></span><br><span class="line">LimitNOFILE=infinity</span><br><span class="line">LimitNPROC=infinity</span><br><span class="line">LimitCORE=infinity</span><br><span class="line"><span class="comment"># Uncomment TasksMax if your systemd version supports it.</span></span><br><span class="line"><span class="comment"># Only systemd 226 and above support this version.</span></span><br><span class="line"><span class="comment">#TasksMax=infinity</span></span><br><span class="line">TimeoutStartSec=0</span><br><span class="line"><span class="comment"># set delegate yes so that systemd does not reset the cgroups of docker containers</span></span><br><span class="line">Delegate=yes</span><br><span class="line"><span class="comment"># kill only the docker process, not all processes in the cgroup</span></span><br><span class="line">KillMode=process</span><br><span class="line">Restart=on-failure</span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">systemctl daemon-reload</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;##Service status: <span class="variable">${SERVICENAME}</span>&quot;</span></span><br><span class="line">systemctl status <span class="variable">${SERVICENAME}</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;##Service restart: <span class="variable">${SERVICENAME}</span>&quot;</span></span><br><span class="line">systemctl restart <span class="variable">${SERVICENAME}</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;##Service status: <span class="variable">${SERVICENAME}</span>&quot;</span></span><br><span class="line">systemctl status <span class="variable">${SERVICENAME}</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;##Service enabled: <span class="variable">${SERVICENAME}</span>&quot;</span></span><br><span class="line">systemctl <span class="built_in">enable</span> <span class="variable">${SERVICENAME}</span></span><br></pre></td></tr></tbody></table></figure><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Failure is never quite so frightening as regret.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/错误预算上线机制.html">错误预算上线机制</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/Moosefs概念总结.html">Moosefs概念总结</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/linux下编译安装Python环境与iPython.html">linux下编译安装Python环境与iPytho</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/Linux下如何选择文件系统：EXT4、Btrfs-和-XFS.html">Linux下如何选择文件系统：EXT4、Btrfs</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/Linux/">Linux</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Git/">Git</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/MySQL/">MySQL</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/AWS/">AWS</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/wolf-7">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:91unix@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    © 2015-2019 | <a href="http://wolf7.org/">wolf7.org</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

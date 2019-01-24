@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="雪藏风凌骨，&lt;br/&gt;空隐道玄心。&lt;br/&gt;寒窗问诸佛，&lt;br/&gt;飞渡红尘烬。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="一匹来自北方的狼">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="给OpenVPN添加用户访问日志"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="雪藏风凌骨，&lt;br/&gt;空隐道玄心。&lt;br/&gt;寒窗问诸佛，&lt;br/&gt;飞渡红尘烬。" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="一匹来自北方的狼"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>给OpenVPN添加用户访问日志 - 一匹来自北方的狼</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/uncategorized/2019/01/24/给OpenVPN添加用户访问日志.html">
+                给OpenVPN添加用户访问日志
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-01-24</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <a id="more"></a>
+<h2 id="1&#x3001;&#x5EFA;&#x7ACB;openvpn&#x7684;&#x5EFA;&#x7ACB;&#x8FDE;&#x63A5;&#x548C;&#x65AD;&#x5F00;&#x8FDE;&#x63A5;&#x811A;&#x672C;"><a href="#1&#x3001;&#x5EFA;&#x7ACB;openvpn&#x7684;&#x5EFA;&#x7ACB;&#x8FDE;&#x63A5;&#x548C;&#x65AD;&#x5F00;&#x8FDE;&#x63A5;&#x811A;&#x672C;" class="headerlink" title="1&#x3001;&#x5EFA;&#x7ACB;openvpn&#x7684;&#x5EFA;&#x7ACB;&#x8FDE;&#x63A5;&#x548C;&#x65AD;&#x5F00;&#x8FDE;&#x63A5;&#x811A;&#x672C;"></a>1&#x3001;&#x5EFA;&#x7ACB;openvpn&#x7684;&#x5EFA;&#x7ACB;&#x8FDE;&#x63A5;&#x548C;&#x65AD;&#x5F00;&#x8FDE;&#x63A5;&#x811A;&#x672C;</h2><h3 id="&#x5EFA;&#x7ACB;-etc-openvpn-connect&#x6587;&#x4EF6;&#xFF0C;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;"><a href="#&#x5EFA;&#x7ACB;-etc-openvpn-connect&#x6587;&#x4EF6;&#xFF0C;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;" class="headerlink" title="&#x5EFA;&#x7ACB;/etc/openvpn/connect&#x6587;&#x4EF6;&#xFF0C;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;"></a>&#x5EFA;&#x7ACB;/etc/openvpn/connect&#x6587;&#x4EF6;&#xFF0C;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">day=`date +%F`</span><br><span class="line"><span class="keyword">if</span> [ -f /var/<span class="built_in">log</span>/openvpn/<span class="variable">$day</span> ];<span class="keyword">then</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;`date &apos;+%F %H:%M:%S&apos;` User <span class="variable">$common_name</span> is logged in&quot;</span> &gt;&gt;/var/<span class="built_in">log</span>/openvpn/<span class="variable">$day</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">touch /var/<span class="built_in">log</span>/openvpn/<span class="variable">$day</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;`date &apos;+%F %H:%M:%S&apos;` User <span class="variable">$common_name</span> is logged in&quot;</span> &gt;&gt;/var/<span class="built_in">log</span>/openvpn/<span class="variable">$day</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x5EFA;&#x7ACB;-etc-openvpn-disconnect&#x6587;&#x4EF6;&#xFF0C;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;"><a href="#&#x5EFA;&#x7ACB;-etc-openvpn-disconnect&#x6587;&#x4EF6;&#xFF0C;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;" class="headerlink" title="&#x5EFA;&#x7ACB;/etc/openvpn/disconnect&#x6587;&#x4EF6;&#xFF0C;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;"></a>&#x5EFA;&#x7ACB;/etc/openvpn/disconnect&#x6587;&#x4EF6;&#xFF0C;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">day=`date +%F`</span><br><span class="line"><span class="keyword">if</span> [ -f /var/<span class="built_in">log</span>/openvpn/<span class="variable">$day</span> ];<span class="keyword">then</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;`date &apos;+%F %H:%M:%S&apos;` User <span class="variable">$common_name</span> is logged off&quot;</span> &gt;&gt;/var/<span class="built_in">log</span>/openvpn/<span class="variable">$day</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">touch /var/<span class="built_in">log</span>/openvpn/<span class="variable">$day</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;`date &apos;+%F %H:%M:%S&apos;` User <span class="variable">$common_name</span> is logged off&quot;</span> &gt;&gt;/var/<span class="built_in">log</span>/openvpn/<span class="variable">$day</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x8981;&#x5C06;&#x8FD9;&#x4E24;&#x4E2A;&#x811A;&#x672C;&#x8D4B;&#x4E88;&#x6267;&#x884C;&#x6743;&#x9650;"><a href="#&#x8981;&#x5C06;&#x8FD9;&#x4E24;&#x4E2A;&#x811A;&#x672C;&#x8D4B;&#x4E88;&#x6267;&#x884C;&#x6743;&#x9650;" class="headerlink" title="&#x8981;&#x5C06;&#x8FD9;&#x4E24;&#x4E2A;&#x811A;&#x672C;&#x8D4B;&#x4E88;&#x6267;&#x884C;&#x6743;&#x9650;"></a>&#x8981;&#x5C06;&#x8FD9;&#x4E24;&#x4E2A;&#x811A;&#x672C;&#x8D4B;&#x4E88;&#x6267;&#x884C;&#x6743;&#x9650;</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /etc/openvpn/connect</span><br><span class="line">chmod +x /etc/openvpn/disconnect</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x4E00;&#x70B9;&#x662F;&#x56E0;&#x4E3A;openvpn&#x662F;&#x4EE5;nodody&#x5E10;&#x53F7;&#x5728;&#x8FD0;&#x884C;&#xFF0C;&#x56E0;&#x6B64;&#x5FC5;&#x987B;&#x8D4B;&#x4E88;nodody&#x5E10;&#x53F7;&#x5BF9;-var-log-openvpn&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x7684;&#x5199;&#x6743;&#x9650;&#xFF0C;&#x5426;&#x5219;openvpn&#x7684;&#x8FD0;&#x884C;&#x5C06;&#x53D7;&#x5230;&#x5F71;&#x54CD;&#xFF0C;&#x7528;&#x6237;&#x767B;&#x5F55;&#x8FC7;&#x7A0B;&#x4E0D;&#x80FD;&#x5B8C;&#x6210;&#x3002;"><a href="#&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x4E00;&#x70B9;&#x662F;&#x56E0;&#x4E3A;openvpn&#x662F;&#x4EE5;nodody&#x5E10;&#x53F7;&#x5728;&#x8FD0;&#x884C;&#xFF0C;&#x56E0;&#x6B64;&#x5FC5;&#x987B;&#x8D4B;&#x4E88;nodody&#x5E10;&#x53F7;&#x5BF9;-var-log-openvpn&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x7684;&#x5199;&#x6743;&#x9650;&#xFF0C;&#x5426;&#x5219;openvpn&#x7684;&#x8FD0;&#x884C;&#x5C06;&#x53D7;&#x5230;&#x5F71;&#x54CD;&#xFF0C;&#x7528;&#x6237;&#x767B;&#x5F55;&#x8FC7;&#x7A0B;&#x4E0D;&#x80FD;&#x5B8C;&#x6210;&#x3002;" class="headerlink" title="&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x4E00;&#x70B9;&#x662F;&#x56E0;&#x4E3A;openvpn&#x662F;&#x4EE5;nodody&#x5E10;&#x53F7;&#x5728;&#x8FD0;&#x884C;&#xFF0C;&#x56E0;&#x6B64;&#x5FC5;&#x987B;&#x8D4B;&#x4E88;nodody&#x5E10;&#x53F7;&#x5BF9;/var/log/openvpn&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x7684;&#x5199;&#x6743;&#x9650;&#xFF0C;&#x5426;&#x5219;openvpn&#x7684;&#x8FD0;&#x884C;&#x5C06;&#x53D7;&#x5230;&#x5F71;&#x54CD;&#xFF0C;&#x7528;&#x6237;&#x767B;&#x5F55;&#x8FC7;&#x7A0B;&#x4E0D;&#x80FD;&#x5B8C;&#x6210;&#x3002;**"></a>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x4E00;&#x70B9;&#x662F;&#x56E0;&#x4E3A;openvpn&#x662F;&#x4EE5;nodody&#x5E10;&#x53F7;&#x5728;&#x8FD0;&#x884C;&#xFF0C;&#x56E0;&#x6B64;&#x5FC5;&#x987B;&#x8D4B;&#x4E88;nodody&#x5E10;&#x53F7;&#x5BF9;/var/log/openvpn&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x7684;&#x5199;&#x6743;&#x9650;&#xFF0C;&#x5426;&#x5219;openvpn&#x7684;&#x8FD0;&#x884C;&#x5C06;&#x53D7;&#x5230;&#x5F71;&#x54CD;&#xFF0C;&#x7528;&#x6237;&#x767B;&#x5F55;&#x8FC7;&#x7A0B;&#x4E0D;&#x80FD;&#x5B8C;&#x6210;&#x3002;**</h3><h2 id="2&#x3001;&#x4FEE;&#x6539;openvpn&#x670D;&#x52A1;&#x5668;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x542F;&#x7528;&#x811A;&#x672C;"><a href="#2&#x3001;&#x4FEE;&#x6539;openvpn&#x670D;&#x52A1;&#x5668;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x542F;&#x7528;&#x811A;&#x672C;" class="headerlink" title="2&#x3001;&#x4FEE;&#x6539;openvpn&#x670D;&#x52A1;&#x5668;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x542F;&#x7528;&#x811A;&#x672C;"></a>2&#x3001;&#x4FEE;&#x6539;openvpn&#x670D;&#x52A1;&#x5668;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x542F;&#x7528;&#x811A;&#x672C;</h2><p>&#x4FEE;&#x6539;/etc/openvpn/server.conf&#xFF0C;&#x6DFB;&#x52A0;&#x5982;&#x4E0B;&#x4E24;&#x884C;<br></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">client-connect /etc/openvpn/connect</span><br><span class="line">client-disconnect /etc/openvpn/disconnect</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>&#x8FD9;&#x6837;&#x6BCF;&#x5929;&#x5C31;&#x4F1A;&#x5728;/var/log/openvpn&#x4E0B;&#x9762;&#x5EFA;&#x7ACB;&#x6587;&#x4EF6;&#x540D;&#x4E3A;2007-06-04&#x8FD9;&#x6837;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x8BE5;&#x6587;&#x4EF6;&#x8BB0;&#x5F55;&#x4E86;&#x5F53;&#x5929;&#x767B;&#x9646;openvpn&#x7684;&#x7528;&#x6237;&#x540D;&#x548C;&#x65F6;&#x95F4;&#xFF0C;&#x8F93;&#x51FA;&#x4F8B;&#x5982;&#xFF1A;<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2007-06-04 11:51:53 User rwen is logged in</span><br><span class="line">2007-06-04 11:55:54 User rwen is logged off &#xFF08;&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x6CE8;&#x610F;&#xFF0C;&#x56E0;&#x4E3A;openvpn&#x672C;&#x8EAB;&#x5224;&#x65AD;&#x673A;&#x5236;&#x7684;&#x539F;&#x56E0;&#xFF0C;&#x767B;&#x51FA;&#x65F6;&#x95F4;&#x6BD4;&#x5B9E;&#x9645;&#x767B;&#x51FA;&#x65F6;&#x95F4;&#x6162;3&#x5206;&#x949F;&#xFF09;</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h2 id="3&#x3001;&#x542F;&#x52A8;&#x672C;&#x673A;&#x7684;sendmail"><a href="#3&#x3001;&#x542F;&#x52A8;&#x672C;&#x673A;&#x7684;sendmail" class="headerlink" title="3&#x3001;&#x542F;&#x52A8;&#x672C;&#x673A;&#x7684;sendmail"></a>3&#x3001;&#x542F;&#x52A8;&#x672C;&#x673A;&#x7684;sendmail</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --level 3 sendmail on</span><br><span class="line">service sendmail start</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="4&#x3001;&#x5EFA;&#x7ACB;-etc-openvpn-mail2admin-&#x5E76;&#x8D4B;&#x4E88;&#x6267;&#x884C;&#x6743;&#x9650;-chmod-x-mail2admin"><a href="#4&#x3001;&#x5EFA;&#x7ACB;-etc-openvpn-mail2admin-&#x5E76;&#x8D4B;&#x4E88;&#x6267;&#x884C;&#x6743;&#x9650;-chmod-x-mail2admin" class="headerlink" title="4&#x3001;&#x5EFA;&#x7ACB;/etc/openvpn/mail2admin,&#x5E76;&#x8D4B;&#x4E88;&#x6267;&#x884C;&#x6743;&#x9650; chmod +x mail2admin"></a>4&#x3001;&#x5EFA;&#x7ACB;/etc/openvpn/mail2admin,&#x5E76;&#x8D4B;&#x4E88;&#x6267;&#x884C;&#x6743;&#x9650; chmod +x mail2admin</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">today=`date +%F`</span><br><span class="line"><span class="keyword">if</span> [ -f /var/<span class="built_in">log</span>/openvpn/<span class="variable">$today</span> ];<span class="keyword">then</span></span><br><span class="line">mail -s <span class="string">&quot;<span class="variable">$today</span> openvpn user access log&quot;</span> [username@yourcompany.com](http://www.360doc.com/mailto:rwen@corp.netease.com)&lt; /var/<span class="built_in">log</span>/openvpn/<span class="variable">$today</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="5&#x3001;&#x5EFA;&#x7ACB;cron&#x5DE5;&#x4F5C;&#x8868;&#xFF0C;&#x6BCF;&#x5929;&#x5B9A;&#x65F6;23&#xFF1A;55&#x5206;&#x53D1;&#x9001;&#x5F53;&#x5929;&#x7684;&#x65E5;&#x5FD7;&#x7ED9;&#x7BA1;&#x7406;&#x5458;"><a href="#5&#x3001;&#x5EFA;&#x7ACB;cron&#x5DE5;&#x4F5C;&#x8868;&#xFF0C;&#x6BCF;&#x5929;&#x5B9A;&#x65F6;23&#xFF1A;55&#x5206;&#x53D1;&#x9001;&#x5F53;&#x5929;&#x7684;&#x65E5;&#x5FD7;&#x7ED9;&#x7BA1;&#x7406;&#x5458;" class="headerlink" title="5&#x3001;&#x5EFA;&#x7ACB;cron&#x5DE5;&#x4F5C;&#x8868;&#xFF0C;&#x6BCF;&#x5929;&#x5B9A;&#x65F6;23&#xFF1A;55&#x5206;&#x53D1;&#x9001;&#x5F53;&#x5929;&#x7684;&#x65E5;&#x5FD7;&#x7ED9;&#x7BA1;&#x7406;&#x5458;"></a>5&#x3001;&#x5EFA;&#x7ACB;cron&#x5DE5;&#x4F5C;&#x8868;&#xFF0C;&#x6BCF;&#x5929;&#x5B9A;&#x65F6;23&#xFF1A;55&#x5206;&#x53D1;&#x9001;&#x5F53;&#x5929;&#x7684;&#x65E5;&#x5FD7;&#x7ED9;&#x7BA1;&#x7406;&#x5458;</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#crontab -e</span></span><br><span class="line">55 23 * * * /etc/openvpn/mail2admin</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x641E;&#x5B9A;&#xFF01;"><a href="#&#x641E;&#x5B9A;&#xFF01;" class="headerlink" title="&#x641E;&#x5B9A;&#xFF01;"></a>&#x641E;&#x5B9A;&#xFF01;</h3><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Failure is never quite so frightening as regret.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/错误预算上线机制.html">错误预算上线机制</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/Moosefs概念总结.html">Moosefs概念总结</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/linux下编译安装Python环境与iPython.html">linux下编译安装Python环境与iPytho</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/Linux下如何选择文件系统：EXT4、Btrfs-和-XFS.html">Linux下如何选择文件系统：EXT4、Btrfs</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/Linux/">Linux</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Git/">Git</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/MySQL/">MySQL</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/AWS/">AWS</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/wolf-7">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:91unix@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    © 2015-2019 | <a href="http://wolf7.org/">wolf7.org</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

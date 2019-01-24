@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="雪藏风凌骨，&lt;br/&gt;空隐道玄心。&lt;br/&gt;寒窗问诸佛，&lt;br/&gt;飞渡红尘烬。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="一匹来自北方的狼">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Centos7防火墙"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="雪藏风凌骨，&lt;br/&gt;空隐道玄心。&lt;br/&gt;寒窗问诸佛，&lt;br/&gt;飞渡红尘烬。" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="一匹来自北方的狼"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Centos7防火墙 - 一匹来自北方的狼</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/uncategorized/2019/01/24/Centos7防火墙.html">
+                Centos7防火墙
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-01-24</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <a id="more"></a>
+<h2 id="&#x5F00;&#x542F;&#x9632;&#x706B;&#x5899;&#x5E76;&#x52A0;&#x5165;&#x5F00;&#x673A;&#x542F;&#x52A8;"><a href="#&#x5F00;&#x542F;&#x9632;&#x706B;&#x5899;&#x5E76;&#x52A0;&#x5165;&#x5F00;&#x673A;&#x542F;&#x52A8;" class="headerlink" title="&#x5F00;&#x542F;&#x9632;&#x706B;&#x5899;&#x5E76;&#x52A0;&#x5165;&#x5F00;&#x673A;&#x542F;&#x52A8;"></a>&#x5F00;&#x542F;&#x9632;&#x706B;&#x5899;&#x5E76;&#x52A0;&#x5165;&#x5F00;&#x673A;&#x542F;&#x52A8;</h2><p><code>systemctl start firewalld # &#x5F00;&#x542F;&#x9632;&#x706B;&#x5899;</code></p>
+<p><code>systemctl enable firewalld # &#x5F00;&#x673A;&#x542F;&#x52A8;</code></p>
+<h2 id="&#x63A7;&#x5236;&#x7AEF;&#x53E3;-&#x670D;&#x52A1;"><a href="#&#x63A7;&#x5236;&#x7AEF;&#x53E3;-&#x670D;&#x52A1;" class="headerlink" title="&#x63A7;&#x5236;&#x7AEF;&#x53E3;/&#x670D;&#x52A1;"></a>&#x63A7;&#x5236;&#x7AEF;&#x53E3;/&#x670D;&#x52A1;</h2><p>&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x63A7;&#x5236;&#x7AEF;&#x53E3;&#x7684;&#x5F00;&#x653E;&#xFF0C;&#x4E00;&#x79CD;&#x662F;&#x6307;&#x5B9A;&#x7AEF;&#x53E3;&#x53F7;&#x53E6;&#x4E00;&#x79CD;&#x662F;&#x6307;&#x5B9A;&#x670D;&#x52A1;&#x540D;&#x3002;&#x867D;&#x7136;&#x5F00;&#x653E;http&#x670D;&#x52A1;&#x5C31;&#x662F;&#x5F00;&#x653E;&#x4E86;80&#x7AEF;&#x53E3;&#xFF0C;&#x4F46;&#x662F;&#x8FD8;&#x662F;&#x4E0D;&#x80FD;&#x901A;&#x8FC7;&#x7AEF;&#x53E3;&#x53F7;&#x6765;&#x5173;&#x95ED;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x901A;&#x8FC7;&#x6307;&#x5B9A;&#x670D;&#x52A1;&#x540D;&#x5F00;&#x653E;&#x7684;&#x5C31;&#x8981;&#x901A;&#x8FC7;&#x6307;&#x5B9A;&#x670D;&#x52A1;&#x540D;&#x5173;&#x95ED;&#xFF1B;&#x901A;&#x8FC7;&#x6307;&#x5B9A;&#x7AEF;&#x53E3;&#x53F7;&#x5F00;&#x653E;&#x7684;&#x5C31;&#x8981;&#x901A;&#x8FC7;&#x6307;&#x5B9A;&#x7AEF;&#x53E3;&#x53F7;&#x5173;&#x95ED;&#x3002;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x5C31;&#x662F;&#x6307;&#x5B9A;&#x7AEF;&#x53E3;&#x7684;&#x65F6;&#x5019;&#x4E00;&#x5B9A;&#x8981;&#x6307;&#x5B9A;&#x662F;&#x4EC0;&#x4E48;&#x534F;&#x8BAE;&#xFF0C;tcp&#x8FD8;&#x662F;udp&#x3002;&#x77E5;&#x9053;&#x8FD9;&#x4E2A;&#x4E4B;&#x540E;&#x4EE5;&#x540E;&#x5C31;&#x4E0D;&#x7528;&#x6BCF;&#x6B21;&#x5148;&#x5173;&#x9632;&#x706B;&#x5899;&#x4E86;&#xFF0C;&#x53EF;&#x4EE5;&#x8BA9;&#x9632;&#x706B;&#x5899;&#x771F;&#x6B63;&#x7684;&#x751F;&#x6548;&#x3002;</p>
+<p><code>firewall-cmd --add-service=mysql        # &#x5F00;&#x653E;mysql&#x7AEF;&#x53E3;</code></p>
+<p><code>firewall-cmd --remove-service=http      # &#x963B;&#x6B62;http&#x7AEF;&#x53E3;</code></p>
+<p><code>firewall-cmd --list-services            # &#x67E5;&#x770B;&#x5F00;&#x653E;&#x7684;&#x670D;&#x52A1;</code></p>
+<p><code>firewall-cmd --add-port=``3306``/tcp        # &#x5F00;&#x653E;&#x901A;&#x8FC7;tcp&#x8BBF;&#x95EE;``3306</code></p>
+<p><code>firewall-cmd --remove-port=80tcp        # &#x963B;&#x6B62;&#x901A;&#x8FC7;tcp&#x8BBF;&#x95EE;``3306</code></p>
+<p><code>firewall-cmd --add-port=``233``/udp         # &#x5F00;&#x653E;&#x901A;&#x8FC7;udp&#x8BBF;&#x95EE;``233</code></p>
+<p><code>firewall-cmd --list-ports               # &#x67E5;&#x770B;&#x5F00;&#x653E;&#x7684;&#x7AEF;&#x53E3;</code></p>
+<p><code>firewall-cmd  --permanent --zone=public --add-port=443/tcp #&#x6C38;&#x4E45;&#x751F;&#x6548;</code></p>
+<p><code>firewall-cmd  --permanent --zone=public --add-port=80/tcp #&#x6C38;&#x4E45;&#x751F;&#x6548;</code></p>
+<p><code>firewall-cmd  --reload #&#x91CD;&#x65B0;&#x52A0;&#x8F7D;&#x9632;&#x706B;&#x5899;</code></p>
+<h2 id="&#x4F2A;&#x88C5;IP"><a href="#&#x4F2A;&#x88C5;IP" class="headerlink" title="&#x4F2A;&#x88C5;IP"></a>&#x4F2A;&#x88C5;IP</h2><p>&#x9632;&#x706B;&#x5899;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x4F2A;&#x88C5;IP&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x4E0B;&#x9762;&#x7684;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;&#x5C31;&#x4F1A;&#x7528;&#x5230;&#x8FD9;&#x4E2A;&#x529F;&#x80FD;&#x3002;<br><code>firewall-cmd --query-masquerade # &#x68C0;&#x67E5;&#x662F;&#x5426;&#x5141;&#x8BB8;&#x4F2A;&#x88C5;IP</code></p>
+<p><code>firewall-cmd --add-masquerade   # &#x5141;&#x8BB8;&#x9632;&#x706B;&#x5899;&#x4F2A;&#x88C5;IP</code></p>
+<p><code>firewall-cmd --remove-masquerade# &#x7981;&#x6B62;&#x9632;&#x706B;&#x5899;&#x4F2A;&#x88C5;IP</code></p>
+<h2 id="&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;"><a href="#&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;" class="headerlink" title="&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;"></a>&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;</h2><p>&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;&#x53EF;&#x4EE5;&#x5C06;&#x6307;&#x5B9A;&#x5730;&#x5740;&#x8BBF;&#x95EE;&#x6307;&#x5B9A;&#x7684;&#x7AEF;&#x53E3;&#x65F6;&#xFF0C;&#x5C06;&#x6D41;&#x91CF;&#x8F6C;&#x53D1;&#x81F3;&#x6307;&#x5B9A;&#x5730;&#x5740;&#x7684;&#x6307;&#x5B9A;&#x7AEF;&#x53E3;&#x3002;&#x8F6C;&#x53D1;&#x7684;&#x76EE;&#x7684;&#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A;ip&#x7684;&#x8BDD;&#x5C31;&#x9ED8;&#x8BA4;&#x4E3A;&#x672C;&#x673A;&#xFF0C;&#x5982;&#x679C;&#x6307;&#x5B9A;&#x4E86;ip&#x5374;&#x6CA1;&#x6307;&#x5B9A;&#x7AEF;&#x53E3;&#xFF0C;&#x5219;&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;&#x6765;&#x6E90;&#x7AEF;&#x53E3;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x914D;&#x7F6E;&#x597D;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;&#x4E4B;&#x540E;&#x4E0D;&#x80FD;&#x7528;&#xFF0C;&#x53EF;&#x4EE5;&#x68C0;&#x67E5;&#x4E0B;&#x9762;&#x4E24;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;</p>
+<ol>
+<li>&#x6BD4;&#x5982;&#x6211;&#x5C06;80&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;&#x81F3;8080&#x7AEF;&#x53E3;&#xFF0C;&#x9996;&#x5148;&#x68C0;&#x67E5;&#x672C;&#x5730;&#x7684;80&#x7AEF;&#x53E3;&#x548C;&#x76EE;&#x6807;&#x7684;8080&#x7AEF;&#x53E3;&#x662F;&#x5426;&#x5F00;&#x653E;&#x76D1;&#x542C;&#x4E86;</li>
+<li>&#x5176;&#x6B21;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x5141;&#x8BB8;&#x4F2A;&#x88C5;IP&#xFF0C;&#x6CA1;&#x5141;&#x8BB8;&#x7684;&#x8BDD;&#x8981;&#x5F00;&#x542F;&#x4F2A;&#x88C5;IP</li>
+</ol>
+<p><code>firewall-cmd --add-forward-port=port=``80``:proto=tcp:toport=``8080</code>   <code># &#x5C06;``80``&#x7AEF;&#x53E3;&#x7684;&#x6D41;&#x91CF;&#x8F6C;&#x53D1;&#x81F3;``8080</code></p>
+<p><code>firewall-cmd --add-forward-port=port=``80``:proto=tcp:toaddr=``192.168``.``0.1</code> <code># &#x5C06;``80``&#x7AEF;&#x53E3;&#x7684;&#x6D41;&#x91CF;&#x8F6C;&#x53D1;&#x81F3;``192.168``.``0.1</code></p>
+<p><code>firewall-cmd --add-forward-port=port=``80``:proto=tcp:toaddr=``192.168``.``0.1``:toport=``8080</code> <code># &#x5C06;``80``&#x7AEF;&#x53E3;&#x7684;&#x6D41;&#x91CF;&#x8F6C;&#x53D1;&#x81F3;``192.168``.``0.1``&#x7684;``8080``&#x7AEF;&#x53E3;</code></p>
+<ol>
+<li>&#x5F53;&#x6211;&#x4EEC;&#x60F3;&#x628A;&#x67D0;&#x4E2A;&#x7AEF;&#x53E3;&#x9690;&#x85CF;&#x8D77;&#x6765;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x9632;&#x706B;&#x5899;&#x4E0A;&#x963B;&#x6B62;&#x90A3;&#x4E2A;&#x7AEF;&#x53E3;&#x8BBF;&#x95EE;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x5F00;&#x4E00;&#x4E2A;&#x4E0D;&#x89C4;&#x5219;&#x7684;&#x7AEF;&#x53E3;&#xFF0C;&#x4E4B;&#x540E;&#x914D;&#x7F6E;&#x9632;&#x706B;&#x5899;&#x7684;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;&#xFF0C;&#x5C06;&#x6D41;&#x91CF;&#x8F6C;&#x53D1;&#x8FC7;&#x53BB;&#x3002;</li>
+<li>&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;&#x8FD8;&#x53EF;&#x4EE5;&#x505A;&#x6D41;&#x91CF;&#x5206;&#x53D1;&#xFF0C;&#x4E00;&#x4E2A;&#x9632;&#x706B;&#x5899;&#x62D6;&#x7740;&#x597D;&#x591A;&#x53F0;&#x8FD0;&#x884C;&#x7740;&#x4E0D;&#x540C;&#x670D;&#x52A1;&#x7684;&#x673A;&#x5668;&#xFF0C;&#x7136;&#x540E;&#x7528;&#x9632;&#x706B;&#x5899;&#x5C06;&#x4E0D;&#x540C;&#x7AEF;&#x53E3;&#x7684;&#x6D41;&#x91CF;&#x8F6C;&#x53D1;&#x81F3;&#x4E0D;&#x540C;&#x673A;&#x5668;&#x3002;</li>
+</ol>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Failure is never quite so frightening as regret.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/错误预算上线机制.html">错误预算上线机制</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/Moosefs概念总结.html">Moosefs概念总结</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/linux下编译安装Python环境与iPython.html">linux下编译安装Python环境与iPytho</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/Linux下如何选择文件系统：EXT4、Btrfs-和-XFS.html">Linux下如何选择文件系统：EXT4、Btrfs</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/Linux/">Linux</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Git/">Git</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/MySQL/">MySQL</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/AWS/">AWS</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/wolf-7">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:91unix@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    © 2015-2019 | <a href="http://wolf7.org/">wolf7.org</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

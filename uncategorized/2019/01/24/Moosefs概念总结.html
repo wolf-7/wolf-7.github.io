@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="雪藏风凌骨，&lt;br/&gt;空隐道玄心。&lt;br/&gt;寒窗问诸佛，&lt;br/&gt;飞渡红尘烬。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="一匹来自北方的狼">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Moosefs概念总结"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="雪藏风凌骨，&lt;br/&gt;空隐道玄心。&lt;br/&gt;寒窗问诸佛，&lt;br/&gt;飞渡红尘烬。" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="一匹来自北方的狼"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Moosefs概念总结 - 一匹来自北方的狼</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/uncategorized/2019/01/24/Moosefs概念总结.html">
+                Moosefs概念总结
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-01-24</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <a id="more"></a>
+<p>&#x8FD1;&#x6765;&#x4E86;&#x89E3;&#x4E86;&#x4E00;&#x4E2A;&#x5206;&#x5E03;&#x5F0F;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x2014;&#x2014;MooseFS&#xFF0C;&#x4E4B;&#x524D;&#x5BF9;&#x5206;&#x5E03;&#x5F0F;&#x7684;&#x4E1C;&#x897F;&#x77E5;&#x9053;&#x7684;&#x5F88;&#x5C11;&#xFF0C;&#x5206;&#x5E03;&#x5F0F;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x3001;&#x5206;&#x5E03;&#x5F0F;&#x6570;&#x636E;&#x5E93;&#x90FD;&#x662F;&#x8FD1;&#x800C;&#x8FDC;&#x4E4B;&#xFF0C;&#x89C9;&#x5F97;&#x592A;&#x6742;&#x4E71;&#x4E86;&#x79BB;&#x6211;&#x8FD8;&#x5F88;&#x60A0;&#x8FDC;&#x3002;&#x5728;&#x5404;&#x4F4D;&#x6559;&#x5E08;&#x7684;&#x63A8;&#x52A8;&#x4E0B;&#x6211;&#x7528;6&#x53F0;&#x673A;&#x5668;&#x5B9E;&#x4E60;&#x4E86;&#x4E00;&#x4E0B;moosefs&#xFF0C;moosefs&#x7684;&#x5B89;&#x7F6E;&#x4ECD;&#x662F;&#x5F88;&#x7B80;&#x7565;&#x7684;&#xFF0C;&#x548C;&#x88C5;&#x5907;NFS&#x5F88;&#x50CF;&#xFF0C;&#x4FBF;&#x662F;&#x591A;&#x4E86;&#x4E24;&#x79CD;&#x4EBA;&#x7269;&#x7684;&#x673A;&#x5668;&#xFF0C;&#x6070;&#x662F;&#x6709;&#x4E86;&#x5B83;&#x4EEC;&#xFF0C;&#x624D;&#x4F7F;&#x5F97;moosefs&#x5728;&#x53EF;&#x6269;&#x5C55;&#x6027;&#x548C;&#x7A33;&#x5B9A;&#x6027;&#x4E0A;&#x90FD;&#x8981;&#x8FDC;&#x597D;&#x4E8E;NFS&#xFF0C;&#x5728;&#x8BFB;&#x5199;&#x7684;&#x529F;&#x7528;&#x65B9;&#x9762;&#xFF0C;&#x901A;&#x8FC7;dd&#x8FDB;&#x884C;&#x7684;&#x7B80;&#x7565;&#x68C0;&#x9A8C;&#x6765;&#x770B;&#xFF0C;moosefs&#x4E5F;&#x4FBF;&#x662F;&#x5199;&#x5165;&#x7684;&#x901F;&#x5EA6;&#x7A0D;&#x5FAE;&#x597D;&#x4E8E;NFS&#xFF0C;&#x8BFB;&#x4E0A;&#x6CA1;&#x6709;&#x4E0D;&#x540C;&#x3002;&#x4E0B;&#x9762;&#x662F;&#x5173;&#x4E8E;MFS&#x77E5;&#x8BC6;&#x70B9;&#x7684;&#x4E00;&#x4E9B;&#x603B;&#x7ED3;&#x3002;</p>
+<p>MFS&#x7CFB;&#x7EDF;&#x7531;4&#x4E2A;&#x6709;&#x4E9B;&#x6784;&#x6210;&#xFF1A;<br><strong>master&#x3001;metalogger&#x3001;chunkserver&#x3001;client</strong></p>
+<p><strong>Master</strong> &#x2014;&#x2014; mfs&#x7684;&#x5927;&#x8111;&#xFF0C;&#x8BB0;&#x5F55;&#x7740;&#x5904;&#x7406;&#x4FE1;&#x606F;&#xFF0C;&#x6BD4;&#x65B9;&#xFF1A;&#x6587;&#x4EF6;&#x5927;&#x5C0F;&#xFF0C;&#x5B58;&#x50A8;&#x7684;&#x65B9;&#x4F4D;&#xFF0C;&#x4EFD;&#x6570;&#x7B49;&#xFF0C;&#x548C;innodb&#x4E2D;&#x540C;&#x4EAB;&#x7A7A;&#x95F4;&#xFF08;ibdata&#xFF09;&#x4E2D;&#x5B58;&#x50A8;&#x7684;&#x4FE1;&#x606F;&#x7C7B;&#x4F3C;&#xFF0C;&#x8FD9;&#x4E9B;&#x4FE1;&#x606F;&#x88AB;&#x8BB0;&#x5F55;&#x5230;metadata.mfs&#x4E2D;&#xFF0C;&#x5F53;&#x8BE5;&#x6587;&#x4EF6;&#x88AB;&#x8F7D;&#x5165;&#x5185;&#x5B58;&#x540E;&#xFF0C;&#x8BE5;&#x6587;&#x4EF6;&#x4F1A;&#x91CD;&#x547D;&#x540D;&#x4E3A;metadata.mfs.back&#xFF0C;&#x5F53;chunkserver&#x4E0A;&#x6709;&#x66F4;&#x65B0;&#x65F6;&#xFF0C;master&#x4F1A;&#x5B88;&#x65F6;&#x5C06;&#x53D6;&#x5F97;&#x7684;&#x65B0;&#x7684;&#x4FE1;&#x606F;&#x56DE;&#x5199;&#x5230;metadata.mfs.back&#x4E2D;&#xFF0C;&#x4FDD;&#x8BC1;&#x5143;&#x6570;&#x636E;&#x7684;&#x53EF;&#x9760;&#x3002;</p>
+<p><strong>&#x786C;&#x4EF6;&#x63A8;&#x8350;</strong>&#xFF1A;&#x5927;&#x5185;&#x5B58;&#xFF0C;&#x7531;&#x4E8E;&#x5185;&#x5B58;&#x4E2D;&#x9700;&#x8981;&#x5C06;metadata.mfs&#x52A0;&#x8F7D;&#x8FDB;&#x6765;&#xFF0C;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x5927;&#x5C0F;&#x53D6;&#x51B3;&#x4E8E;&#x4F60;chunkserver&#x4E0A;&#x5B58;&#x50A8;&#x7684;&#x6570;&#x636E;&#x91CF;&#xFF0C;&#x5185;&#x5B58;&#x7684;&#x5927;&#x5C0F;&#x4F1A;&#x6210;&#x4E3A;&#x4EE5;&#x540E;&#x7684;&#x7591;&#x95EE;&#xFF0C;&#x8981;ECC&#x7684;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x5DEE;&#x9519;&#x6821;&#x9A8C;&#xFF0C;&#x5F53;&#x5185;&#x5B58;&#x4E2D;&#x6570;&#x636E;&#x91CF;&#x62B5;&#x8FBE;&#x5FC5;&#x5B9A;&#x7A0B;&#x5EA6;&#xFF0C;&#x5047;&#x8BBE;&#x6CA1;&#x6709;&#x4E2A;&#x5BB9;&#x9519;&#x7684;&#x673A;&#x5236;&#xFF0C;&#x4F1A;&#x5F88;&#x53EF;&#x6015;&#xFF1B;&#x5197;&#x4F59;&#x7535;&#x6C60;&#xFF0C;&#x548C;&#x78C1;&#x76D8;&#x88C5;&#x5907;RAID1/RAID5/RAID10&#xFF0C;&#x90FD;&#x662F;&#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;&#x9AD8;&#x53EF;&#x9760;&#x3002;</p>
+<p><strong>Metalogge</strong>r &#x2014;&#x2014; mfs&#x7684;&#x5907;&#x4EFD;&#xFF0C;&#x6BD4;&#x65B9;mysql&#x4E2D;&#x7684;m-s&#x7ED3;&#x6784;&#xFF0C;metalogger&#x4F1A;&#x5B88;&#x65F6;&#x91CD;master&#x5927;&#x5C06;&#x7684;metadata&#x3001;changelog&#x3001;session&#x7C7B;&#x578B;&#x7684;&#x6587;&#x4EF6;&#x4E0B;&#x8F7D;&#x540C;&#x6B65;&#x5230;&#x672C;&#x5730;&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x5E76;&#x52A0;&#x540E;&#x7F00;&#x201D;_ml&#x201D;&#x5C06;&#x5176;&#x91CD;&#x547D;&#x540D;&#x3002;</p>
+<p><strong>&#x786C;&#x4EF6;&#x63A8;&#x8350;</strong>&#xFF1A;&#x4E0E;master&#x673A;&#x5668;&#x88C5;&#x5907;&#x4E00;&#x8D77;&#xFF0C;metalogger&#x672C;&#x8EAB;&#x4FBF;&#x662F;master&#x7684;&#x4E00;&#x4E2A;&#x5907;&#x673A;&#xFF0C;&#x5F53;master&#x5B95;&#x673A;&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5C06;metalogger&#x63D0;&#x5347;&#x4E3A;master&#x3002;</p>
+<p><strong>Chunkserver</strong> &#x2014;&#x2014; &#x6570;&#x636E;&#x5B58;&#x50A8;&#x5730;&#xFF0C;&#x6587;&#x4EF6;&#x4EE5;chunk&#x5927;&#x5C0F;&#x5B58;&#x50A8;&#xFF0C;&#x6BCF;chunk&#x6700;&#x5927;&#x4E3A;64M&#xFF0C;&#x5C0F;&#x4E8E;64M&#x7684;&#xFF0C;&#x8BE5;chunk&#x7684;&#x5927;&#x5C0F;&#x5373;&#x4E3A;&#x8BE5;&#x6587;&#x4EF6;&#x5927;&#x5C0F;&#xFF0C;&#x903E;&#x8D8A;64M&#x7684;&#x6587;&#x4EF6;&#x5C06;&#x88AB;&#x5747;&#x5206;&#xFF0C;&#x6BCF;&#x4E00;&#x4EFD;&#xFF08;chunk&#xFF09;&#x7684;&#x5927;&#x5C0F;&#x4EE5;&#x4E0D;&#x903E;&#x8D8A;64M&#x4E3A;&#x539F;&#x5219;&#xFF1B;&#x6587;&#x4EF6;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4EFD;copy&#xFF0C;&#x5373;&#x9664;&#x4E86;&#x521D;&#x59CB;&#x6587;&#x4EF6;&#x4EE5;&#x5916;&#xFF0C;&#x8BE5;&#x6587;&#x4EF6;&#x8FD8;&#x5B58;&#x50A8;&#x7684;&#x4EFD;&#x6570;&#xFF0C;&#x5F53;goal&#x4E3A;1&#x65F6;&#xFF0C;&#x6807;&#x660E;&#x53EA;&#x9700;&#x4E00;&#x4EFD;copy&#xFF0C;&#x8FD9;&#x4EFD;copy&#x4F1A;&#x88AB;&#x968F;&#x673A;&#x5B58;&#x5230;&#x4E00;&#x53F0;chunkserver&#x4E0A;&#xFF0C;&#x5F53;goal&#x7684;&#x6570;&#x5927;&#x4E8E;1&#x65F6;&#xFF0C;&#x6BCF;&#x4E00;&#x4EFD;copy&#x4F1A;&#x88AB;&#x522B;&#x79BB;&#x4FDD;&#x5B58;&#x5230;&#x6BCF;&#x4E00;&#x4E2A;chunkserver&#x4E0A;&#xFF0C;goal&#x7684;&#x5927;&#x5C0F;&#x4E0D;&#x8981;&#x903E;&#x8D8A;chunkserver&#x7684;&#x6570;&#x91CF;&#xFF0C;&#x5426;&#x5219;&#x591A;&#x51FA;&#x7684;copy&#xFF0C;&#x4E0D;&#x4F1A;&#x6709;chunkserver&#x53BB;&#x5B58;&#xFF0C;goal&#x8BBE;&#x7F6E;&#x518D;&#x591A;&#x5B9E;&#x4E60;&#x4E0A;&#x4E5F;&#x5C31;&#x6CA1;&#x6709;&#x610F;&#x4E49;&#x7684;&#x3002;Copy&#x7684;&#x4EFD;&#x6570;&#xFF0C;&#x901A;&#x5E38;&#x8BBE;&#x4E3A;&#x5927;&#x4E8E;1&#x4EFD;&#xFF0C;&#x8FD9;&#x4E48;&#x5047;&#x8BBE;&#x6709;&#x4E00;&#x53F0;chukserver&#x574F;&#x6389;&#x540E;&#xFF0C;&#x6700;&#x5C11;&#x8FD8;&#x6709;&#x4E00;&#x4EFD;copy&#xFF0C;&#x5F53;&#x8FD9;&#x53F0;&#x53C8;&#x88AB;&#x52A0;&#x8FDB;&#x6765;&#x540E;&#xFF0C;&#x4F1A;&#x5C06;&#x5931;&#x6389;&#x7684;&#x90A3;&#x4EFD;copy&#x8865;&#x56DE;&#x6765;&#xFF0C;&#x59CB;&#x7EC8;&#x4FDD;&#x6301;&#x539F;&#x6709;&#x7684;copy&#x6570;&#xFF0C;&#x800C;&#x5047;&#x8BBE;goal&#x8BBE;&#x4E3A;1copy&#xFF0C;&#x90A3;&#x4E48;&#x5F53;&#x5B58;&#x50A8;&#x8BE5;copy&#x7684;chunkserver&#x574F;&#x6389;&#xFF0C;&#x4EE5;&#x540E;&#x53C8;&#x91CD;&#x65B0;&#x52A0;&#x5165;&#x56DE;&#x6765;&#xFF0C;copy&#x6570;&#x5C06;&#x59CB;&#x7EC8;&#x662F;0&#xFF0C;&#x4E0D;&#x4F1A;&#x5EB7;&#x590D;&#x5230;&#x4E4B;&#x524D;&#x7684;1&#x4E2A;copy&#x3002;</p>
+<p><strong>Chunkserver</strong>&#x4E0A;&#x7684;&#x5269;&#x4F59;&#x5B58;&#x50A8;&#x7A7A;&#x95F4;&#x8981;&#x5927;&#x4E8E;1GB&#xFF08;Reference Guide&#x6709;&#x8BF4;&#x5230;&#xFF09;&#xFF0C;&#x65B0;&#x7684;&#x6570;&#x636E;&#x624D;&#x4F1A;&#x88AB;&#x7B54;&#x5E94;&#x5199;&#x5165;&#xFF0C;&#x5426;&#x5219;&#xFF0C;&#x4F60;&#x4F1A;&#x770B;&#x5230;No space left on device&#x7684;&#x63D0;&#x793A;&#xFF0C;&#x5B9E;&#x4E60;&#x4E2D;&#xFF0C;&#x68C0;&#x9A8C;&#x53D1;&#x73B0;&#x5F53;&#x78C1;&#x76D8;&#x4F7F;&#x7528;&#x7387;&#x62B5;&#x8FBE;95%&#x652F;&#x914D;&#x7684;&#x65F6;&#x5206;&#xFF0C;&#x5C31;&#x73B0;&#x5DF2;&#x4E0D;&#x80FD;&#x5199;&#x5165;&#x4E86;&#xFF0C;&#x5F53;&#x65F6;&#x53EF;&#x7528;&#x7A7A;&#x95F4;&#x4E3A;1.9GB&#x3002;</p>
+<p><strong>&#x786C;&#x4EF6;&#x63A8;&#x8350;</strong>&#xFF1A;&#x901A;&#x5E38;&#x7684;&#x673A;&#x5668;&#x5C31;&#x884C;&#xFF0C;&#x4FBF;&#x662F;&#x8981;&#x6765;&#x5B58;&#x51E0;&#x4EFD;&#x6570;&#x636E;&#xFF0C;&#x53EA;&#x9700;&#x78C1;&#x76D8;&#x591F;&#x5927;&#x5C31;&#x597D;&#x3002;</p>
+<p><strong>Client</strong> &#x2014;&#x2014; &#x5BA2;&#x6237;&#x7AEF;&#x901A;&#x8FC7;&#x5185;&#x6838;&#x52A0;&#x8F7D;&#x7684;FUSE&#x6A21;&#x5757;&#xFF0C;&#x518D;&#x901A;&#x8FC7;&#x548C;master&#x7684;&#x6C9F;&#x901A;&#xFF0C;&#x5C06;chunkserver&#x540C;&#x4EAB;&#x7684;&#x5206;&#x533A;&#x6302;&#x8F7D;&#x5230;&#x672C;&#x5730;&#xFF0C;&#x7136;&#x540E;&#x8FDB;&#x884C;&#x8BFB;&#x5199;&#x64CD;&#x4F5C;&#x3002;&#x7531;&#x4E8E;FUSE&#x6A21;&#x5757;&#x662F;&#x5916;&#x52A0;&#x7684;&#x6A21;&#x5757;&#xFF0C;&#x5F53;&#x7CFB;&#x7EDF;&#x91CD;&#x542F;&#x540E;&#xFF0C;&#x9700;&#x8981;&#x5C65;&#x884C;modprobe fuse&#xFF0C;&#x5C06;&#x5176;&#x52A0;&#x8F7D;&#x5230;&#x5185;&#x6838;&#x4E2D;&#x3002;</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Failure is never quite so frightening as regret.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/错误预算上线机制.html">错误预算上线机制</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/Moosefs概念总结.html">Moosefs概念总结</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/linux下编译安装Python环境与iPython.html">linux下编译安装Python环境与iPytho</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/Linux下如何选择文件系统：EXT4、Btrfs-和-XFS.html">Linux下如何选择文件系统：EXT4、Btrfs</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/Linux/">Linux</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Git/">Git</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/MySQL/">MySQL</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/AWS/">AWS</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/wolf-7">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:91unix@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    © 2015-2019 | <a href="http://wolf7.org/">wolf7.org</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

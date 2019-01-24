@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="雪藏风凌骨，&lt;br/&gt;空隐道玄心。&lt;br/&gt;寒窗问诸佛，&lt;br/&gt;飞渡红尘烬。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="一匹来自北方的狼">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="CentOS7一键安装ipsec-vpn"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="雪藏风凌骨，&lt;br/&gt;空隐道玄心。&lt;br/&gt;寒窗问诸佛，&lt;br/&gt;飞渡红尘烬。" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="一匹来自北方的狼"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>CentOS7一键安装ipsec-vpn - 一匹来自北方的狼</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/uncategorized/2018/01/24/CentOS7一键安装ipsec-vpn.html">
+                CentOS7一键安装ipsec-vpn
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-01-24</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <a id="more"></a>
+<p>wget <a href="https://git.io/vpnsetup-centos" target="_blank" rel="noopener">https://git.io/vpnsetup-centos</a></p>
+<p>&#x6267;&#x884C;&#xFF0C;&#x6DFB;&#x52A0;PSK&#xFF0C;&#x7528;&#x6237;&#x540D;&#xFF0C;&#x5BC6;&#x7801;<br>&#x6700;&#x9EBB;&#x70E6;&#x7684;&#x914D;&#x7F6E;&#x5C31;&#x662F;ipsec.conf<br>ipsec.conf<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">version 2.0</span><br><span class="line"></span><br><span class="line">config setup</span><br><span class="line">  virtual_private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12,%v4:!192.168.42.0/24,%v4:!192.168.43.0/24</span><br><span class="line">  protostack=netkey</span><br><span class="line">  nhelpers=0</span><br><span class="line">  interfaces=%defaultroute</span><br><span class="line">  uniqueids=no</span><br><span class="line"></span><br><span class="line">conn shared</span><br><span class="line">  left=%defaultroute</span><br><span class="line">  leftid=54.x.x.221</span><br><span class="line">  right=%any</span><br><span class="line">  encapsulation=yes</span><br><span class="line">  authby=secret</span><br><span class="line">  pfs=no</span><br><span class="line">  rekey=no</span><br><span class="line">  keyingtries=5</span><br><span class="line">  dpddelay=30</span><br><span class="line">  dpdtimeout=120</span><br><span class="line">  dpdaction=clear</span><br><span class="line">  ike=3des-sha1,3des-sha2,aes-sha1,aes-sha1;modp1024,aes-sha2,aes-sha2;modp1024,aes256-sha2_512</span><br><span class="line">  phase2alg=3des-sha1,3des-sha2,aes-sha1,aes-sha2,aes256-sha2_512</span><br><span class="line">  sha2-truncbug=yes</span><br><span class="line"></span><br><span class="line">conn l2tp-psk</span><br><span class="line">  auto=add</span><br><span class="line">  leftprotoport=17/1701</span><br><span class="line">  rightprotoport=17/%any</span><br><span class="line">  type=transport</span><br><span class="line">  phase2=esp</span><br><span class="line">  also=shared</span><br><span class="line"></span><br><span class="line">conn xauth-psk</span><br><span class="line">  auto=add</span><br><span class="line">  leftsubnet=0.0.0.0/0</span><br><span class="line">  rightaddresspool=192.168.43.10-192.168.43.250</span><br><span class="line">  modecfgdns1=8.8.8.8</span><br><span class="line">  modecfgdns2=8.8.4.4</span><br><span class="line">  leftxauthserver=yes</span><br><span class="line">  rightxauthclient=yes</span><br><span class="line">  leftmodecfgserver=yes</span><br><span class="line">  rightmodecfgclient=yes</span><br><span class="line">  modecfgpull=yes</span><br><span class="line">  xauthby=file</span><br><span class="line">  ike-frag=yes</span><br><span class="line">  ikev2=never</span><br><span class="line">  cisco-unity=yes</span><br><span class="line">  also=shared</span><br><span class="line"></span><br><span class="line">conn ikev2-cp</span><br><span class="line">  left=%defaultroute</span><br><span class="line">  leftid=54.x.x.221</span><br><span class="line">  leftsendcert=always</span><br><span class="line">  leftsubnet=0.0.0.0/0</span><br><span class="line">  leftrsasigkey=%cert</span><br><span class="line">  right=%any</span><br><span class="line">  rightaddresspool=192.168.45.10-192.168.45.250</span><br><span class="line">  rightca=%same</span><br><span class="line">  rightrsasigkey=%cert</span><br><span class="line">  modecfgdns1=8.8.8.8</span><br><span class="line">  modecfgdns2=8.8.4.4</span><br><span class="line">  narrowing=yes</span><br><span class="line">  dpddelay=30</span><br><span class="line">  dpdtimeout=120</span><br><span class="line">  dpdaction=clear</span><br><span class="line">  auto=add</span><br><span class="line">  ikev2=insist</span><br><span class="line">  rekey=no</span><br><span class="line">  fragmentation=yes</span><br><span class="line">  ike=3des-sha1,3des-sha2,aes-sha1,aes-sha1;modp1024,aes-sha2,aes-sha2;modp1024,aes256-sha2_512</span><br><span class="line">  phase2alg=3des-sha1,3des-sha2,aes-sha1,aes-sha2,aes256-sha2_512</span><br></pre></td></tr></tbody></table></figure><p></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Failure is never quite so frightening as regret.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/错误预算上线机制.html">错误预算上线机制</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/Moosefs概念总结.html">Moosefs概念总结</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/linux下编译安装Python环境与iPython.html">linux下编译安装Python环境与iPytho</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/Linux下如何选择文件系统：EXT4、Btrfs-和-XFS.html">Linux下如何选择文件系统：EXT4、Btrfs</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/Linux/">Linux</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Git/">Git</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/MySQL/">MySQL</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/AWS/">AWS</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/wolf-7">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:91unix@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    © 2015-2019 | <a href="http://wolf7.org/">wolf7.org</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

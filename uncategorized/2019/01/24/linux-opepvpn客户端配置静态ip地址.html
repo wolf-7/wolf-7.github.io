@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="雪藏风凌骨，&lt;br/&gt;空隐道玄心。&lt;br/&gt;寒窗问诸佛，&lt;br/&gt;飞渡红尘烬。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="一匹来自北方的狼">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="linux opepvpn客户端配置静态ip地址"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="雪藏风凌骨，&lt;br/&gt;空隐道玄心。&lt;br/&gt;寒窗问诸佛，&lt;br/&gt;飞渡红尘烬。" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="一匹来自北方的狼"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>linux opepvpn客户端配置静态ip地址 - 一匹来自北方的狼</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/uncategorized/2019/01/24/linux-opepvpn客户端配置静态ip地址.html">
+                linux opepvpn客户端配置静态ip地址
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-01-24</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <a id="more"></a>
+<h1 id="&#x5B89;&#x88C5;openvpn&#x5BA2;&#x6237;&#x7AEF;"><a href="#&#x5B89;&#x88C5;openvpn&#x5BA2;&#x6237;&#x7AEF;" class="headerlink" title="&#x5B89;&#x88C5;openvpn&#x5BA2;&#x6237;&#x7AEF;"></a>&#x5B89;&#x88C5;openvpn&#x5BA2;&#x6237;&#x7AEF;</h1><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum install or apt-get install openvpn</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x670D;&#x52A1;&#x7AEF;&#x751F;&#x6210;key&#x5BC6;&#x94A5;zgc-ovpn&#x4E0A;&#x4F20;&#x5230;-etc-openvpn-etc"><a href="#&#x670D;&#x52A1;&#x7AEF;&#x751F;&#x6210;key&#x5BC6;&#x94A5;zgc-ovpn&#x4E0A;&#x4F20;&#x5230;-etc-openvpn-etc" class="headerlink" title="&#x670D;&#x52A1;&#x7AEF;&#x751F;&#x6210;key&#x5BC6;&#x94A5;zgc.ovpn&#x4E0A;&#x4F20;&#x5230;/etc/openvpn/etc"></a>&#x670D;&#x52A1;&#x7AEF;&#x751F;&#x6210;key&#x5BC6;&#x94A5;zgc.ovpn&#x4E0A;&#x4F20;&#x5230;/etc/openvpn/etc</h3><h3 id="&#x542F;&#x52A8;&#x547D;&#x4EE4;"><a href="#&#x542F;&#x52A8;&#x547D;&#x4EE4;" class="headerlink" title="&#x542F;&#x52A8;&#x547D;&#x4EE4;"></a>&#x542F;&#x52A8;&#x547D;&#x4EE4;</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># openvpn --daemon --cd /etc/openvpn/etc --config zgc.ovpn --log-append /var/log/openvpn.log</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x670D;&#x52A1;&#x7AEF;&#x67E5;&#x770B;-var-log-openvpn-server-log"><a href="#&#x670D;&#x52A1;&#x7AEF;&#x67E5;&#x770B;-var-log-openvpn-server-log" class="headerlink" title="&#x670D;&#x52A1;&#x7AEF;&#x67E5;&#x770B;/var/log/openvpn/server.log"></a>&#x670D;&#x52A1;&#x7AEF;&#x67E5;&#x770B;/var/log/openvpn/server.log</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># taif -f /var/log/openvpn/server.log</span></span><br><span class="line"><span class="comment">### &#x6DFB;&#x52A0;&#x672C;&#x5730;&#x9759;&#x6001;&#x8DEF;&#x7531;</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x914D;&#x7F6E;&#x6587;&#x4EF6;-1"><a href="#&#x914D;&#x7F6E;&#x6587;&#x4EF6;-1" class="headerlink" title="&#x914D;&#x7F6E;&#x6587;&#x4EF6;-1"></a>&#x914D;&#x7F6E;&#x6587;&#x4EF6;-1</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">port 1194</span><br><span class="line">proto udp</span><br><span class="line">dev tun</span><br><span class="line"></span><br><span class="line">comp-lzo</span><br><span class="line">keepalive 10 120</span><br><span class="line"></span><br><span class="line">persist-key</span><br><span class="line">persist-tun</span><br><span class="line">user nobody</span><br><span class="line">group nogroup</span><br><span class="line"></span><br><span class="line">chroot /etc/openvpn/easy-rsa/keys/crl.jail</span><br><span class="line">crl-verify crl.pem</span><br><span class="line"></span><br><span class="line">ca /etc/openvpn/easy-rsa/keys/ca.crt</span><br><span class="line">dh /etc/openvpn/easy-rsa/keys/dh2048.pem</span><br><span class="line">tls-auth /etc/openvpn/easy-rsa/keys/ta.key 0</span><br><span class="line">key /etc/openvpn/easy-rsa/keys/server.key</span><br><span class="line">cert /etc/openvpn/easy-rsa/keys/server.crt</span><br><span class="line"></span><br><span class="line">server 10.10.10.0 255.255.255.0</span><br><span class="line">ifconfig-pool-persist ipp.txt</span><br><span class="line"></span><br><span class="line">push <span class="string">&quot;route 10.10.10.0 255.255.255.0&quot;</span>   //&#x58F0;&#x660E;192.168.10&#x6BB5;&#x7684;IP</span><br><span class="line">push <span class="string">&quot;route 10.0.0.0 255.255.255.0&quot;</span>     //&#x58F0;&#x660E;10.0.0.0&#x6BB5;&#x7684;ip</span><br><span class="line">client-config-dir ccd                         //&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x63A7;&#x5236;&#x6587;&#x4EF6;</span><br><span class="line">route 192.168.10.0 255.255.255.0            //&#x589E;&#x52A0;&#x7684;&#x8DEF;&#x7531;</span><br><span class="line">route 10.0.0.0 255.255.255.0            //&#x589E;&#x52A0;&#x7684;&#x8DEF;&#x7531;</span><br><span class="line">client-to-client</span><br><span class="line">keepalive 10 120</span><br><span class="line">comp-lzo</span><br><span class="line">persist-key</span><br><span class="line">persist-tun</span><br><span class="line">status /var/<span class="built_in">log</span>/openvpn/server.log</span><br><span class="line">verb 4                                   //&#x65E5;&#x5FD7;&#x7684;&#x8BB0;&#x5F55;&#x7B49;&#x7EA7;</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x914D;&#x7F6E;&#x6587;&#x4EF6;-2"><a href="#&#x914D;&#x7F6E;&#x6587;&#x4EF6;-2" class="headerlink" title="&#x914D;&#x7F6E;&#x6587;&#x4EF6;-2"></a>&#x914D;&#x7F6E;&#x6587;&#x4EF6;-2</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">port 1194</span><br><span class="line">proto udp</span><br><span class="line">dev tun</span><br><span class="line"></span><br><span class="line">comp-lzo</span><br><span class="line">keepalive 10 120</span><br><span class="line"></span><br><span class="line">persist-key</span><br><span class="line">persist-tun</span><br><span class="line">user nobody</span><br><span class="line">group nogroup</span><br><span class="line"></span><br><span class="line">chroot /etc/openvpn/easy-rsa/keys/crl.jail</span><br><span class="line">crl-verify crl.pem</span><br><span class="line"></span><br><span class="line">ca /etc/openvpn/easy-rsa/keys/ca.crt</span><br><span class="line">dh /etc/openvpn/easy-rsa/keys/dh2048.pem</span><br><span class="line">tls-auth /etc/openvpn/easy-rsa/keys/ta.key 0</span><br><span class="line">key /etc/openvpn/easy-rsa/keys/server.key</span><br><span class="line">cert /etc/openvpn/easy-rsa/keys/server.crt</span><br><span class="line"></span><br><span class="line">ifconfig-pool-persist /var/lib/openvpn/server.ipp</span><br><span class="line">client-config-dir ccd</span><br><span class="line">status /var/<span class="built_in">log</span>/openvpn/server.log</span><br><span class="line">verb 4</span><br><span class="line"></span><br><span class="line">// virtual subnet unique <span class="keyword">for</span> openvpn to draw client addresses from</span><br><span class="line">// the server will be configured with x.x.x.1</span><br><span class="line">// important: must not be used on your network</span><br><span class="line">server 10.10.10.0 255.255.255.0</span><br><span class="line"></span><br><span class="line">// configure clients to route all their traffic through the vpn</span><br><span class="line">push <span class="string">&quot;redirect-gateway def1 bypass-dhcp&quot;</span></span><br></pre></td></tr></tbody></table></figure><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Failure is never quite so frightening as regret.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/错误预算上线机制.html">错误预算上线机制</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/Moosefs概念总结.html">Moosefs概念总结</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/linux下编译安装Python环境与iPython.html">linux下编译安装Python环境与iPytho</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/Linux下如何选择文件系统：EXT4、Btrfs-和-XFS.html">Linux下如何选择文件系统：EXT4、Btrfs</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/Linux/">Linux</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Git/">Git</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/MySQL/">MySQL</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/AWS/">AWS</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/wolf-7">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:91unix@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    © 2015-2019 | <a href="http://wolf7.org/">wolf7.org</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

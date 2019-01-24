@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="雪藏风凌骨，&lt;br/&gt;空隐道玄心。&lt;br/&gt;寒窗问诸佛，&lt;br/&gt;飞渡红尘烬。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="一匹来自北方的狼">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="部署 kubernetes 集群 （三）"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="雪藏风凌骨，&lt;br/&gt;空隐道玄心。&lt;br/&gt;寒窗问诸佛，&lt;br/&gt;飞渡红尘烬。" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="一匹来自北方的狼"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>部署 kubernetes 集群 （三） - 一匹来自北方的狼</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/uncategorized/2017/01/24/部署-kubernetes-集群-（三）.html">
+                部署 kubernetes 集群 （三）
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017-01-24</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <a id="more"></a>
+<h1 id="7-&#x90E8;&#x7F72;-Node-&#x8282;&#x70B9;"><a href="#7-&#x90E8;&#x7F72;-Node-&#x8282;&#x70B9;" class="headerlink" title="7.&#x90E8;&#x7F72; Node &#x8282;&#x70B9;"></a>7.&#x90E8;&#x7F72; Node &#x8282;&#x70B9;</h1><p>kubernetes Node &#x8282;&#x70B9;&#x5305;&#x542B;&#x5982;&#x4E0B;&#x7EC4;&#x4EF6;&#xFF1A;</p>
+<ul>
+<li>flanneld</li>
+<li>docker</li>
+<li>kubelet</li>
+<li>kube-proxy</li>
+</ul>
+<h2 id="&#x4F7F;&#x7528;&#x7684;&#x53D8;&#x91CF;"><a href="#&#x4F7F;&#x7528;&#x7684;&#x53D8;&#x91CF;" class="headerlink" title="&#x4F7F;&#x7528;&#x7684;&#x53D8;&#x91CF;"></a>&#x4F7F;&#x7528;&#x7684;&#x53D8;&#x91CF;</h2><p>&#x672C;&#x6587;&#x6863;&#x7528;&#x5230;&#x7684;&#x53D8;&#x91CF;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># &#x66FF;&#x6362;&#x4E3A; kubernetes master &#x96C6;&#x7FA4;&#x4EFB;&#x4E00;&#x673A;&#x5668; IP</span><br><span class="line">export MASTER_IP=192.168.77.201</span><br><span class="line">export KUBE_APISERVER=&quot;https://${MASTER_IP}:6443&quot;</span><br><span class="line"># &#x5F53;&#x524D;&#x90E8;&#x7F72;&#x7684;&#x8282;&#x70B9; IP</span><br><span class="line">export NODE_IP=192.168.77.202</span><br><span class="line"># &#x5BFC;&#x5165;&#x7528;&#x5230;&#x7684;&#x5176;&#x5B83;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#xFF1A;ETCD_ENDPOINTS&#x3001;FLANNEL_ETCD_PREFIX&#x3001;CLUSTER_CIDR&#x3001;CLUSTER_DNS_SVC_IP&#x3001;CLUSTER_DNS_DOMAIN&#x3001;SERVICE_CIDR</span><br><span class="line">source /root/local/bin/environment.sh</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E;-flanneld"><a href="#&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E;-flanneld" class="headerlink" title="&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E; flanneld"></a>&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E; flanneld</h2><p>&#x53C2;&#x8003; <a href="https://github.com/opsnull/follow-me-install-kubernetes-cluster/blob/master/05-%E9%83%A8%E7%BD%B2Flannel%E7%BD%91%E7%BB%9C.md" target="_blank" rel="noopener">05-&#x90E8;&#x7F72;Flannel&#x7F51;&#x7EDC;.md</a></p>
+<h2 id="&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E;-docker"><a href="#&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E;-docker" class="headerlink" title="&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E; docker"></a>&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E; docker</h2><h3 id="&#x4E0B;&#x8F7D;&#x6700;&#x65B0;&#x7684;-docker-&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;"><a href="#&#x4E0B;&#x8F7D;&#x6700;&#x65B0;&#x7684;-docker-&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;" class="headerlink" title="&#x4E0B;&#x8F7D;&#x6700;&#x65B0;&#x7684; docker &#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;"></a>&#x4E0B;&#x8F7D;&#x6700;&#x65B0;&#x7684; docker &#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;</h3><p>&#x53C2;&#x8003; <a href="https://www.wolf7.org/articles/2017/07/07/1499419787623.html" target="_blank" rel="noopener">Docker1.7&#x811A;&#x672C;&#x5B89;&#x88C5;</a></p>
+<h3 id="&#x4FEE;&#x6539;-docker-&#x7684;-systemd-unit-&#x6587;&#x4EF6;"><a href="#&#x4FEE;&#x6539;-docker-&#x7684;-systemd-unit-&#x6587;&#x4EF6;" class="headerlink" title="&#x4FEE;&#x6539; docker &#x7684; systemd unit &#x6587;&#x4EF6;"></a>&#x4FEE;&#x6539; docker &#x7684; systemd unit &#x6587;&#x4EF6;</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">vim /lib/systemd/system/docker.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Docker Application Container Engine</span><br><span class="line">Documentation=https://docs.docker.com</span><br><span class="line">After=network-online.target firewalld.service</span><br><span class="line">Wants=network-online.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=notify</span><br><span class="line">EnvironmentFile=-/run/flannel/docker</span><br><span class="line">ExecStart=/usr/bin/dockerd $DOCKER_NETWORK_OPTIONS --log-level=error</span><br><span class="line">ExecReload=/bin/kill -s HUP $MAINPID</span><br><span class="line">LimitNOFILE=infinity</span><br><span class="line">LimitNPROC=infinity</span><br><span class="line">LimitCORE=infinity</span><br><span class="line">TimeoutStartSec=0</span><br><span class="line">Delegate=yes</span><br><span class="line">KillMode=process</span><br><span class="line">Restart=on-failure</span><br><span class="line">StartLimitBurst=3</span><br><span class="line">StartLimitInterval=60s</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.targe</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><p>dockerd &#x8FD0;&#x884C;&#x65F6;&#x4F1A;&#x8C03;&#x7528;&#x5176;&#x5B83; docker &#x547D;&#x4EE4;&#xFF0C;&#x5982; docker-proxy&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x5C06; docker &#x547D;&#x4EE4;&#x6240;&#x5728;&#x7684;&#x76EE;&#x5F55;&#x52A0;&#x5230; PATH &#x73AF;&#x5883;&#x53D8;&#x91CF;&#x4E2D;&#xFF1B;</p>
+</li>
+<li><p>flanneld &#x542F;&#x52A8;&#x65F6;&#x5C06;&#x7F51;&#x7EDC;&#x914D;&#x7F6E;&#x5199;&#x5165;&#x5230; <code>/run/flannel/docker</code> &#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x53D8;&#x91CF; <code>DOCKER_NETWORK_OPTIONS</code>&#xFF0C;dockerd &#x547D;&#x4EE4;&#x884C;&#x4E0A;&#x6307;&#x5B9A;&#x8BE5;&#x53D8;&#x91CF;&#x503C;&#x6765;&#x8BBE;&#x7F6E; docker0 &#x7F51;&#x6865;&#x53C2;&#x6570;&#xFF1B;</p>
+</li>
+<li><p>&#x5982;&#x679C;&#x6307;&#x5B9A;&#x4E86;&#x591A;&#x4E2A; <code>EnvironmentFile</code> &#x9009;&#x9879;&#xFF0C;&#x5219;&#x5FC5;&#x987B;&#x5C06; <code>/run/flannel/docker</code> &#x653E;&#x5728;&#x6700;&#x540E;(&#x786E;&#x4FDD; docker0 &#x4F7F;&#x7528; flanneld &#x751F;&#x6210;&#x7684; bip &#x53C2;&#x6570;)&#xFF1B;</p>
+</li>
+<li><p>&#x4E0D;&#x80FD;&#x5173;&#x95ED;&#x9ED8;&#x8BA4;&#x5F00;&#x542F;&#x7684; <code>--iptables</code> &#x548C; <code>--ip-masq</code> &#x9009;&#x9879;&#xFF1B;</p>
+</li>
+<li><p>&#x5982;&#x679C;&#x5185;&#x6838;&#x7248;&#x672C;&#x6BD4;&#x8F83;&#x65B0;&#xFF0C;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528; <code>overlay</code> &#x5B58;&#x50A8;&#x9A71;&#x52A8;&#xFF1B;</p>
+</li>
+<li><p>docker &#x4ECE; 1.13 &#x7248;&#x672C;&#x5F00;&#x59CB;&#xFF0C;&#x53EF;&#x80FD;&#x5C06; <strong>iptables FORWARD chain&#x7684;&#x9ED8;&#x8BA4;&#x7B56;&#x7565;&#x8BBE;&#x7F6E;&#x4E3A;DROP</strong>&#xFF0C;&#x4ECE;&#x800C;&#x5BFC;&#x81F4; ping &#x5176;&#x5B83; Node &#x4E0A;&#x7684; Pod IP &#x5931;&#x8D25;&#xFF0C;&#x9047;&#x5230;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x624B;&#x52A8;&#x8BBE;&#x7F6E;&#x7B56;&#x7565;&#x4E3A; <code>ACCEPT</code>&#xFF1A;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo iptables -P FORWARD ACCEPT</span><br><span class="line">$</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>&#x4E3A;&#x4E86;&#x52A0;&#x5FEB; pull image &#x7684;&#x901F;&#x5EA6;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x56FD;&#x5185;&#x7684;&#x4ED3;&#x5E93;&#x955C;&#x50CF;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x540C;&#x65F6;&#x589E;&#x52A0;&#x4E0B;&#x8F7D;&#x7684;&#x5E76;&#x53D1;&#x6570;&#x3002;(&#x5982;&#x679C; dockerd &#x5DF2;&#x7ECF;&#x8FD0;&#x884C;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x91CD;&#x542F; dockerd &#x751F;&#x6548;&#x3002;)</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/docker/daemon.json</span><br><span class="line">{</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn&quot;, &quot;hub-mirror.c.163.com&quot;],</span><br><span class="line">  &quot;max-concurrent-downloads&quot;: 10</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<p>&#x5B8C;&#x6574; unit &#x89C1; <a href="https://github.com/opsnull/follow-me-install-kubernetes-cluster/blob/master/systemd/docker.service" target="_blank" rel="noopener">docker.service</a></p>
+<h2 id="&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E;-kubelet"><a href="#&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E;-kubelet" class="headerlink" title="&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E; kubelet"></a>&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E; kubelet</h2><p>kubelet &#x542F;&#x52A8;&#x65F6;&#x5411; kube-apiserver &#x53D1;&#x9001; TLS bootstrapping &#x8BF7;&#x6C42;&#xFF0C;&#x9700;&#x8981;&#x5148;&#x5C06; bootstrap token &#x6587;&#x4EF6;&#x4E2D;&#x7684; kubelet-bootstrap &#x7528;&#x6237;&#x8D4B;&#x4E88; system:node-bootstrapper &#x89D2;&#x8272;&#xFF0C;&#x7136;&#x540E; kubelet &#x624D;&#x6709;&#x6743;&#x9650;&#x521B;&#x5EFA;&#x8BA4;&#x8BC1;&#x8BF7;&#x6C42;(certificatesigningrequests)&#xFF1A;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl create clusterrolebinding kubelet-bootstrap --clusterrole=system:node-bootstrapper --user=kubelet-bootstrap</span><br><span class="line">$</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><code>--user=kubelet-bootstrap</code> &#x662F;&#x6587;&#x4EF6; <code>/etc/kubernetes/token.csv</code> &#x4E2D;&#x6307;&#x5B9A;&#x7684;&#x7528;&#x6237;&#x540D;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x5199;&#x5165;&#x4E86;&#x6587;&#x4EF6; <code>/etc/kubernetes/bootstrap.kubeconfig</code>&#xFF1B;</li>
+</ul>
+<h3 id="&#x4E0B;&#x8F7D;&#x6700;&#x65B0;&#x7684;-kubelet-&#x548C;-kube-proxy-&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;"><a href="#&#x4E0B;&#x8F7D;&#x6700;&#x65B0;&#x7684;-kubelet-&#x548C;-kube-proxy-&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;" class="headerlink" title="&#x4E0B;&#x8F7D;&#x6700;&#x65B0;&#x7684; kubelet &#x548C; kube-proxy &#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;"></a>&#x4E0B;&#x8F7D;&#x6700;&#x65B0;&#x7684; kubelet &#x548C; kube-proxy &#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://dl.k8s.io/v1.6.2/kubernetes-server-linux-amd64.tar.gz</span><br><span class="line">$ tar -xzvf kubernetes-server-linux-amd64.tar.gz</span><br><span class="line">$ cd kubernetes</span><br><span class="line">$ tar -xzvf  kubernetes-src.tar.gz</span><br><span class="line">$ sudo cp -r ./server/bin/{kube-proxy,kubelet} /root/local/bin/</span><br><span class="line">$</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x521B;&#x5EFA;-kubelet-bootstrapping-kubeconfig-&#x6587;&#x4EF6;"><a href="#&#x521B;&#x5EFA;-kubelet-bootstrapping-kubeconfig-&#x6587;&#x4EF6;" class="headerlink" title="&#x521B;&#x5EFA; kubelet bootstrapping kubeconfig &#x6587;&#x4EF6;"></a>&#x521B;&#x5EFA; kubelet bootstrapping kubeconfig &#x6587;&#x4EF6;</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># &#x8BBE;&#x7F6E;&#x96C6;&#x7FA4;&#x53C2;&#x6570;</span><br><span class="line">kubectl config set-cluster kubernetes \</span><br><span class="line">  --certificate-authority=/etc/kubernetes/ssl/ca.pem \</span><br><span class="line">  --embed-certs=true \</span><br><span class="line">  --server=${KUBE_APISERVER} \</span><br><span class="line">  --kubeconfig=bootstrap.kubeconfig</span><br><span class="line"># &#x8BBE;&#x7F6E;&#x5BA2;&#x6237;&#x7AEF;&#x8BA4;&#x8BC1;&#x53C2;&#x6570;</span><br><span class="line">kubectl config set-credentials kubelet-bootstrap \</span><br><span class="line">  --token=${BOOTSTRAP_TOKEN} \</span><br><span class="line">  --kubeconfig=bootstrap.kubeconfig</span><br><span class="line"># &#x8BBE;&#x7F6E;&#x4E0A;&#x4E0B;&#x6587;&#x53C2;&#x6570;</span><br><span class="line">kubectl config set-context default \</span><br><span class="line">  --cluster=kubernetes \</span><br><span class="line">  --user=kubelet-bootstrap \</span><br><span class="line">  --kubeconfig=bootstrap.kubeconfig</span><br><span class="line"># &#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x4E0A;&#x4E0B;&#x6587;</span><br><span class="line">kubectl config use-context default --kubeconfig=bootstrap.kubeconfig</span><br><span class="line">cp bootstrap.kubeconfig /etc/kubernetes/</span><br><span class="line">scp bootstrap.kubeconfig root@node2:/etc/kubernetes/</span><br><span class="line">scp bootstrap.kubeconfig root@node3:/etc/kubernetes/</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><code>--embed-certs</code> &#x4E3A; <code>true</code> &#x65F6;&#x8868;&#x793A;&#x5C06; <code>certificate-authority</code> &#x8BC1;&#x4E66;&#x5199;&#x5165;&#x5230;&#x751F;&#x6210;&#x7684; <code>bootstrap.kubeconfig</code> &#x6587;&#x4EF6;&#x4E2D;&#xFF1B;</li>
+<li>&#x8BBE;&#x7F6E; kubelet &#x5BA2;&#x6237;&#x7AEF;&#x8BA4;&#x8BC1;&#x53C2;&#x6570;&#x65F6;<strong>&#x6CA1;&#x6709;</strong>&#x6307;&#x5B9A;&#x79D8;&#x94A5;&#x548C;&#x8BC1;&#x4E66;&#xFF0C;&#x540E;&#x7EED;&#x7531; <code>kube-apiserver</code> &#x81EA;&#x52A8;&#x751F;&#x6210;&#xFF1B;</li>
+<li>&#x751F;&#x6210;&#x7684;bootstrap.kubeconfig&#x6587;&#x4EF6;&#x540C;&#x6B65;&#x5230;&#x96C6;&#x7FA4;node&#x7684;/etc/kubernetes/&#x4E0B;</li>
+<li><h2 id="&#x521B;&#x5EFA;-kubectl-kubeconfig-&#x6587;&#x4EF6;"><a href="#&#x521B;&#x5EFA;-kubectl-kubeconfig-&#x6587;&#x4EF6;" class="headerlink" title="&#x521B;&#x5EFA; kubectl kubeconfig &#x6587;&#x4EF6;"></a>&#x521B;&#x5EFA; kubectl kubeconfig &#x6587;&#x4EF6;</h2></li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ export KUBE_APISERVER=&quot;https://192.168.77.201:6443&quot;</span><br><span class="line">$ # &#x8BBE;&#x7F6E;&#x96C6;&#x7FA4;&#x53C2;&#x6570;</span><br><span class="line">$ kubectl config set-cluster kubernetes \</span><br><span class="line">  --certificate-authority=/etc/kubernetes/ssl/ca.pem \</span><br><span class="line">  --embed-certs=true \</span><br><span class="line">  --server=${KUBE_APISERVER}</span><br><span class="line">$ # &#x8BBE;&#x7F6E;&#x5BA2;&#x6237;&#x7AEF;&#x8BA4;&#x8BC1;&#x53C2;&#x6570;</span><br><span class="line">$ kubectl config set-credentials admin \</span><br><span class="line">  --client-certificate=/etc/kubernetes/ssl/admin.pem \</span><br><span class="line">  --embed-certs=true \</span><br><span class="line">  --client-key=/etc/kubernetes/ssl/admin-key.pem</span><br><span class="line">$ # &#x8BBE;&#x7F6E;&#x4E0A;&#x4E0B;&#x6587;&#x53C2;&#x6570;</span><br><span class="line">$ kubectl config set-context kubernetes \</span><br><span class="line">  --cluster=kubernetes \</span><br><span class="line">  --user=admin</span><br><span class="line">$ # &#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x4E0A;&#x4E0B;&#x6587;</span><br><span class="line">$ kubectl config use-context kubernetes</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><code>admin.pem</code> &#x8BC1;&#x4E66; OU &#x5B57;&#x6BB5;&#x503C;&#x4E3A; <code>system:masters</code>&#xFF0C;<code>kube-apiserver</code> &#x9884;&#x5B9A;&#x4E49;&#x7684; RoleBinding <code>cluster-admin</code> &#x5C06; Group <code>system:masters</code> &#x4E0E; Role <code>cluster-admin</code> &#x7ED1;&#x5B9A;&#xFF0C;&#x8BE5; Role &#x6388;&#x4E88;&#x4E86;&#x8C03;&#x7528;<code>kube-apiserver</code> &#x76F8;&#x5173; API &#x7684;&#x6743;&#x9650;&#xFF1B;</li>
+<li>&#x751F;&#x6210;&#x7684; kubeconfig &#x88AB;&#x4FDD;&#x5B58;&#x5230; <code>~/.kube/config</code> &#x6587;&#x4EF6;&#xFF1B;</li>
+</ul>
+<h3 id="&#x521B;&#x5EFA;-kubelet-&#x7684;-systemd-unit-&#x6587;&#x4EF6;"><a href="#&#x521B;&#x5EFA;-kubelet-&#x7684;-systemd-unit-&#x6587;&#x4EF6;" class="headerlink" title="&#x521B;&#x5EFA; kubelet &#x7684; systemd unit &#x6587;&#x4EF6;"></a>&#x521B;&#x5EFA; kubelet &#x7684; systemd unit &#x6587;&#x4EF6;</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /var/lib/kubelet # &#x5FC5;&#x987B;&#x5148;&#x521B;&#x5EFA;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;</span><br><span class="line">vim kubelet.service </span><br><span class="line">[Unit]</span><br><span class="line">Description=Kubernetes Kubelet</span><br><span class="line">Documentation=https://github.com/GoogleCloudPlatform/kubernetes</span><br><span class="line">After=docker.service</span><br><span class="line">Requires=docker.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">WorkingDirectory=/var/lib/kubelet</span><br><span class="line">ExecStart=/root/local/bin/kubelet \</span><br><span class="line">  --address=192.168.77.202 \</span><br><span class="line">  --hostname-override=192.168.77.202 \</span><br><span class="line">  --pod-infra-container-image=registry.access.redhat.com/rhel7/pod-infrastructure:latest \</span><br><span class="line">  --experimental-bootstrap-kubeconfig=/etc/kubernetes/bootstrap.kubeconfig \</span><br><span class="line">  --kubeconfig=/etc/kubernetes/kubelet-kubeconfig \</span><br><span class="line">  --require-kubeconfig \</span><br><span class="line">  --cert-dir=/etc/kubernetes/ssl \</span><br><span class="line">  --container-runtime=docker \</span><br><span class="line">  --cluster-dns=10.254.0.2 \</span><br><span class="line">  --cluster-domain=cluster.local. \</span><br><span class="line">  --hairpin-mode promiscuous-bridge \</span><br><span class="line">  --allow-privileged=true \</span><br><span class="line">  --serialize-image-pulls=false \</span><br><span class="line">  --register-node=true \</span><br><span class="line">  --logtostderr=true \</span><br><span class="line">  --v=2</span><br><span class="line">Restart=on-failure</span><br><span class="line">RestartSec=5</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x901A;&#x8FC7;-kubelet-&#x7684;-TLS-&#x8BC1;&#x4E66;&#x8BF7;&#x6C42;"><a href="#&#x901A;&#x8FC7;-kubelet-&#x7684;-TLS-&#x8BC1;&#x4E66;&#x8BF7;&#x6C42;" class="headerlink" title="&#x901A;&#x8FC7; kubelet &#x7684; TLS &#x8BC1;&#x4E66;&#x8BF7;&#x6C42;"></a>&#x901A;&#x8FC7; kubelet &#x7684; TLS &#x8BC1;&#x4E66;&#x8BF7;&#x6C42;</h3><p>kubelet &#x9996;&#x6B21;&#x542F;&#x52A8;&#x65F6;&#x5411; kube-apiserver &#x53D1;&#x9001;&#x8BC1;&#x4E66;&#x7B7E;&#x540D;&#x8BF7;&#x6C42;&#xFF0C;&#x5FC5;&#x987B;&#x901A;&#x8FC7;&#x540E; kubernetes &#x7CFB;&#x7EDF;&#x624D;&#x4F1A;&#x5C06;&#x8BE5; Node &#x52A0;&#x5165;&#x5230;&#x96C6;&#x7FA4;&#x3002;</p>
+<p>&#x67E5;&#x770B;&#x672A;&#x6388;&#x6743;&#x7684; CSR &#x8BF7;&#x6C42;&#xFF1A;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">kubectl get csr</span><br><span class="line">NAME        AGE       REQUESTOR           CONDITION</span><br><span class="line">csr-279xz   22m       kubelet-bootstrap   Pending</span><br><span class="line">csr-2pt02   19m       kubelet-bootstrap   Pending</span><br><span class="line">csr-8z9n7   4m        kubelet-bootstrap   Pending</span><br><span class="line">csr-bzwk6   8m        kubelet-bootstrap   Pending</span><br><span class="line">csr-h84s6   8m        kubelet-bootstrap   Pending</span><br><span class="line">csr-jqpp4   17m       kubelet-bootstrap   Pending</span><br><span class="line">csr-k7413   18m       kubelet-bootstrap   Pending</span><br><span class="line">csr-qqc03   18m       kubelet-bootstrap   Pending</span><br><span class="line">csr-t0dzn   18m       kubelet-bootstrap   Pending</span><br><span class="line">kubectl get nodes</span><br><span class="line">No resources found.</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x901A;&#x8FC7; CSR &#x8BF7;&#x6C42;&#xFF1A;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl certificate approve csr-279xz</span><br><span class="line">certificatesigningrequest &quot;csr-279xz&quot; approved</span><br><span class="line">$ kubectl get nodes</span><br><span class="line">NAME        STATUS    AGE       VERSION</span><br><span class="line">10.64.3.7   Ready     49m       v1.6.2</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x81EA;&#x52A8;&#x751F;&#x6210;&#x4E86; kubelet kubeconfig &#x6587;&#x4EF6;&#x548C;&#x516C;&#x79C1;&#x94A5;&#xFF1A;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l /etc/kubernetes/kubelet.kubeconfig</span><br><span class="line">-rw------- 1 root root 2284 Apr  7 02:07 /etc/kubernetes/kubelet.kubeconfig</span><br><span class="line">$ ls -l /etc/kubernetes/ssl/kubelet*</span><br><span class="line">-rw-r--r-- 1 root root 1046 Apr  7 02:07 /etc/kubernetes/ssl/kubelet-client.crt</span><br><span class="line">-rw------- 1 root root  227 Apr  7 02:04 /etc/kubernetes/ssl/kubelet-client.key</span><br><span class="line">-rw-r--r-- 1 root root 1103 Apr  7 02:07 /etc/kubernetes/ssl/kubelet.crt</span><br><span class="line">-rw------- 1 root root 1675 Apr  7 02:07 /etc/kubernetes/ssl/kubelet.key</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x914D;&#x7F6E;-kube-proxy"><a href="#&#x914D;&#x7F6E;-kube-proxy" class="headerlink" title="&#x914D;&#x7F6E; kube-proxy"></a>&#x914D;&#x7F6E; kube-proxy</h2><h3 id="&#x521B;&#x5EFA;-kube-proxy-&#x8BC1;&#x4E66;"><a href="#&#x521B;&#x5EFA;-kube-proxy-&#x8BC1;&#x4E66;" class="headerlink" title="&#x521B;&#x5EFA; kube-proxy &#x8BC1;&#x4E66;"></a>&#x521B;&#x5EFA; kube-proxy &#x8BC1;&#x4E66;</h3><p>&#x521B;&#x5EFA; kube-proxy &#x8BC1;&#x4E66;&#x7B7E;&#x540D;&#x8BF7;&#x6C42;&#xFF1A;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">vim kube-proxy-csr.json</span><br><span class="line">{</span><br><span class="line">  &quot;CN&quot;: &quot;system:kube-proxy&quot;,</span><br><span class="line">  &quot;hosts&quot;: [],</span><br><span class="line">  &quot;key&quot;: {</span><br><span class="line">    &quot;algo&quot;: &quot;rsa&quot;,</span><br><span class="line">    &quot;size&quot;: 2048</span><br><span class="line">  },</span><br><span class="line">  &quot;names&quot;: [</span><br><span class="line">    {</span><br><span class="line">      &quot;C&quot;: &quot;CN&quot;,</span><br><span class="line">      &quot;ST&quot;: &quot;BeiJing&quot;,</span><br><span class="line">      &quot;L&quot;: &quot;BeiJing&quot;,</span><br><span class="line">      &quot;O&quot;: &quot;k8s&quot;,</span><br><span class="line">      &quot;OU&quot;: &quot;System&quot;</span><br><span class="line">    }</span><br><span class="line">  ]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>CN &#x6307;&#x5B9A;&#x8BE5;&#x8BC1;&#x4E66;&#x7684; User &#x4E3A; <code>system:kube-proxy</code>&#xFF1B;</li>
+<li><code>kube-apiserver</code> &#x9884;&#x5B9A;&#x4E49;&#x7684; RoleBinding <code>system:node-proxier</code> &#x5C06;User <code>system:kube-proxy</code> &#x4E0E; Role <code>system:node-proxier</code> &#x7ED1;&#x5B9A;&#xFF0C;&#x8BE5; Role &#x6388;&#x4E88;&#x4E86;&#x8C03;&#x7528; <code>kube-apiserver</code> Proxy &#x76F8;&#x5173; API &#x7684;&#x6743;&#x9650;&#xFF1B;</li>
+<li>hosts &#x5C5E;&#x6027;&#x503C;&#x4E3A;&#x7A7A;&#x5217;&#x8868;&#xFF1B;</li>
+</ul>
+<p>&#x751F;&#x6210; kube-proxy &#x5BA2;&#x6237;&#x7AEF;&#x8BC1;&#x4E66;&#x548C;&#x79C1;&#x94A5;&#xFF1A;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cfssl gencert -ca=/etc/kubernetes/ssl/ca.pem \</span><br><span class="line">  -ca-key=/etc/kubernetes/ssl/ca-key.pem \</span><br><span class="line">  -config=/etc/kubernetes/ssl/ca-config.json \</span><br><span class="line">  -profile=kubernetes  kube-proxy-csr.json | cfssljson -bare kube-proxy</span><br><span class="line">$ ls kube-proxy*</span><br><span class="line">kube-proxy.csr  kube-proxy-csr.json  kube-proxy-key.pem  kube-proxy.pem</span><br><span class="line">cp kube-proxy*.pem /etc/kubernetes/ssl/</span><br><span class="line">scp kube-proxy*.pem root@node2/etc/kubernetes/ssl/</span><br><span class="line">scp kube-proxy*.pem root@node3/etc/kubernetes/ssl/</span><br><span class="line">$</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x521B;&#x5EFA;-kube-proxy-kubeconfig-&#x6587;&#x4EF6;"><a href="#&#x521B;&#x5EFA;-kube-proxy-kubeconfig-&#x6587;&#x4EF6;" class="headerlink" title="&#x521B;&#x5EFA; kube-proxy kubeconfig &#x6587;&#x4EF6;"></a>&#x521B;&#x5EFA; kube-proxy kubeconfig &#x6587;&#x4EF6;</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ # &#x8BBE;&#x7F6E;&#x96C6;&#x7FA4;&#x53C2;&#x6570;</span><br><span class="line">$ kubectl config set-cluster kubernetes \</span><br><span class="line">  --certificate-authority=/etc/kubernetes/ssl/ca.pem \</span><br><span class="line">  --embed-certs=true \</span><br><span class="line">  --server=${KUBE_APISERVER} \</span><br><span class="line">  --kubeconfig=kube-proxy.kubeconfig</span><br><span class="line">$ # &#x8BBE;&#x7F6E;&#x5BA2;&#x6237;&#x7AEF;&#x8BA4;&#x8BC1;&#x53C2;&#x6570;</span><br><span class="line">$ kubectl config set-credentials kube-proxy \</span><br><span class="line">  --client-certificate=/etc/kubernetes/ssl/kube-proxy.pem \</span><br><span class="line">  --client-key=/etc/kubernetes/ssl/kube-proxy-key.pem \</span><br><span class="line">  --embed-certs=true \</span><br><span class="line">  --kubeconfig=kube-proxy.kubeconfig</span><br><span class="line">$ # &#x8BBE;&#x7F6E;&#x4E0A;&#x4E0B;&#x6587;&#x53C2;&#x6570;</span><br><span class="line">$ kubectl config set-context default \</span><br><span class="line">  --cluster=kubernetes \</span><br><span class="line">  --user=kube-proxy \</span><br><span class="line">  --kubeconfig=kube-proxy.kubeconfig</span><br><span class="line">$ # &#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x4E0A;&#x4E0B;&#x6587;</span><br><span class="line">$ kubectl config use-context default --kubeconfig=kube-proxy.kubeconfig</span><br><span class="line">$ mv kube-proxy.kubeconfig /etc/kubernetes/</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x8BBE;&#x7F6E;&#x96C6;&#x7FA4;&#x53C2;&#x6570;&#x548C;&#x5BA2;&#x6237;&#x7AEF;&#x8BA4;&#x8BC1;&#x53C2;&#x6570;&#x65F6; <code>--embed-certs</code> &#x90FD;&#x4E3A; <code>true</code>&#xFF0C;&#x8FD9;&#x4F1A;&#x5C06; <code>certificate-authority</code>&#x3001;<code>client-certificate</code> &#x548C; <code>client-key</code> &#x6307;&#x5411;&#x7684;&#x8BC1;&#x4E66;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x5199;&#x5165;&#x5230;&#x751F;&#x6210;&#x7684; <code>kube-proxy.kubeconfig</code> &#x6587;&#x4EF6;&#x4E2D;&#xFF1B;</li>
+<li><code>kube-proxy.pem</code> &#x8BC1;&#x4E66;&#x4E2D; CN &#x4E3A; <code>system:kube-proxy</code>&#xFF0C;<code>kube-apiserver</code> &#x9884;&#x5B9A;&#x4E49;&#x7684; RoleBinding <code>cluster-admin</code> &#x5C06;User <code>system:kube-proxy</code> &#x4E0E; Role <code>system:node-proxier</code> &#x7ED1;&#x5B9A;&#xFF0C;&#x8BE5; Role &#x6388;&#x4E88;&#x4E86;&#x8C03;&#x7528; <code>kube-apiserver</code> Proxy &#x76F8;&#x5173; API &#x7684;&#x6743;&#x9650;&#xFF1B;</li>
+</ul>
+<h3 id="&#x521B;&#x5EFA;-kube-proxy-&#x7684;-systemd-unit-&#x6587;&#x4EF6;"><a href="#&#x521B;&#x5EFA;-kube-proxy-&#x7684;-systemd-unit-&#x6587;&#x4EF6;" class="headerlink" title="&#x521B;&#x5EFA; kube-proxy &#x7684; systemd unit &#x6587;&#x4EF6;"></a>&#x521B;&#x5EFA; kube-proxy &#x7684; systemd unit &#x6587;&#x4EF6;</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mkdir -p /var/lib/kube-proxy # &#x5FC5;&#x987B;&#x5148;&#x521B;&#x5EFA;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;</span><br><span class="line">vim kube-proxy.service </span><br><span class="line">[Unit]</span><br><span class="line">Description=Kubernetes Kube-Proxy Server</span><br><span class="line">Documentation=https://github.com/GoogleCloudPlatform/kubernetes</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">ExecStart=/root/local/bin/kube-proxy \</span><br><span class="line">  --bind-address=192.168.77.201 \</span><br><span class="line">  --cluster-cidr=10.254.0.0/16 \</span><br><span class="line">  --hostname-override=192.168.77.201 \</span><br><span class="line">  --kubeconfig=/etc/kubernetes/kube-proxy.kubeconfig \</span><br><span class="line">  --logtostderr=true \</span><br><span class="line">  --v=2</span><br><span class="line">Restart=on-failure</span><br><span class="line">RestartSec=5</span><br><span class="line">LimitNOFILE=65536</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><code>--hostname-override</code> &#x53C2;&#x6570;&#x503C;&#x5FC5;&#x987B;&#x4E0E; kubelet &#x7684;&#x503C;&#x4E00;&#x81F4;&#xFF0C;&#x5426;&#x5219; kube-proxy &#x542F;&#x52A8;&#x540E;&#x4F1A;&#x627E;&#x4E0D;&#x5230;&#x8BE5; Node&#xFF0C;&#x4ECE;&#x800C;&#x4E0D;&#x4F1A;&#x521B;&#x5EFA;&#x4EFB;&#x4F55; iptables &#x89C4;&#x5219;&#xFF1B;</li>
+<li><code>--cluster-cidr</code> &#x5FC5;&#x987B;&#x4E0E; kube-apiserver &#x7684; <code>--service-cluster-ip-range</code> &#x9009;&#x9879;&#x503C;&#x4E00;&#x81F4;&#xFF1B;</li>
+<li>kube-proxy &#x6839;&#x636E; <code>--cluster-cidr</code> &#x5224;&#x65AD;&#x96C6;&#x7FA4;&#x5185;&#x90E8;&#x548C;&#x5916;&#x90E8;&#x6D41;&#x91CF;&#xFF0C;&#x6307;&#x5B9A; <code>--cluster-cidr</code> &#x6216; <code>--masquerade-all</code> &#x9009;&#x9879;&#x540E; kube-proxy &#x624D;&#x4F1A;&#x5BF9;&#x8BBF;&#x95EE; Service IP &#x7684;&#x8BF7;&#x6C42;&#x505A; SNAT&#xFF1B;</li>
+<li><code>--kubeconfig</code> &#x6307;&#x5B9A;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5D4C;&#x5165;&#x4E86; kube-apiserver &#x7684;&#x5730;&#x5740;&#x3001;&#x7528;&#x6237;&#x540D;&#x3001;&#x8BC1;&#x4E66;&#x3001;&#x79D8;&#x94A5;&#x7B49;&#x8BF7;&#x6C42;&#x548C;&#x8BA4;&#x8BC1;&#x4FE1;&#x606F;&#xFF1B;</li>
+<li>&#x9884;&#x5B9A;&#x4E49;&#x7684; RoleBinding <code>cluster-admin</code> &#x5C06;User <code>system:kube-proxy</code> &#x4E0E; Role <code>system:node-proxier</code> &#x7ED1;&#x5B9A;&#xFF0C;&#x8BE5; Role &#x6388;&#x4E88;&#x4E86;&#x8C03;&#x7528; <code>kube-apiserver</code> Proxy &#x76F8;&#x5173; API &#x7684;&#x6743;&#x9650;&#xFF1B;</li>
+<li>&#x5B8C;&#x6574; unit &#x89C1; <a href="https://github.com/opsnull/follow-me-install-kubernetes-cluster/blob/master/systemd/kube-proxy.service" target="_blank" rel="noopener">kube-proxy.service</a></li>
+</ul>
+<h3 id="&#x542F;&#x52A8;-kube-proxy"><a href="#&#x542F;&#x52A8;-kube-proxy" class="headerlink" title="&#x542F;&#x52A8; kube-proxy"></a>&#x542F;&#x52A8; kube-proxy</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo cp kube-proxy.service /etc/systemd/system/</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl enable kube-proxy</span><br><span class="line">sudo systemctl start kube-proxy</span><br><span class="line">systemctl status kube-proxy</span><br></pre></td></tr></tbody></table></figure><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Failure is never quite so frightening as regret.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/错误预算上线机制.html">错误预算上线机制</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/Moosefs概念总结.html">Moosefs概念总结</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/linux下编译安装Python环境与iPython.html">linux下编译安装Python环境与iPytho</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/uncategorized/2019/01/24/Linux下如何选择文件系统：EXT4、Btrfs-和-XFS.html">Linux下如何选择文件系统：EXT4、Btrfs</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/Linux/">Linux</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Git/">Git</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/MySQL/">MySQL</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/AWS/">AWS</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/wolf-7">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:91unix@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    © 2015-2019 | <a href="http://wolf7.org/">wolf7.org</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
