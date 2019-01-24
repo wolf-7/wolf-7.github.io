@@ -164,10 +164,10 @@
         <h2 id="&#x80CC;&#x666F;&#x77E5;&#x8BC6;"><a href="#&#x80CC;&#x666F;&#x77E5;&#x8BC6;" class="headerlink" title="&#x80CC;&#x666F;&#x77E5;&#x8BC6;"></a>&#x80CC;&#x666F;&#x77E5;&#x8BC6;</h2><h3 id="CC-&#x653B;&#x51FB;"><a href="#CC-&#x653B;&#x51FB;" class="headerlink" title="CC &#x653B;&#x51FB;"></a>CC &#x653B;&#x51FB;</h3><p>&#x653B;&#x51FB;&#x8005;&#x901A;&#x8FC7;&#x521B;&#x5EFA;&#x5927;&#x91CF;&#x8BF7;&#x6C42;&#x5BFC;&#x81F4;&#x670D;&#x52A1;&#x5668;&#x8D44;&#x6E90;&#x8017;&#x5C3D;&#xFF0C;&#x4E3B;&#x8981;&#x9488;&#x5BF9;&#x7279;&#x5B9A;&#x670D;&#x52A1;&#x63A5;&#x53E3;&#xFF0C;&#x5C5E;&#x4E8E;&#x5B9E;&#x73B0; DoS &#x653B;&#x51FB;&#x7684;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#xFF08;DoS &#x653B;&#x51FB;&#x66F4;&#x591A;&#x662F;&#x9488;&#x5BF9;&#x7F51;&#x7EDC;&#x7AEF;&#x53E3;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5177;&#x4F53;&#x670D;&#x52A1;&#x63A5;&#x53E3;&#xFF09;&#x3002;</p>
 <h3 id="NGINX-&#x6D41;&#x63A7;"><a href="#NGINX-&#x6D41;&#x63A7;" class="headerlink" title="NGINX &#x6D41;&#x63A7;"></a>NGINX &#x6D41;&#x63A7;</h3><ul>
 <li>limit_req_zone&#xFF1A;&#x901A;&#x8FC7;&#x201C;&#x6F0F;&#x6876;&#x201D;&#x7B97;&#x6CD5;&#x9650;&#x5236;&#x6BCF;&#x4E2A; IP &#x53D1;&#x8D77;&#x7684;&#x8BF7;&#x6C42;&#x9891;&#x7387;&#x3002;</li>
-<li>limit_conn_zone&#xFF1A;&#x9650;&#x5236;&#x6BCF;&#x4E2A; IP &#x53D1;&#x8D77;&#x7684;&#x8FDE;&#x63A5;&#x6570;&#x3002;<h3 id="fail2ban"><a href="#fail2ban" class="headerlink" title="fail2ban"></a>fail2ban</h3>&#x901A;&#x8FC7;&#x5339;&#x914D;&#x670D;&#x52A1;&#x5668;&#x65E5;&#x5FD7;&#x64CD;&#x4F5C; iptables &#x6765;&#x9650;&#x5236;&#x5BA2;&#x6237;&#x7AEF;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;&#x3002;<a id="more"></a>
-<h2 id="&#x5B9E;&#x8DF5;&#x914D;&#x7F6E;"><a href="#&#x5B9E;&#x8DF5;&#x914D;&#x7F6E;" class="headerlink" title="&#x5B9E;&#x8DF5;&#x914D;&#x7F6E;"></a>&#x5B9E;&#x8DF5;&#x914D;&#x7F6E;</h2></li>
+<li>limit_conn_zone&#xFF1A;&#x9650;&#x5236;&#x6BCF;&#x4E2A; IP &#x53D1;&#x8D77;&#x7684;&#x8FDE;&#x63A5;&#x6570;&#x3002;<h3 id="fail2ban"><a href="#fail2ban" class="headerlink" title="fail2ban"></a>fail2ban</h3>&#x901A;&#x8FC7;&#x5339;&#x914D;&#x670D;&#x52A1;&#x5668;&#x65E5;&#x5FD7;&#x64CD;&#x4F5C; iptables &#x6765;&#x9650;&#x5236;&#x5BA2;&#x6237;&#x7AEF;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;&#x3002;</li>
 </ul>
-<h3 id="NGINX-&#x90E8;&#x5206;"><a href="#NGINX-&#x90E8;&#x5206;" class="headerlink" title="NGINX &#x90E8;&#x5206;"></a>NGINX &#x90E8;&#x5206;</h3><p>&#x5728; http &#x90E8;&#x5206;&#x4E2D;&#x914D;&#x7F6E;&#xFF1A;</p>
+<a id="more"></a>
+<h2 id="&#x5B9E;&#x8DF5;&#x914D;&#x7F6E;"><a href="#&#x5B9E;&#x8DF5;&#x914D;&#x7F6E;" class="headerlink" title="&#x5B9E;&#x8DF5;&#x914D;&#x7F6E;"></a>&#x5B9E;&#x8DF5;&#x914D;&#x7F6E;</h2><h3 id="NGINX-&#x90E8;&#x5206;"><a href="#NGINX-&#x90E8;&#x5206;" class="headerlink" title="NGINX &#x90E8;&#x5206;"></a>NGINX &#x90E8;&#x5206;</h3><p>&#x5728; http &#x90E8;&#x5206;&#x4E2D;&#x914D;&#x7F6E;&#xFF1A;</p>
 <figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">limit_req_zone <span class="variable">$binary_remote_addr</span> <span class="attribute">zone</span>=sym:10m <span class="attribute">rate</span>=5r/s;</span><br><span class="line">limit_conn_zone <span class="variable">$binary_remote_addr</span> <span class="attribute">zone</span>=conn_sym:10m;</span><br></pre></td></tr></tbody></table></figure>
 <p>&#x7136;&#x540E;&#x5728;&#x9700;&#x8981;&#x6D41;&#x63A7;&#x7684; location &#x90E8;&#x5206;&#x914D;&#x7F6E;&#xFF1A;</p>
 <figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">limit_req <span class="attribute">zone</span>=sym <span class="attribute">burst</span>=5;</span><br><span class="line">limit_conn conn_sym 10;</span><br></pre></td></tr></tbody></table></figure>
@@ -317,7 +317,7 @@
                     
                     
                     <li class="list-inline-item">
-                        <a href="mailto:91unix@gmail.com">
+                        <a href="mailto:91unix@sina.cn">
                             <span class="footer-icon-container">
                                 <i class="fa fa-envelope-o"></i>
                             </span>

@@ -296,7 +296,8 @@
             <h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><h3 id="CC-攻击"><a href="#CC-攻击" class="headerlink" title="CC 攻击"></a>CC 攻击</h3><p>攻击者通过创建大量请求导致服务器资源耗尽，主要针对特定服务接口，属于实现 DoS 攻击的一种方式（DoS 攻击更多是针对网络端口，而不是具体服务接口）。</p>
 <h3 id="NGINX-流控"><a href="#NGINX-流控" class="headerlink" title="NGINX 流控"></a>NGINX 流控</h3><ul>
 <li>limit_req_zone：通过“漏桶”算法限制每个 IP 发起的请求频率。</li>
-<li>limit_conn_zone：限制每个 IP 发起的连接数。<h3 id="fail2ban"><a href="#fail2ban" class="headerlink" title="fail2ban"></a>fail2ban</h3>通过匹配服务器日志操作 iptables 来限制客户端网络连接。
+<li>limit_conn_zone：限制每个 IP 发起的连接数。<h3 id="fail2ban"><a href="#fail2ban" class="headerlink" title="fail2ban"></a>fail2ban</h3>通过匹配服务器日志操作 iptables 来限制客户端网络连接。</li>
+</ul>
         </div>
         <a href="/uncategorized/2016/01/24/使用-NGINX-流控和-fail2ban-防止-CC-攻击.html" class="read-more">Read More</a>
     
@@ -352,7 +353,7 @@
 
     
         <div class="content">
-            <p><a href="http://oqfz9mxmq.bkt.clouddn.com/20170624-Linuxboot-1.jpeg" target="_blank" rel="noopener"><img src="http://oqfz9mxmq.bkt.clouddn.com/20170624-Linuxboot-1.jpeg" alt=""></a><br><strong>背景故事：</strong>为啥想起来写Linux启动流程了呢，这个呢要从一个月以前说起，蜜汁尴尬~~~。我媳妇用的Ubuntu，然后她需要装很多环境，不知道为何内核老是更新，结果就是后面装东西的时候提示/boot分区空间不足无法安装，但我天真可爱的媳妇不会清呀，然后我就来了，一看简单啊，删呗，凡事总有<strong>BUT</strong>，我觉得这个事情嘛要清就要清彻底，就不rm-rf了，直接卸安装包多清爽，于是乎系统挂了，剁手啊打什么通配符。。。不过总结一下还是对系统层认识不够生动，所以就补一篇日志，万一我最棒的媳妇看到了呢，那就点点点~<br>
+            <p><a href="http://oqfz9mxmq.bkt.clouddn.com/20170624-Linuxboot-1.jpeg" target="_blank" rel="noopener"><img src="http://oqfz9mxmq.bkt.clouddn.com/20170624-Linuxboot-1.jpeg" alt=""></a><br><strong>背景故事：</strong>为啥想起来写Linux启动流程了呢，这个呢要从一个月以前说起，蜜汁尴尬~~~。我媳妇用的Ubuntu，然后她需要装很多环境，不知道为何内核老是更新，结果就是后面装东西的时候提示/boot分区空间不足无法安装，但我天真可爱的媳妇不会清呀，然后我就来了，一看简单啊，删呗，凡事总有<strong>BUT</strong>，我觉得这个事情嘛要清就要清彻底，就不rm-rf了，直接卸安装包多清爽，于是乎系统挂了，剁手啊打什么通配符。。。不过总结一下还是对系统层认识不够生动，所以就补一篇日志，万一我最棒的媳妇看到了呢，那就点点点~</p>
         </div>
         <a href="/uncategorized/2015/01/24/Linux启动流程.html" class="read-more">Read More</a>
     
@@ -500,7 +501,7 @@
                     
                     
                     <li class="list-inline-item">
-                        <a href="mailto:91unix@gmail.com">
+                        <a href="mailto:91unix@sina.cn">
                             <span class="footer-icon-container">
                                 <i class="fa fa-envelope-o"></i>
                             </span>
